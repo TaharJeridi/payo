@@ -28,7 +28,7 @@ export function Card({ title, children, action }: { title?: string; children: Re
   );
 }
 
-export function Spinner({ label = "Caricamento…" }: { label?: string }) {
+export function Spinner({ label = "Loading…" }: { label?: string }) {
   return (
     <p role="status" className="flex items-center gap-2 text-sm text-muted">
       <span className="h-4 w-4 animate-spin rounded-full border-2 border-line border-t-primary" aria-hidden="true" />
@@ -38,17 +38,17 @@ export function Spinner({ label = "Caricamento…" }: { label?: string }) {
 }
 
 const ERROR_MESSAGES: Record<string, string> = {
-  network_error: "L'API non è raggiungibile. Lo stack è avviato?",
-  rag_unavailable: "Ask Payo non è disponibile: Ollama o Qdrant non rispondono.",
-  payment_outcome_unknown: "Stripe non ha confermato l'esito. Riprova: verrà usata la stessa chiave di idempotenza.",
-  idempotency_operation_in_progress: "La richiesta precedente è ancora in corso. Riprova tra qualche secondo.",
-  rate_limited: "Troppe richieste. Riprova tra un minuto.",
-  payment_not_found: "Pagamento non trovato.",
+  network_error: "The API cannot be reached. Is the stack running?",
+  rag_unavailable: "Ask Payo is unavailable: Ollama or Qdrant is not responding.",
+  payment_outcome_unknown: "Stripe has not confirmed the outcome. Try again: the same idempotency key will be used.",
+  idempotency_operation_in_progress: "The previous request is still in progress. Try again in a few seconds.",
+  rate_limited: "Too many requests. Try again in a minute.",
+  payment_not_found: "Payment not found.",
 };
 
 export function errorMessage(error: unknown): string {
   if (error instanceof ApiError) return ERROR_MESSAGES[error.code] ?? error.message;
-  return "Errore inatteso";
+  return "Unexpected error";
 }
 
 export function ErrorBox({ error, onRetry }: { error: unknown; onRetry?: () => void }) {
@@ -57,7 +57,7 @@ export function ErrorBox({ error, onRetry }: { error: unknown; onRetry?: () => v
       <p>{errorMessage(error)}</p>
       {onRetry && (
         <button type="button" onClick={onRetry} className="mt-2 font-medium underline underline-offset-2">
-          Riprova
+          Try again
         </button>
       )}
     </div>

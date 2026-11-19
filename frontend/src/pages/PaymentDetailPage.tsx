@@ -13,13 +13,13 @@ export function PaymentDetailPage() {
   const payment = query.data;
 
   const facts: [string, string][] = [
-    ["Prodotto", `${payment.product_id} × ${payment.quantity}`],
-    ["Importo", formatMoney(payment.amount, payment.currency)],
-    ["Prezzo unitario", formatMoney(payment.unit_amount, payment.currency)],
-    ["Motivo", payment.failure_reason ?? "—"],
-    ["Creato", formatDateTime(payment.created_at)],
-    ["Pagato", formatDateTime(payment.paid_at)],
-    ["Scadenza checkout", formatDateTime(payment.checkout_expires_at)],
+    ["Product", `${payment.product_id} × ${payment.quantity}`],
+    ["Amount", formatMoney(payment.amount, payment.currency)],
+    ["Unit price", formatMoney(payment.unit_amount, payment.currency)],
+    ["Reason", payment.failure_reason ?? "—"],
+    ["Created", formatDateTime(payment.created_at)],
+    ["Paid", formatDateTime(payment.paid_at)],
+    ["Checkout expires", formatDateTime(payment.checkout_expires_at)],
     ["Checkout Session", payment.stripe_checkout_session_id ?? "—"],
     ["PaymentIntent", payment.stripe_payment_intent_id ?? "—"],
   ];
@@ -27,14 +27,14 @@ export function PaymentDetailPage() {
   return (
     <div className="space-y-4">
       <Link to="/payments" className="text-sm font-medium text-primary hover:text-primary-strong">
-        ← Pagamenti
+        ← Payments
       </Link>
       <div className="flex flex-wrap items-center gap-3">
         <h1 className="break-all font-mono text-xl font-bold text-navy">{payment.id}</h1>
         <StatusBadge status={payment.status} />
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
-        <Card title="Dettagli">
+        <Card title="Details">
           <dl className="grid grid-cols-[auto,1fr] gap-x-6 gap-y-2 text-sm">
             {facts.map(([label, value]) => (
               <div key={label} className="contents">
@@ -44,13 +44,13 @@ export function PaymentDetailPage() {
             ))}
           </dl>
         </Card>
-        <Card title="Storico">
-          <ol className="relative space-y-4 border-l border-line pl-5" aria-label="Storico del pagamento">
+        <Card title="History">
+          <ol className="relative space-y-4 border-l border-line pl-5" aria-label="Payment history">
             {payment.history.map((event, index) => (
               <li key={`${event.created_at}-${index}`} className="text-sm">
                 <span className="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border-2 border-surface bg-primary" />
                 <p className="font-medium">
-                  {event.from_status ? `${STATUS_LABEL[event.from_status]} → ` : "Creato come "}
+                  {event.from_status ? `${STATUS_LABEL[event.from_status]} → ` : "Created as "}
                   {STATUS_LABEL[event.to_status]}
                 </p>
                 <p className="text-muted">
@@ -63,10 +63,10 @@ export function PaymentDetailPage() {
         </Card>
       </div>
       <Link
-        to={`/assistant?q=${encodeURIComponent(`Che cosa è successo al pagamento ${payment.id}?`)}`}
+        to={`/assistant?q=${encodeURIComponent(`What happened to payment ${payment.id}?`)}`}
         className="inline-block text-sm font-medium text-primary hover:text-primary-strong"
       >
-        Chiedi a Payo di questo pagamento →
+        Ask Payo about this payment →
       </Link>
     </div>
   );

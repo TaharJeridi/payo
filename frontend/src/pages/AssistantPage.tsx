@@ -15,9 +15,9 @@ interface Exchange {
 }
 
 const SUGGESTIONS = [
-  "Quanti pagamenti sono ancora in attesa?",
-  "Perché un pagamento può risultare con esito sconosciuto?",
-  "Come funziona la riconciliazione con Stripe?",
+  "How many payments are still awaiting payment?",
+  "Why can a payment end up with an unknown outcome?",
+  "How does reconciliation with Stripe work?",
 ];
 
 export function AssistantPage() {
@@ -56,9 +56,9 @@ export function AssistantPage() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-navy">Ask Payo</h1>
           <p className="mt-1 text-sm text-muted">
-            Chiedi a Payo dei tuoi pagamenti o di come funziona la piattaforma. Le risposte usano solo i tuoi dati e la
-            documentazione, citano le fonti e sono calcolate dal backend o scritte dal modello locale Qwen. Verifica
-            sempre importi e stati nella pagina del pagamento.
+            Ask Payo about your payments or how the platform works. Answers use only your data and the documentation,
+            cite their sources, and are either calculated by the backend or written by the local Qwen model. Always
+            check amounts and statuses on the payment page.
           </p>
         </div>
       </header>
@@ -88,7 +88,7 @@ export function AssistantPage() {
             {exchange.error !== null && <ErrorBox error={exchange.error} />}
             {!exchange.answer && exchange.error === null && (
               <p role="status" className="text-sm text-muted">
-                Payo sta preparando la risposta…
+                Payo is preparing the answer…
               </p>
             )}
           </div>
@@ -101,18 +101,18 @@ export function AssistantPage() {
         className="sticky bottom-4 flex gap-2 rounded-card border border-field bg-surface p-2 shadow-card focus-within:border-primary"
       >
         <label htmlFor="question" className="sr-only">
-          Domanda
+          Question
         </label>
         <input
           id="question"
           value={question}
           maxLength={1000}
           onChange={(event) => setQuestion(event.target.value)}
-          placeholder="Chiedi a Payo qualcosa sui tuoi pagamenti…"
+          placeholder="Ask Payo about your payments…"
           className="min-w-0 flex-1 rounded-lg bg-transparent px-3 py-2 text-sm text-ink placeholder:text-muted focus:outline-none"
         />
         <Button type="submit" disabled={ask.isPending || question.trim() === ""}>
-          Invia
+          Send
         </Button>
       </form>
     </div>
@@ -141,7 +141,7 @@ function AnswerView({ answer, exchangeId }: { answer: RagAnswer; exchangeId: num
       </p>
       {answer.sources.length > 0 && (
         <div className="mt-4 border-t border-line pt-3">
-          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">Fonti</h3>
+          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">Sources</h3>
           <ol className="space-y-1 text-sm">
             {answer.sources.map((source) => {
               const paymentId = paymentIdFromSourceKey(source.source_key);
@@ -156,7 +156,7 @@ function AnswerView({ answer, exchangeId }: { answer: RagAnswer; exchangeId: num
                     <span>{source.title}</span>
                   )}
                   <span className="ml-2 text-xs text-muted">
-                    {source.cited ? "citata" : "non citata"} · {source.score.toFixed(2)}
+                    {source.cited ? "cited" : "not cited"} · {source.score.toFixed(2)}
                   </span>
                 </li>
               );
@@ -166,29 +166,29 @@ function AnswerView({ answer, exchangeId }: { answer: RagAnswer; exchangeId: num
       )}
       {(answer.warnings ?? []).length > 0 && (
         <p className="mt-2 rounded bg-amber-50 px-2 py-1 text-xs text-amber-800" data-testid="answer-warnings">
-          Risposta non verificata dal backend: {(answer.warnings ?? []).map(warningLabel).join("; ")}.
+          Answer not verified by the backend: {(answer.warnings ?? []).map(warningLabel).join("; ")}.
         </p>
       )}
       {!answer.used_llm && answer.sources.length > 0 && (
-        <p className="mt-2 text-xs text-muted">Risposta calcolata dal backend con i dati di Payo, senza Qwen.</p>
+        <p className="mt-2 text-xs text-muted">Answer calculated by the backend from Payo data, without Qwen.</p>
       )}
       {!answer.used_llm && answer.sources.length === 0 && (
-        <p className="mt-2 text-xs text-muted">Nessuna fonte pertinente: Qwen non è stato interpellato.</p>
+        <p className="mt-2 text-xs text-muted">No relevant source: Qwen was not called.</p>
       )}
     </Card>
   );
 }
 
 const WARNING_LABELS: Record<string, string> = {
-  uncited: "nessuna fonte citata",
-  invalid_citation: "citazione a una fonte inesistente",
-  unknown_payment_id: "id di pagamento non presente nelle fonti",
-  amount_not_in_sources: "importo non presente nelle fonti citate",
-  amount_wrong_payment: "importo attribuito al pagamento sbagliato",
-  threshold_unverified: "soglia diversa dal filtro applicato",
-  aggregate_unverified: "totale non calcolato dal backend",
-  contradicted_evidence: "la risposta generata negava pagamenti trovati ed è stata sostituita dai dati del backend",
-  personal_data: "contiene un indirizzo email",
+  uncited: "no source cited",
+  invalid_citation: "citation of a source that does not exist",
+  unknown_payment_id: "payment id not in the sources",
+  amount_not_in_sources: "amount not in the cited sources",
+  amount_wrong_payment: "amount attributed to the wrong payment",
+  threshold_unverified: "threshold differs from the filter applied",
+  aggregate_unverified: "total not calculated by the backend",
+  contradicted_evidence: "the generated answer denied payments that were found and was replaced with backend data",
+  personal_data: "contains an email address",
 };
 
 export function warningLabel(code: string): string {

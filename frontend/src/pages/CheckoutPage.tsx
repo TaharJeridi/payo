@@ -51,7 +51,7 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
     try {
       const outcome = await checkoutWithRetry(client, request, key, {
         ...retryOptions,
-        onRetry: (attempt) => setNotice(`Esito non ancora confermato, nuovo tentativo ${attempt + 1} con la stessa chiave…`),
+        onRetry: (attempt) => setNotice(`Outcome not confirmed yet, attempt ${attempt + 1} with the same key…`),
       });
       keys.current.completed();
       setResult(outcome);
@@ -73,11 +73,11 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       <div className="space-y-4">
-        <PageHeader title="Nuovo checkout" description="Crea un pagamento di prova con Stripe in modalità test" />
+        <PageHeader title="New checkout" description="Create a test payment with Stripe in test mode" />
         <Card>
           <form onSubmit={onSubmit} className="space-y-4">
             <label className="block text-sm font-medium text-ink">
-              Prodotto
+              Product
               <select
                 value={selected?.id ?? ""}
                 onChange={(event) => setProductId(event.target.value)}
@@ -91,7 +91,7 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
               </select>
             </label>
             <label className="block text-sm font-medium text-ink">
-              Quantità
+              Quantity
               <input
                 type="number"
                 min={1}
@@ -104,7 +104,7 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
               />
             </label>
             <label className="block text-sm font-medium text-ink">
-              Email del cliente (facoltativa)
+              Customer email (optional)
               <input
                 type="email"
                 value={email}
@@ -114,17 +114,17 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
             </label>
             {!quantityValid && (
               <p role="alert" className="text-sm text-rose-700">
-                La quantità deve essere un numero intero tra 1 e {MAX_QUANTITY}.
+                Quantity must be a whole number between 1 and {MAX_QUANTITY}.
               </p>
             )}
             {selected && quantityValid && (
               <p className="text-sm text-muted">
-                Totale: <strong className="text-ink">{formatMoney(selected.unit_amount * quantity, selected.currency)}</strong> · calcolato
-                dal backend sul catalogo
+                Total: <strong className="text-ink">{formatMoney(selected.unit_amount * quantity, selected.currency)}</strong> · calculated
+                by the backend from the catalogue
               </p>
             )}
             <Button type="submit" disabled={busy || !request}>
-              {busy ? "Creazione…" : "Crea checkout"}
+              {busy ? "Creating…" : "Create checkout"}
             </Button>
             {notice && (
               <p role="status" className="text-sm text-amber-700">
@@ -139,12 +139,12 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
           <ErrorBox error={error} {...(request ? { onRetry: () => void submit() } : {})} />
         )}
         {result && (
-          <Card title={result.replayed ? "Checkout esistente (replay)" : "Checkout creato"}>
+          <Card title={result.replayed ? "Existing checkout (replay)" : "Checkout created"}>
             <div className="space-y-3 text-sm">
               <p className="flex items-center gap-2">
-                Stato: <StatusBadge status={result.response.status} />
+                Status: <StatusBadge status={result.response.status} />
               </p>
-              <p>Importo: {formatMoney(result.response.amount, result.response.currency)}</p>
+              <p>Amount: {formatMoney(result.response.amount, result.response.currency)}</p>
               {checkoutUrl && STRIPE_CHECKOUT.test(checkoutUrl) ? (
                 <a
                   href={checkoutUrl}
@@ -152,17 +152,17 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
                   rel="noopener noreferrer"
                   className="inline-block rounded-lg bg-primary px-4 py-2 font-semibold text-white hover:bg-primary-strong"
                 >
-                  Apri la pagina di pagamento Stripe ↗
+                  Open the Stripe payment page ↗
                 </a>
               ) : (
-                <p className="text-muted">Nessun link di pagamento disponibile per questo stato.</p>
+                <p className="text-muted">No payment link is available for this status.</p>
               )}
               <p>
                 <Link to={`/payments/${result.response.payment_id}`} className="text-primary underline">
-                  Vedi il pagamento
+                  View the payment
                 </Link>
               </p>
-              <p className="text-xs text-muted">Carta di test: 4242 4242 4242 4242, qualsiasi data futura e CVC.</p>
+              <p className="text-xs text-muted">Test card: 4242 4242 4242 4242, any future date and any CVC.</p>
             </div>
           </Card>
         )}

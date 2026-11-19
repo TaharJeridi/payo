@@ -13,11 +13,11 @@ const ICONS: Record<string, ReactNode> = {
 };
 
 const NAV = [
-  { to: "/", label: "Panoramica", icon: "overview", end: true },
-  { to: "/payments", label: "Pagamenti", icon: "payments", end: false },
-  { to: "/checkout", label: "Nuovo checkout", icon: "checkout", end: false },
+  { to: "/", label: "Overview", icon: "overview", end: true },
+  { to: "/payments", label: "Payments", icon: "payments", end: false },
+  { to: "/checkout", label: "New checkout", icon: "checkout", end: false },
   { to: "/assistant", label: "Ask Payo", icon: "assistant", end: false },
-  { to: "/status", label: "Stato sistema", icon: "status", end: false },
+  { to: "/status", label: "System status", icon: "status", end: false },
 ];
 
 function NavIcon({ name }: { name: string }) {
@@ -51,7 +51,7 @@ export function Layout() {
           <Logo tone="dark" />
         </div>
         <nav
-          aria-label="Principale"
+          aria-label="Main"
           className="flex gap-1 overflow-x-auto px-2 pb-2 lg:flex-1 lg:flex-col lg:overflow-visible lg:px-3 lg:pb-0"
         >
           {NAV.map((item) => (
@@ -101,7 +101,7 @@ function LogoutButton({ onClick }: { onClick: () => void }) {
       onClick={onClick}
       className="text-sm font-medium text-blue-100 hover:text-white focus-visible:outline-accent"
     >
-      Esci
+      Sign out
     </button>
   );
 }

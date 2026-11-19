@@ -25,9 +25,9 @@ describe("login", () => {
     renderApp("/", client, { loggedIn: false });
 
     await userEvent.type(await screen.findByLabelText(/API key/), VALID_KEY);
-    await userEvent.click(screen.getByRole("button", { name: "Accedi" }));
+    await userEvent.click(screen.getByRole("button", { name: "Sign in" }));
 
-    expect(await screen.findByRole("heading", { name: "Panoramica" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Overview" })).toBeInTheDocument();
     expect(calls.find((c) => c.path.startsWith("/payments?limit=1"))?.headers.Authorization).toBe(`Bearer ${VALID_KEY}`);
     expect(window.localStorage.length).toBe(0);
     expect(window.sessionStorage.getItem("payflow.apiKey")).toBeNull();
@@ -42,10 +42,10 @@ describe("login", () => {
     renderApp("/", client, { loggedIn: false });
 
     await userEvent.type(await screen.findByLabelText(/API key/), VALID_KEY);
-    await userEvent.click(screen.getByLabelText(/Ricorda/));
-    await userEvent.click(screen.getByRole("button", { name: "Accedi" }));
+    await userEvent.click(screen.getByLabelText(/Remember/));
+    await userEvent.click(screen.getByRole("button", { name: "Sign in" }));
 
-    await screen.findByRole("heading", { name: "Panoramica" });
+    await screen.findByRole("heading", { name: "Overview" });
     expect(window.sessionStorage.getItem("payflow.apiKey")).toBe(VALID_KEY);
     expect(window.localStorage.length).toBe(0);
   });
@@ -55,13 +55,13 @@ describe("login", () => {
     renderApp("/", client, { loggedIn: false });
 
     await userEvent.type(await screen.findByLabelText(/API key/), "not-a-key");
-    await userEvent.click(screen.getByRole("button", { name: "Accedi" }));
-    expect(await screen.findByText(/Formato non valido/)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: "Sign in" }));
+    expect(await screen.findByText(/Invalid format/)).toBeInTheDocument();
     expect(calls).toHaveLength(0);
 
     await userEvent.clear(screen.getByLabelText(/API key/));
     await userEvent.type(screen.getByLabelText(/API key/), VALID_KEY);
-    await userEvent.click(screen.getByRole("button", { name: "Accedi" }));
+    await userEvent.click(screen.getByRole("button", { name: "Sign in" }));
     expect(await screen.findByText("Invalid or revoked API key")).toBeInTheDocument();
   });
 
@@ -73,7 +73,7 @@ describe("login", () => {
     });
     renderApp("/", client);
 
-    expect(await screen.findByRole("button", { name: "Accedi" })).toBeInTheDocument();
+    expect(await screen.findByRole("button", { name: "Sign in" })).toBeInTheDocument();
     expect(window.sessionStorage.getItem("payflow.apiKey")).toBeNull();
   });
 });
@@ -87,7 +87,7 @@ describe("overview and payments", () => {
     });
     renderApp("/", client);
 
-    expect(await screen.findByTestId("paid-total")).toHaveTextContent(/59,80/);
+    expect(await screen.findByTestId("paid-total")).toHaveTextContent(/€59\.80/);
     expect(screen.getByTestId("total-count")).toHaveTextContent("3");
     expect(await screen.findByRole("link", { name: "7785103b…" })).toHaveAttribute(
       "href",
@@ -104,9 +104,9 @@ describe("overview and payments", () => {
     renderApp("/", client);
 
     expect(await screen.findByRole("img", { name: "Payo" })).toBeInTheDocument();
-    const nav = screen.getByRole("navigation", { name: "Principale" });
+    const nav = screen.getByRole("navigation", { name: "Main" });
     expect(within(nav).getByRole("link", { name: "Ask Payo" })).toHaveAttribute("href", "/assistant");
-    expect(within(nav).getByRole("link", { name: "Panoramica" })).toHaveAttribute("aria-current", "page");
+    expect(within(nav).getByRole("link", { name: "Overview" })).toHaveAttribute("aria-current", "page");
     expect(screen.queryByText(/PayFlow/)).toBeNull();
   });
 
@@ -119,11 +119,11 @@ describe("overview and payments", () => {
     });
     renderApp("/payments", client);
 
-    await screen.findByText(/pagina 1 di 3/);
-    await userEvent.click(screen.getByRole("button", { name: "Pagato" }));
-    await screen.findByText(/pagina 1 di 3/);
-    await userEvent.click(screen.getByRole("button", { name: "Successiva" }));
-    await screen.findByText(/pagina 2 di 3/);
+    await screen.findByText(/page 1 of 3/);
+    await userEvent.click(screen.getByRole("button", { name: "Paid" }));
+    await screen.findByText(/page 1 of 3/);
+    await userEvent.click(screen.getByRole("button", { name: "Next" }));
+    await screen.findByText(/page 2 of 3/);
 
     const paths = calls.map((c) => c.path);
     expect(paths).toContain("/payments?limit=20&offset=0");
@@ -137,18 +137,18 @@ describe("overview and payments", () => {
     });
     renderApp("/payments/7785103b-2196-4e89-ac3f-1778aac84f31", client);
 
-    const timeline = await screen.findByRole("list", { name: "Storico del pagamento" });
+    const timeline = await screen.findByRole("list", { name: "Payment history" });
     const items = within(timeline).getAllByRole("listitem");
     expect(items).toHaveLength(2);
-    expect(items[0]).toHaveTextContent("Creato come In preparazione");
-    expect(items[1]).toHaveTextContent("In preparazione → In attesa di pagamento");
+    expect(items[0]).toHaveTextContent("Created as Preparing");
+    expect(items[1]).toHaveTextContent("Preparing → Awaiting payment");
   });
 
   it("shows a not-found payment as an error", async () => {
     const { client } = fakeApi({ "GET /payments/x": () => apiError(404, "payment_not_found", "Payment not found") });
     renderApp("/payments/x", client);
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Pagamento non trovato.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Payment not found.");
   });
 });
 
@@ -177,11 +177,11 @@ describe("checkout", () => {
     });
     renderApp("/checkout", client);
 
-    await userEvent.clear(await screen.findByLabelText("Quantità"));
-    await userEvent.type(screen.getByLabelText("Quantità"), "2");
-    await userEvent.click(screen.getByRole("button", { name: "Crea checkout" }));
+    await userEvent.clear(await screen.findByLabelText("Quantity"));
+    await userEvent.type(screen.getByLabelText("Quantity"), "2");
+    await userEvent.click(screen.getByRole("button", { name: "Create checkout" }));
 
-    const link = await screen.findByRole("link", { name: /pagina di pagamento Stripe/ });
+    const link = await screen.findByRole("link", { name: /Stripe payment page/ });
     expect(link).toHaveAttribute("href", "https://checkout.stripe.com/c/pay/cs_test_1");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
     const post = calls.find((c) => c.method === "POST");
@@ -197,9 +197,9 @@ describe("checkout", () => {
     });
     renderApp("/checkout", client);
 
-    await userEvent.click(await screen.findByRole("button", { name: "Crea checkout" }));
+    await userEvent.click(await screen.findByRole("button", { name: "Create checkout" }));
 
-    expect(await screen.findByText(/Nessun link di pagamento/)).toBeInTheDocument();
+    expect(await screen.findByText(/No payment link/)).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /Stripe/ })).toBeNull();
   });
 
@@ -211,9 +211,9 @@ describe("checkout", () => {
     });
     renderApp("/checkout", client);
 
-    await userEvent.click(await screen.findByRole("button", { name: "Crea checkout" }));
-    await userEvent.click(await screen.findByRole("button", { name: "Riprova" }));
-    await screen.findByText("Checkout esistente (replay)");
+    await userEvent.click(await screen.findByRole("button", { name: "Create checkout" }));
+    await userEvent.click(await screen.findByRole("button", { name: "Try again" }));
+    await screen.findByText("Existing checkout (replay)");
 
     const keys = calls.filter((c) => c.method === "POST").map((c) => c.headers["Idempotency-Key"]);
     expect(keys).toHaveLength(2);
@@ -227,9 +227,9 @@ describe("checkout", () => {
     });
     renderApp("/checkout", client);
 
-    await userEvent.click(await screen.findByRole("button", { name: "Crea checkout" }));
-    await screen.findByText("Checkout creato");
-    await userEvent.click(screen.getByRole("button", { name: "Crea checkout" }));
+    await userEvent.click(await screen.findByRole("button", { name: "Create checkout" }));
+    await screen.findByText("Checkout created");
+    await userEvent.click(screen.getByRole("button", { name: "Create checkout" }));
     await waitFor(() => expect(calls.filter((c) => c.method === "POST")).toHaveLength(2));
 
     const keys = calls.filter((c) => c.method === "POST").map((c) => c.headers["Idempotency-Key"]);
@@ -254,25 +254,25 @@ describe("assistant", () => {
     renderApp("/assistant", client);
 
     for (const question of ["chiavi?", "quanti scaduti?", "capitale?"]) {
-      await userEvent.clear(screen.getByLabelText("Domanda"));
-      await userEvent.type(screen.getByLabelText("Domanda"), question);
-      await userEvent.click(screen.getByRole("button", { name: "Invia" }));
+      await userEvent.clear(screen.getByLabelText("Question"));
+      await userEvent.type(screen.getByLabelText("Question"), question);
+      await userEvent.click(screen.getByRole("button", { name: "Send" }));
     }
 
     expect(await screen.findByTestId("answer-warnings")).toHaveTextContent(
-      "Risposta non verificata dal backend: nessuna fonte citata; importo non presente nelle fonti citate.",
+      "Answer not verified by the backend: no source cited; amount not in the cited sources.",
     );
-    expect(await screen.findByText("Risposta calcolata dal backend con i dati di Payo, senza Qwen.")).toBeInTheDocument();
-    expect(await screen.findByText("Nessuna fonte pertinente: Qwen non è stato interpellato.")).toBeInTheDocument();
+    expect(await screen.findByText("Answer calculated by the backend from Payo data, without Qwen.")).toBeInTheDocument();
+    expect(await screen.findByText("No relevant source: Qwen was not called.")).toBeInTheDocument();
     expect(screen.getAllByTestId("answer-warnings")).toHaveLength(1);
   });
 
-  it("labels every amount warning code in Italian", () => {
-    expect(warningLabel("amount_wrong_payment")).toBe("importo attribuito al pagamento sbagliato");
-    expect(warningLabel("threshold_unverified")).toBe("soglia diversa dal filtro applicato");
-    expect(warningLabel("aggregate_unverified")).toBe("totale non calcolato dal backend");
+  it("labels every amount warning code in English", () => {
+    expect(warningLabel("amount_wrong_payment")).toBe("amount attributed to the wrong payment");
+    expect(warningLabel("threshold_unverified")).toBe("threshold differs from the filter applied");
+    expect(warningLabel("aggregate_unverified")).toBe("total not calculated by the backend");
     expect(warningLabel("contradicted_evidence")).toBe(
-      "la risposta generata negava pagamenti trovati ed è stata sostituita dai dati del backend",
+      "the generated answer denied payments that were found and was replaced with backend data",
     );
     expect(warningLabel("future_code")).toBe("future_code");
   });
@@ -298,8 +298,8 @@ describe("assistant", () => {
     });
     renderApp("/assistant", client);
 
-    await userEvent.type(screen.getByLabelText("Domanda"), "stato?");
-    await userEvent.click(screen.getByRole("button", { name: "Invia" }));
+    await userEvent.type(screen.getByLabelText("Question"), "stato?");
+    await userEvent.click(screen.getByRole("button", { name: "Send" }));
 
     const answer = await screen.findByTestId("answer");
     expect(answer.querySelector("img")).toBeNull();
@@ -317,10 +317,10 @@ describe("assistant", () => {
     const { client } = fakeApi({ "POST /rag/ask": () => apiError(503, "rag_unavailable", "Ollama is not reachable") });
     renderApp(`/assistant?q=${encodeURIComponent("Che cosa è successo al pagamento X?")}`, client);
 
-    expect(screen.getByLabelText("Domanda")).toHaveValue("Che cosa è successo al pagamento X?");
-    await userEvent.click(screen.getByRole("button", { name: "Invia" }));
+    expect(screen.getByLabelText("Question")).toHaveValue("Che cosa è successo al pagamento X?");
+    await userEvent.click(screen.getByRole("button", { name: "Send" }));
 
-    expect(await screen.findByRole("alert")).toHaveTextContent(/Ollama o Qdrant non rispondono/);
+    expect(await screen.findByRole("alert")).toHaveTextContent(/Ollama or Qdrant is not responding/);
   });
 });
 
@@ -332,9 +332,9 @@ describe("system status", () => {
     });
     renderApp("/status", client);
 
-    await waitFor(() => expect(screen.getByTestId("state-API")).toHaveTextContent("operativo"));
-    await waitFor(() => expect(screen.getByTestId("state-Ollama")).toHaveTextContent("non disponibile"));
-    expect(screen.getByTestId("state-Qdrant")).toHaveTextContent("operativo");
+    await waitFor(() => expect(screen.getByTestId("state-API")).toHaveTextContent("operational"));
+    await waitFor(() => expect(screen.getByTestId("state-Ollama")).toHaveTextContent("unavailable"));
+    expect(screen.getByTestId("state-Qdrant")).toHaveTextContent("operational");
   });
 });
 
@@ -346,12 +346,12 @@ describe("checkout quantity input", () => {
     });
     renderApp("/checkout", client);
 
-    const input = await screen.findByLabelText("Quantità");
+    const input = await screen.findByLabelText("Quantity");
     await userEvent.clear(input);
     await userEvent.type(input, "12");
 
-    expect(await screen.findByText(/tra 1 e 10/)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Crea checkout" })).toBeDisabled();
+    expect(await screen.findByText(/between 1 and 10/)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Create checkout" })).toBeDisabled();
     expect(calls.filter((c) => c.method === "POST")).toHaveLength(0);
   });
 });
@@ -370,9 +370,9 @@ describe("login key normalisation", () => {
       await screen.findByLabelText(/API key/),
       ` "api_key=${VALID_KEY.slice(0, half)} ${VALID_KEY.slice(half)}" `,
     );
-    await userEvent.click(screen.getByRole("button", { name: "Accedi" }));
+    await userEvent.click(screen.getByRole("button", { name: "Sign in" }));
 
-    expect(await screen.findByRole("heading", { name: "Panoramica" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Overview" })).toBeInTheDocument();
     expect(calls[0]?.headers.Authorization).toBe(`Bearer ${VALID_KEY}`);
   });
 });

@@ -118,7 +118,7 @@ export class ApiClient {
     const headers: Record<string, string> = { Accept: "application/json", ...options.headers };
     if (options.body !== undefined) headers["Content-Type"] = "application/json";
     if (options.auth !== false) {
-      if (!this.apiKey) throw new ApiError(401, "unauthorized", "API key mancante");
+      if (!this.apiKey) throw new ApiError(401, "unauthorized", "Missing API key");
       headers["Authorization"] = `Bearer ${this.apiKey}`;
     }
     let response: Response;
@@ -131,7 +131,7 @@ export class ApiClient {
         cache: "no-store",
       });
     } catch {
-      throw new ApiError(0, "network_error", "Impossibile contattare l'API");
+      throw new ApiError(0, "network_error", "Cannot reach the API");
     }
     const payload: unknown = await response.json().catch(() => null);
     if (response.ok || options.acceptStatuses?.includes(response.status)) {
@@ -149,15 +149,15 @@ function toApiError(response: Response, payload: unknown): ApiError {
     return new ApiError(
       response.status,
       typeof error.code === "string" ? error.code : "error",
-      typeof error.message === "string" ? error.message : `Errore ${response.status}`,
+      typeof error.message === "string" ? error.message : `Error ${response.status}`,
       isRecord(error.details) ? error.details : {},
       retryAfterSeconds,
     );
   }
   if (isRecord(payload) && "detail" in payload) {
-    return new ApiError(response.status, "validation_error", "Richiesta non valida", {}, retryAfterSeconds);
+    return new ApiError(response.status, "validation_error", "Invalid request", {}, retryAfterSeconds);
   }
-  return new ApiError(response.status, "http_error", `Errore ${response.status}`, {}, retryAfterSeconds);
+  return new ApiError(response.status, "http_error", `Error ${response.status}`, {}, retryAfterSeconds);
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

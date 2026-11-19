@@ -15,14 +15,14 @@ export function OverviewPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Panoramica" description="I tuoi pagamenti in sintesi" />
+      <PageHeader title="Overview" description="Your payments at a glance" />
 
       {stats.isPending && <Spinner />}
       {stats.isError && <ErrorBox error={stats.error} onRetry={() => void stats.refetch()} />}
       {stats.data && (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <section className="rounded-card bg-navy p-5 text-white shadow-card">
-            <h2 className="text-sm font-semibold text-accent">Incassato</h2>
+            <h2 className="text-sm font-semibold text-accent">Collected</h2>
             {stats.data.paid_totals.length === 0 ? (
               <p className="mt-3 text-3xl font-bold tracking-tight">{formatMoney(0, "eur")}</p>
             ) : (
@@ -32,15 +32,15 @@ export function OverviewPage() {
                 </p>
               ))
             )}
-            <p className="mt-1 text-xs text-blue-100">pagamenti completati</p>
+            <p className="mt-1 text-xs text-blue-100">from completed payments</p>
           </section>
-          <Kpi title="Pagamenti" hint="totale registrato">
+          <Kpi title="Payments" hint="recorded in total">
             <span data-testid="total-count">{stats.data.total}</span>
           </Kpi>
-          <Kpi title="Pagati" hint="esito confermato" valueClass="text-emerald-700">
+          <Kpi title="Paid" hint="confirmed outcome" valueClass="text-emerald-700">
             {stats.data.by_status.paid}
           </Kpi>
-          <Kpi title="Da risolvere" hint="in preparazione o con esito sconosciuto" valueClass="text-violet-700">
+          <Kpi title="Needs attention" hint="preparing or with an unknown outcome" valueClass="text-violet-700">
             {stats.data.by_status.creating + stats.data.by_status.creation_unknown}
           </Kpi>
         </div>
@@ -49,10 +49,10 @@ export function OverviewPage() {
       <div className="grid gap-4 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <Card
-            title="Transazioni recenti"
+            title="Recent transactions"
             action={
               <Link to="/payments" className="text-sm font-medium text-primary hover:text-primary-strong">
-                Vedi tutte →
+                View all →
               </Link>
             }
           >
@@ -60,9 +60,9 @@ export function OverviewPage() {
             {recent.isError && <ErrorBox error={recent.error} />}
             {recent.data && recent.data.items.length === 0 && (
               <p className="text-sm text-muted">
-                Nessun pagamento.{" "}
+                No payments yet.{" "}
                 <Link to="/checkout" className="text-primary underline">
-                  Crea un checkout
+                  Create a checkout
                 </Link>
                 .
               </p>
@@ -82,7 +82,7 @@ export function OverviewPage() {
           </Card>
         </div>
         <div className="space-y-4">
-          <Card title="Pagamenti per stato">
+          <Card title="Payments by status">
             <ul className="space-y-3 text-sm">
               {PAYMENT_STATUSES.map((status) => {
                 const count = stats.data?.by_status[status];
@@ -102,18 +102,18 @@ export function OverviewPage() {
             </ul>
           </Card>
           <Card
-            title="Sistema"
+            title="System"
             action={
               <Link to="/status" className="text-sm font-medium text-primary hover:text-primary-strong">
-                Dettagli →
+                Details →
               </Link>
             }
           >
             <ul className="space-y-1 text-sm">
-              <li>API: {api.isSuccess ? "ok" : api.isError ? "non raggiungibile" : "…"}</li>
+              <li>API: {api.isSuccess ? "ok" : api.isError ? "unreachable" : "…"}</li>
               <li>
                 Ask Payo:{" "}
-                {rag.data ? (rag.data.status === "ok" ? "ok" : "degradato") : rag.isError ? "non raggiungibile" : "…"}
+                {rag.data ? (rag.data.status === "ok" ? "ok" : "degraded") : rag.isError ? "unreachable" : "…"}
               </li>
             </ul>
           </Card>

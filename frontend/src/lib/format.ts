@@ -1,23 +1,23 @@
 import type { PaymentStatus } from "../api/types";
 
 export function formatMoney(amountMinor: number, currency: string): string {
-  return new Intl.NumberFormat("it-IT", { style: "currency", currency: currency.toUpperCase() }).format(
+  return new Intl.NumberFormat("en-GB", { style: "currency", currency: currency.toUpperCase() }).format(
     amountMinor / 100,
   );
 }
 
 export function formatDateTime(value: string | null): string {
   if (!value) return "—";
-  return new Intl.DateTimeFormat("it-IT", { dateStyle: "short", timeStyle: "medium" }).format(new Date(value));
+  return new Intl.DateTimeFormat("en-GB", { dateStyle: "short", timeStyle: "medium" }).format(new Date(value));
 }
 
 export const STATUS_LABEL: Record<PaymentStatus, string> = {
-  creating: "In preparazione",
-  open: "In attesa di pagamento",
-  creation_unknown: "Esito sconosciuto",
-  paid: "Pagato",
-  failed: "Fallito",
-  expired: "Scaduto",
+  creating: "Preparing",
+  open: "Awaiting payment",
+  creation_unknown: "Outcome unknown",
+  paid: "Paid",
+  failed: "Failed",
+  expired: "Expired",
 };
 
 export const STATUS_TONE: Record<PaymentStatus, string> = {
@@ -41,9 +41,9 @@ export const STATUS_BAR: Record<PaymentStatus, string> = {
 
 export const SOURCE_LABEL: Record<string, string> = {
   api: "API",
-  webhook: "Webhook Stripe",
-  reconciliation: "Riconciliazione",
-  migration: "Migrazione",
+  webhook: "Stripe webhook",
+  reconciliation: "Reconciliation",
+  migration: "Migration",
 };
 
 export function paymentIdFromSourceKey(sourceKey: string): string | null {

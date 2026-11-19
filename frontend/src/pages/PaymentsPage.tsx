@@ -30,10 +30,10 @@ export function PaymentsPage() {
 
   return (
     <div className="space-y-4">
-      <PageHeader title="Pagamenti" description="Esplora le transazioni e filtrale per stato" />
-      <div role="group" aria-label="Filtra per stato" className="flex flex-wrap gap-2">
+      <PageHeader title="Payments" description="Explore transactions and filter them by status" />
+      <div role="group" aria-label="Filter by status" className="flex flex-wrap gap-2">
         <FilterChip active={!status} onClick={() => update({ status: undefined })}>
-          Tutti
+          All
         </FilterChip>
         {PAYMENT_STATUSES.map((value) => (
           <FilterChip key={value} active={status === value} onClick={() => update({ status: value })}>
@@ -44,9 +44,9 @@ export function PaymentsPage() {
       <Card>
         {query.isPending && <Spinner />}
         {query.isError && <ErrorBox error={query.error} onRetry={() => void query.refetch()} />}
-        {query.data && query.data.items.length === 0 && <p className="text-sm text-muted">Nessun pagamento.</p>}
+        {query.data && query.data.items.length === 0 && <p className="text-sm text-muted">No payments.</p>}
         {query.data && query.data.items.length > 0 && (
-          <ul className="divide-y divide-line sm:hidden" aria-label="Pagamenti">
+          <ul className="divide-y divide-line sm:hidden" aria-label="Payments">
             {query.data.items.map((payment) => (
               <li key={payment.id} className="flex items-start justify-between gap-3 py-3 text-sm">
                 <div className="min-w-0">
@@ -71,11 +71,11 @@ export function PaymentsPage() {
             <table className="min-w-full text-left text-sm">
               <thead className="border-b border-line text-xs font-semibold text-muted">
                 <tr>
-                  <th scope="col" className="py-2 pr-4">Pagamento</th>
-                  <th scope="col" className="py-2 pr-4">Prodotto</th>
-                  <th scope="col" className="py-2 pr-4">Importo</th>
-                  <th scope="col" className="py-2 pr-4">Stato</th>
-                  <th scope="col" className="py-2 pr-4">Creato</th>
+                  <th scope="col" className="py-2 pr-4">Payment</th>
+                  <th scope="col" className="py-2 pr-4">Product</th>
+                  <th scope="col" className="py-2 pr-4">Amount</th>
+                  <th scope="col" className="py-2 pr-4">Status</th>
+                  <th scope="col" className="py-2 pr-4">Created</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-line">
@@ -103,14 +103,14 @@ export function PaymentsPage() {
         {query.data && (
           <footer className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm text-muted">
             <span>
-              {total} pagamenti · pagina {page + 1} di {pages}
+              {total} payments · page {page + 1} of {pages}
             </span>
             <div className="flex gap-2">
               <Button variant="secondary" disabled={page === 0} onClick={() => update({ page: page - 1 })}>
-                Precedente
+                Previous
               </Button>
               <Button variant="secondary" disabled={page + 1 >= pages} onClick={() => update({ page: page + 1 })}>
-                Successiva
+                Next
               </Button>
             </div>
           </footer>

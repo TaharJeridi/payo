@@ -4,12 +4,12 @@ import { PAYMENT_STATUSES } from "../api/types";
 import { STATUS_LABEL, formatMoney, paymentIdFromSourceKey, splitCitations } from "./format";
 
 describe("format", () => {
-  it("formats minor units as Italian currency", () => {
-    expect(formatMoney(2990, "eur")).toMatch(/^29,90\s€$/);
-    expect(formatMoney(12345678, "usd")).toMatch(/123\.456,78/);
+  it("formats minor units as currency in English", () => {
+    expect(formatMoney(2990, "eur")).toBe("€29.90");
+    expect(formatMoney(12345678, "usd")).toMatch(/123,456\.78/);
   });
 
-  it("has an Italian label for every backend status", () => {
+  it("has an English label for every backend status", () => {
     expect(Object.keys(STATUS_LABEL).sort()).toEqual([...PAYMENT_STATUSES].sort());
   });
 

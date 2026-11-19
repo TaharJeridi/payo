@@ -46,13 +46,13 @@ export function LoginPage() {
         className="w-full max-w-md space-y-5 rounded-card border border-line bg-surface p-8 shadow-card"
       >
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-navy">Benvenuto in Payo</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-navy">Welcome to Payo</h1>
           <p className="mt-1 text-sm text-muted">
-            Dashboard dimostrativa per i merchant · Stripe in modalità test, dati sintetici
+            Demo merchant dashboard · Stripe test mode, synthetic data
           </p>
         </div>
         <label className="block text-sm font-medium text-ink">
-          API key del merchant
+          Merchant API key
           <input
             type="password"
             autoComplete="off"
@@ -65,7 +65,7 @@ export function LoginPage() {
         </label>
         {formatError && (
           <p role="alert" className="text-sm text-rose-700">
-            Formato non valido: la chiave è del tipo pf_&lt;prefisso&gt;_&lt;segreto&gt;.
+            Invalid format: the key looks like pf_&lt;prefix&gt;_&lt;secret&gt;.
           </p>
         )}
         {error !== null && (
@@ -75,13 +75,13 @@ export function LoginPage() {
         )}
         <label className="flex items-center gap-2 text-sm text-muted">
           <input type="checkbox" className="h-4 w-4 accent-primary" checked={remember} onChange={(event) => setRemember(event.target.checked)} />
-          Ricorda per questa sessione del browser (sessionStorage)
+          Remember for this browser session (sessionStorage)
         </label>
         <Button type="submit" disabled={busy || value.trim() === ""} className="w-full">
-          {busy ? "Verifica…" : "Accedi"}
+          {busy ? "Checking…" : "Sign in"}
         </Button>
         <p className="text-xs text-muted">
-          La chiave resta in memoria in questa scheda e non viene mai salvata in localStorage. Si crea con{" "}
+          The key stays in this tab's memory and is never saved to localStorage. Create one with{" "}
           <code className="rounded bg-page px-1 text-ink">python -m app.merchants.cli create</code>.
         </p>
       </form>

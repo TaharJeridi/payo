@@ -3,7 +3,7 @@ import { Button, Card, PageHeader } from "../components/ui";
 
 function Indicator({ label, state }: { label: string; state: "ok" | "down" | "pending" }) {
   const tone = state === "ok" ? "bg-emerald-500" : state === "down" ? "bg-rose-500" : "bg-field";
-  const text = state === "ok" ? "operativo" : state === "down" ? "non disponibile" : "verifica…";
+  const text = state === "ok" ? "operational" : state === "down" ? "unavailable" : "checking…";
   return (
     <li className="flex items-center justify-between py-2">
       <span className="flex items-center gap-2">
@@ -26,11 +26,11 @@ export function StatusPage() {
 
   return (
     <div className="max-w-xl space-y-4">
-      <PageHeader title="Stato sistema" description="Servizi da cui dipendono la dashboard e Ask Payo" />
+      <PageHeader title="System status" description="Services the dashboard and Ask Payo depend on" />
       <Card
         action={
           <Button variant="secondary" onClick={() => void Promise.all([api.refetch(), rag.refetch()])}>
-            Aggiorna
+            Refresh
           </Button>
         }
       >
@@ -39,7 +39,7 @@ export function StatusPage() {
           <Indicator label="Ollama" state={ragState(rag.data?.ollama)} />
           <Indicator label="Qdrant" state={ragState(rag.data?.qdrant)} />
         </ul>
-        {api.data && <p className="mt-3 text-xs text-muted">Stripe: modalità {api.data.stripe_mode}</p>}
+        {api.data && <p className="mt-3 text-xs text-muted">Stripe: {api.data.stripe_mode} mode</p>}
       </Card>
     </div>
   );
