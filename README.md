@@ -31,7 +31,7 @@ This project is intended for educational and demonstration purposes only. It use
 
 **Ask Payo**
 
-![Ask Payo answering a question about failed payments, with cited sources](docs/screenshots/payo-ai-assistant.png)
+![Ask Payo answering a question about Stripe reconciliation with the local Qwen model, with cited sources](docs/screenshots/payo-ai-assistant.png)
 
 ## Documentation
 

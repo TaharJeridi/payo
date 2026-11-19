@@ -18,7 +18,7 @@
 
 | Dashboard | Ask Payo |
 |---|---|
-| ![Payo dashboard with payment KPIs and recent transactions](../../docs/screenshots/payo-dashboard.png) | ![Ask Payo answering with cited payment sources](../../docs/screenshots/payo-ai-assistant.png) |
+| ![Payo dashboard with payment KPIs and recent transactions](../../docs/screenshots/payo-dashboard.png) | ![Ask Payo answering with cited documentation sources](../../docs/screenshots/payo-ai-assistant.png) |
 
 Screenshots taken on the synthetic evaluation merchant (`python -m app.rag.evaluation seed`); every payment shown is fake.
 
