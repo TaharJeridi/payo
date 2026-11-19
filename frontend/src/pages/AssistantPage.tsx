@@ -29,7 +29,7 @@ export function AssistantPage() {
   const bottom = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    bottom.current?.scrollIntoView?.({ behavior: "smooth" });
+    bottom.current?.scrollIntoView?.({ behavior: "smooth", block: "end" });
   }, [exchanges]);
 
   function submit(text: string) {
@@ -93,28 +93,35 @@ export function AssistantPage() {
             )}
           </div>
         ))}
-        <div ref={bottom} />
+        <div ref={bottom} className="scroll-mb-24" />
       </div>
 
-      <form
-        onSubmit={onSubmit}
-        className="sticky bottom-4 flex gap-2 rounded-card border border-field bg-surface p-2 shadow-card focus-within:border-primary"
-      >
-        <label htmlFor="question" className="sr-only">
-          Question
-        </label>
-        <input
-          id="question"
-          value={question}
-          maxLength={1000}
-          onChange={(event) => setQuestion(event.target.value)}
-          placeholder="Ask Payo about your payments…"
-          className="min-w-0 flex-1 rounded-lg bg-transparent px-3 py-2 text-sm text-ink placeholder:text-muted focus:outline-none"
-        />
-        <Button type="submit" disabled={ask.isPending || question.trim() === ""}>
-          Send
-        </Button>
-      </form>
+      {/*
+        The composer is the last block of the column and sticks to the bottom of the viewport on an
+        opaque band, so nothing scrolls visibly underneath it; at the end of the conversation it sits
+        below the last source instead of on top of it.
+      */}
+      <div className="sticky bottom-0 z-10 -mx-2 bg-page px-2 pb-4 pt-2 sm:-mx-3 sm:px-3">
+        <form
+          onSubmit={onSubmit}
+          className="flex gap-2 rounded-card border border-field bg-surface p-2 shadow-card focus-within:border-primary"
+        >
+          <label htmlFor="question" className="sr-only">
+            Question
+          </label>
+          <input
+            id="question"
+            value={question}
+            maxLength={1000}
+            onChange={(event) => setQuestion(event.target.value)}
+            placeholder="Ask Payo about your payments…"
+            className="min-w-0 flex-1 rounded-lg bg-transparent px-3 py-2 text-sm text-ink placeholder:text-muted focus:outline-none"
+          />
+          <Button type="submit" disabled={ask.isPending || question.trim() === ""}>
+            Send
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }

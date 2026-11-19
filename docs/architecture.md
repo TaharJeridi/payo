@@ -114,11 +114,11 @@ Backoff is `base × 2^attempts` (default 60 s, capped at 6 h, ±20 % jitter). A 
 
 | Case | What the reconciler does |
 |---|---|
-| Session id known | `retrieve` → same verification + state machine as webhooks |
+| Session id known | `retrieve` → same verification + state machine as webhooks; the verified session's `expires_at` replaces the stored one |
 | Session id unknown (lost response) | Lists sessions created in `[payment.created_at − skew, min(now, expires_at) + skew]` and matches `metadata.payment_id`; found → adopted and verified |
-| No session found after expiry | `failed` (`checkout_session_not_created`). No session can be created anymore, because any retry would carry an `expires_at` in the past, which Stripe rejects. |
+| No session found, and the stored `expires_at` (plus clock skew) has passed | State `failed`, with failure reason `checkout_session_not_created` (the reason is not a state). No session can be created anymore, because any retry would carry an `expires_at` in the past, which Stripe rejects. Before that time the payment keeps its state and is checked again with backoff. |
 | Stripe unreachable | Nothing changes; retried with exponential backoff |
-| Rows from before `0002` without stored expiry | `retrieve` reads Stripe's real `expires_at` and stores it |
+| Rows from before `0002` without stored expiry | Only for these rows the expiry is missing locally: when the session id is known, the same `retrieve` stores Stripe's real `expires_at` |
 
 Properties:
 - **Read-only towards Stripe**: it never creates or modifies sessions.
