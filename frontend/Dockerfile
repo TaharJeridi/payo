@@ -1,11 +1,11 @@
-FROM node:20.18-alpine AS build
+FROM node:24-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 COPY . .
 RUN npm run typecheck && npm test && npm run build
 
-FROM nginxinc/nginx-unprivileged:1.27-alpine AS runtime
+FROM nginxinc/nginx-unprivileged:1.30-alpine AS runtime
 USER root
 COPY nginx/security-headers.conf /etc/nginx/snippets/security-headers.conf
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf

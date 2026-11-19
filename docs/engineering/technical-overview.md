@@ -130,7 +130,7 @@ Swagger UI: http://localhost:8000/docs (use **Authorize** with your API key).
 
 - **Not production software.** Stripe runs in TEST mode only, all data is synthetic, and the assistant has been measured only on synthetic datasets (419 questions in four sets, three runs per set). See [AI reliability → requirements before production](../../docs/quality/ai-reliability.md#requirements-before-production).
 - **What is measured and what is not.** Every figure in this README names the dataset and the run series it comes from. The latest change (verified financial claims, [ADR 0014](../../docs/decisions/0014-verified-financial-claims.md)) is verified on saved answers and by tests; its real-model runs are still pending.
-- **Requirements.** Docker with Compose; [Ollama](https://ollama.com) on the host with `qwen2.5:7b-instruct` and `bge-m3` (a machine able to run a 7B model locally; the project was developed on an Apple Silicon Mac); Node 22 and Python 3.12 only for running parts outside Docker. Models and their caches live in Ollama's own directory, never in this repository.
+- **Requirements.** Docker with Compose; [Ollama](https://ollama.com) on the host with `qwen2.5:7b-instruct` and `bge-m3` (a machine able to run a 7B model locally; the project was developed on an Apple Silicon Mac); Node 24 LTS and Python 3.12 only for running parts outside Docker. Models and their caches live in Ollama's own directory, never in this repository.
 - **Evaluation artefacts.** Datasets, scorers and derived evidence are in the repository; full run outputs and frozen baselines are kept outside it ([why](../../docs/quality/evaluation.md#artefacts-that-are-not-in-the-repository)).
 
 ## Run
