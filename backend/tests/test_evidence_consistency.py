@@ -13,10 +13,11 @@ from app.payments.state import PaymentStatus
 from app.rag.evaluation.runner import load_dataset
 from app.rag.evaluation.seed import OTHER_MERCHANT_ID, SEED_MERCHANT_ID, SEED_PAYMENTS, seed, seed_payment_id
 from app.rag.indexer import RagIndexer
+from app.rag.language import detect_language
 from app.rag.qdrant_store import QdrantVectorStore
 from app.rag.query_parser import QueryParser
 from app.rag.service import RagService
-from app.rag.structured import TENANT_NOTICE, StructuredRetriever
+from app.rag.structured import TENANT_NOTICE, TENANT_NOTICES, StructuredRetriever
 from app.rag.validation import denies_existence
 from tests.rag_fakes import FakeChat, HashingEmbedder
 
@@ -435,7 +436,9 @@ def test_attribute_and_single_payment_questions_are_not_counts(kit, question, ro
 def test_awaiting_payment_is_the_open_status(kit):
     service, _ = kit
     answer = service.ask(SEED_MERCHANT_ID, "How many payments are still awaiting payment?")
-    assert answer.answer.startswith("Hai 3 pagamenti in attesa di pagamento")
+    assert answer.answer == "You have 3 payments with status awaiting payment [1]."
+    italian = service.ask(SEED_MERCHANT_ID, "Quanti pagamenti sono ancora in attesa di pagamento?")
+    assert italian.answer.startswith("Hai 3 pagamenti in attesa di pagamento")
 
 
 def test_a_singular_yes_no_question_keeps_the_status_as_the_question():
@@ -558,7 +561,7 @@ def test_lists_across_tenants_return_own_payments_with_the_notice(kit, question)
     service, chat = kit
     answer = service.ask(SEED_MERCHANT_ID, question)
     assert answer.used_llm is False and chat.calls == []
-    assert TENANT_NOTICE in answer.answer
+    assert TENANT_NOTICES[detect_language(question)] in answer.answer
     assert str(OTHER_MERCHANT_ID) not in answer.answer
 
 

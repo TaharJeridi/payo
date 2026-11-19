@@ -55,6 +55,22 @@ STATUS_PLURAL: dict[PaymentStatus, str] = {
     PaymentStatus.EXPIRED: "scaduti",
 }
 TENANT_NOTICE = "I dati sono sempre quelli del tuo account: un altro merchant citato nella domanda viene ignorato."
+TENANT_NOTICES = {
+    "it": TENANT_NOTICE,
+    "en": "The data always comes from your own account: another merchant named in the question is ignored.",
+}
+SQL_SOURCE_TITLE = {
+    "it": {
+        "count": "Dati calcolati con SQL: conteggio",
+        "total": "Dati calcolati con SQL: totale",
+        "products": "Dati calcolati con SQL: prodotti",
+    },
+    "en": {
+        "count": "Data calculated with SQL: count",
+        "total": "Data calculated with SQL: total",
+        "products": "Data calculated with SQL: products",
+    },
+}
 UNSUPPORTED_ANSWER = {
     "it": (
         "PayFlow non registra {metric}: rimborsi, dispute, commissioni e liquidazioni non sono modellati, "
@@ -354,7 +370,7 @@ class StructuredRetriever:
         return StructuredResult(
             route=result.route,
             evidence=result.evidence,
-            direct_answer=f"{result.direct_answer} {TENANT_NOTICE}",
+            direct_answer=f"{result.direct_answer} {TENANT_NOTICES[plan.language]}",
             payment_ids=result.payment_ids,
             total=result.total,
             preamble=result.preamble,
@@ -386,10 +402,10 @@ class StructuredRetriever:
             with self._session_factory() as session:
                 repo = PaymentRepository(session)
                 if plan.intent == "count":
-                    return self._count(merchant_id, repo, plan.filters)
+                    return self._count(merchant_id, repo, plan.filters, plan.language)
                 if plan.intent == "total":
-                    return self._total(merchant_id, repo, plan.filters)
-                return self._top_product(merchant_id, repo, plan.filters, ranking=plan.ranking)
+                    return self._total(merchant_id, repo, plan.filters, plan.language)
+                return self._top_product(merchant_id, repo, plan.filters, ranking=plan.ranking, language=plan.language)
         return None
 
     @staticmethod
@@ -532,97 +548,156 @@ class StructuredRetriever:
                 lines.append(FACT_LATE[language].format(id=payment.id, n=n))
         return "\n".join([FACTS_HEADER[language], *lines]) if lines else None
 
-    def _count(self, merchant_id: uuid.UUID, repo: PaymentRepository, filters: PaymentFilters) -> StructuredResult:
+    def _count(
+        self, merchant_id: uuid.UUID, repo: PaymentRepository, filters: PaymentFilters, language: str = "it"
+    ) -> StructuredResult:
         counts = repo.count_by_status(merchant_id, filters)
         total = sum(counts.values())
         nonzero = [(s, n) for s, n in counts.items() if n]
-        breakdown = ", ".join(f"{n} {status_label(s, n)}" for s, n in nonzero)
-        text = f"Conteggio dei pagamenti con filtri: {describe(filters)}.\nTotale: {total}." + (
-            f"\nPer stato: {breakdown}." if breakdown else ""
-        )
-        noun = payments_noun(total)
-        if len(filters.statuses) == 1:
-            answer = f"Hai {total} {noun} {status_label(filters.statuses[0], total)}"
+        breakdown = ", ".join(f"{n} {status_label(s, n, language)}" for s, n in nonzero)
+        noun = payments_noun(total, language)
+        extra = _extra_filters(filters, language)
+        if language == "en":
+            text = f"Count of payments with filters: {describe(filters, language)}.\nTotal: {total}." + (
+                f"\nBy status: {breakdown}." if breakdown else ""
+            )
+            if len(filters.statuses) == 1:
+                answer = f"You have {total} {noun} with status {status_label(filters.statuses[0], total, language)}"
+            else:
+                answer = f"You have {total} {noun}" + (f" ({breakdown})" if breakdown and len(nonzero) > 1 else "")
+            answer += (f", filtered by {', '.join(extra)}" if extra else "") + " [1]."
         else:
-            answer = f"Hai {total} {noun}" + (f" ({breakdown})" if breakdown and len(nonzero) > 1 else "")
-        extra = [d for d in describe(filters.model_copy(update={"statuses": ()})).split(", ") if d != "nessun filtro"]
-        answer += (f" con {', '.join(extra)}" if extra else "") + " [1]."
+            text = f"Conteggio dei pagamenti con filtri: {describe(filters)}.\nTotale: {total}." + (
+                f"\nPer stato: {breakdown}." if breakdown else ""
+            )
+            if len(filters.statuses) == 1:
+                answer = f"Hai {total} {noun} {status_label(filters.statuses[0], total)}"
+            else:
+                answer = f"Hai {total} {noun}" + (f" ({breakdown})" if breakdown and len(nonzero) > 1 else "")
+            answer += (f" con {', '.join(extra)}" if extra else "") + " [1]."
         return StructuredResult(
             route="sql_aggregate",
-            evidence=[
-                evidence_chunk(merchant_id, "sql:count", "sql", "Dati PayFlow calcolati con SQL: conteggio", text)
-            ],
+            evidence=[evidence_chunk(merchant_id, "sql:count", "sql", SQL_SOURCE_TITLE[language]["count"], text)],
             direct_answer=answer,
             total=total,
         )
 
-    def _total(self, merchant_id: uuid.UUID, repo: PaymentRepository, filters: PaymentFilters) -> StructuredResult:
+    def _total(
+        self, merchant_id: uuid.UUID, repo: PaymentRepository, filters: PaymentFilters, language: str = "it"
+    ) -> StructuredResult:
         gross = not filters.statuses or filters.statuses == (PaymentStatus.PAID,)
         if not filters.statuses:
             filters = filters.model_copy(update={"statuses": (PaymentStatus.PAID,)})
         totals = repo.amount_totals(merchant_id, filters)
         count = sum(n for n, _ in totals.values())
         amounts = " + ".join(money(total, currency) for currency, (_, total) in totals.items()) or money(0, "eur")
-        definition = (
-            "Incassato lordo = somma degli importi dei pagamenti con stato pagato; rimborsi e commissioni non sono "
-            "registrati, quindi non è un netto."
-            if gross
-            else "Somma degli importi dei pagamenti filtrati: non è un incasso."
-        )
-        text = f"{definition}\nFiltri: {describe(filters)}.\nPagamenti: {count}.\nTotale: {amounts}."
-        if gross:
-            answer = f"Hai incassato {amounts} lordi, da {count} {payments_noun(count)} con stato pagato"
+        noun = payments_noun(count, language)
+        extra = _extra_filters(filters, language)
+        if language == "en":
+            definition = (
+                "Gross collected = sum of the amounts of payments with status paid; refunds and fees are not "
+                "recorded, so this is not a net figure."
+                if gross
+                else "Sum of the amounts of the filtered payments: this is not revenue."
+            )
+            text = f"{definition}\nFilters: {describe(filters, language)}.\nPayments: {count}.\nTotal: {amounts}."
+            if gross:
+                answer = f"You collected {amounts} gross, from {count} {noun} with status paid"
+            else:
+                answer = f"The total value of the filtered payments is {amounts} ({count} {noun}; this is not revenue)"
+            answer += (f", filtered by {', '.join(extra)}" if extra else "") + " [1]."
         else:
-            noun = payments_noun(count)
-            answer = f"Il valore totale dei pagamenti filtrati è {amounts} ({count} {noun}; non è un incasso)"
-        extra = [d for d in describe(filters.model_copy(update={"statuses": ()})).split(", ") if d != "nessun filtro"]
-        answer += (f", con {', '.join(extra)}" if extra else "") + " [1]."
+            definition = (
+                "Incassato lordo = somma degli importi dei pagamenti con stato pagato; rimborsi e commissioni non sono "
+                "registrati, quindi non è un netto."
+                if gross
+                else "Somma degli importi dei pagamenti filtrati: non è un incasso."
+            )
+            text = f"{definition}\nFiltri: {describe(filters)}.\nPagamenti: {count}.\nTotale: {amounts}."
+            if gross:
+                answer = f"Hai incassato {amounts} lordi, da {count} {noun} con stato pagato"
+            else:
+                answer = f"Il valore totale dei pagamenti filtrati è {amounts} ({count} {noun}; non è un incasso)"
+            answer += (f", con {', '.join(extra)}" if extra else "") + " [1]."
         return StructuredResult(
             route="sql_aggregate",
-            evidence=[evidence_chunk(merchant_id, "sql:total", "sql", "Dati PayFlow calcolati con SQL: totale", text)],
+            evidence=[evidence_chunk(merchant_id, "sql:total", "sql", SQL_SOURCE_TITLE[language]["total"], text)],
             direct_answer=answer,
             total=count,
         )
 
     def _top_product(
-        self, merchant_id: uuid.UUID, repo: PaymentRepository, filters: PaymentFilters, *, ranking: bool = False
+        self,
+        merchant_id: uuid.UUID,
+        repo: PaymentRepository,
+        filters: PaymentFilters,
+        *,
+        ranking: bool = False,
+        language: str = "it",
     ) -> StructuredResult:
         if not filters.statuses:
             filters = filters.model_copy(update={"statuses": (PaymentStatus.PAID,)})
         rows = repo.product_totals(merchant_id, filters)
+        en = language == "en"
         if not rows:
-            return StructuredResult(
-                route="no_match", direct_answer=f"Non ho trovato vendite con questi criteri: {describe(filters)}."
+            template = (
+                "I found no sales matching these criteria: {criteria}."
+                if en
+                else "Non ho trovato vendite con questi criteri: {criteria}."
             )
+            return StructuredResult(
+                route="no_match", direct_answer=template.format(criteria=describe(filters, language))
+            )
+
+        def units_word(n: int) -> str:
+            return ("unit" if n == 1 else "units") if en else "unità"
+
         lines = [
-            f"- {self._name(p)}: {units} unità in {n} {payments_noun(n)}, {money(total, currency)}"
+            f"- {self._name(p)}: {units} {units_word(units)} in {n} {payments_noun(n, language)}, "
+            f"{money(total, currency)}"
             for p, currency, n, units, total in rows
         ]
-        text = (
-            "Prodotti dei pagamenti con stato pagato, ordinati per unità vendute "
-            f"(filtri: {describe(filters)}):\n" + "\n".join(lines)
+        header = (
+            f"Products of payments with status paid, sorted by units sold (filters: {describe(filters, language)}):\n"
+            if en
+            else f"Prodotti dei pagamenti con stato pagato, ordinati per unità vendute (filtri: {describe(filters)}):\n"
         )
+        text = header + "\n".join(lines)
         by_units = rows[0]
         by_revenue = max(rows, key=lambda r: (r[4], r[0]))
-        answer = (
-            f"Il prodotto più venduto è {self._name(by_units[0])}: "
-            f"{by_units[3]} unità in {by_units[2]} {payments_noun(by_units[2])}"
-        )
-        if by_revenue[0] != by_units[0]:
-            answer += (
-                f". Per incasso invece è primo {self._name(by_revenue[0])} con {money(by_revenue[4], by_revenue[1])}"
+        if en:
+            answer = (
+                f"The best-selling product is {self._name(by_units[0])}: "
+                f"{by_units[3]} {units_word(by_units[3])} in {by_units[2]} {payments_noun(by_units[2], language)}"
             )
+            if by_revenue[0] != by_units[0]:
+                answer += (
+                    f". By revenue, {self._name(by_revenue[0])} comes first with {money(by_revenue[4], by_revenue[1])}"
+                )
+        else:
+            answer = (
+                f"Il prodotto più venduto è {self._name(by_units[0])}: "
+                f"{by_units[3]} unità in {by_units[2]} {payments_noun(by_units[2])}"
+            )
+            if by_revenue[0] != by_units[0]:
+                answer += (
+                    f". Per incasso invece è primo {self._name(by_revenue[0])} con "
+                    f"{money(by_revenue[4], by_revenue[1])}"
+                )
         answer += " [1]."
         if ranking and len(rows) > 1:
-            answer += "\nClassifica per unità vendute (pagamenti con stato pagato):\n" + "\n".join(
-                f"{n}. {self._name(p)}: {units} unità, {money(total, currency)}"
+            title = (
+                "Ranking by units sold (payments with status paid):"
+                if en
+                else ("Classifica per unità vendute (pagamenti con stato pagato):")
+            )
+            answer += f"\n{title}\n" + "\n".join(
+                f"{n}. {self._name(p)}: {units} {units_word(units)}, {money(total, currency)}"
                 for n, (p, currency, _, units, total) in enumerate(rows, start=1)
             )
         return StructuredResult(
             route="sql_aggregate",
-            evidence=[
-                evidence_chunk(merchant_id, "sql:products", "sql", "Dati PayFlow calcolati con SQL: prodotti", text)
-            ],
+            evidence=[evidence_chunk(merchant_id, "sql:products", "sql", SQL_SOURCE_TITLE[language]["products"], text)],
             direct_answer=answer,
             total=len(rows),
         )
@@ -630,6 +705,12 @@ class StructuredRetriever:
     @staticmethod
     def _name(product_id: str) -> str:
         return CATALOG[product_id].name if product_id in CATALOG else product_id
+
+
+def _extra_filters(filters: PaymentFilters, language: str) -> list[str]:
+    """Filters other than the status, as described to the merchant; empty when there are none."""
+    described = describe(filters.model_copy(update={"statuses": ()}), language)
+    return [d for d in described.split(", ") if d != _LABELS[language]["none"]]
 
 
 def quoted(terms: Sequence[str]) -> str:
