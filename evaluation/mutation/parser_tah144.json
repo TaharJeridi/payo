@@ -1,0 +1,187 @@
+[
+ [
+  "bare amount: accept times",
+  "(?<!alle )(?<!ore )",
+  ""
+ ],
+ [
+  "bare amount: accept percentages",
+  "(?!\\s*(?:%|h\\b))",
+  ""
+ ],
+ [
+  "bare amount: accept one decimal",
+  "(?P<c>\\d{1,5}[.,]\\d{2})",
+  "(?P<c>\\d{1,5}[.,]\\d{1,2})"
+ ],
+ [
+  "bare amount: accept dates",
+  "(?![\\d.,:]*\\d)",
+  ""
+ ],
+ [
+  "bare amount: ignored",
+  "found.group(\"a\") or found.group(\"b\") or found.group(\"c\")",
+  "found.group(\"a\") or found.group(\"b\") or \"x\""
+ ],
+ [
+  "range: no article",
+  "(?:(?:i|gli|the)\\s+)?(?:(?P<c1>",
+  "(?:(?P<c1>"
+ ],
+ [
+  "bare pro: no indefinite article",
+  "plan|the|a|an|any|un|uno) pro",
+  "plan|the) pro"
+ ],
+ [
+  "collected count: no paid filter",
+  "if collected_set and not filters.statuses and not asked and _COLLECTED.search(scrubbed):",
+  "if False:"
+ ],
+ [
+  "collected count: overrides a status",
+  "if collected_set and not filters.statuses and not asked and _COLLECTED.search(scrubbed):",
+  "if collected_set and _COLLECTED.search(scrubbed):"
+ ],
+ [
+  "collected count: also for one identified payment",
+  "collected_set = intent == \"count\" or (intent == \"find\" and plural)",
+  "collected_set = intent in (\"count\", \"find\")"
+ ],
+ [
+  "collected count: not for lists",
+  "collected_set = intent == \"count\" or (intent == \"find\" and plural)",
+  "collected_set = intent == \"count\""
+ ],
+ [
+  "any status: also with a status",
+  "cover(\"status\", _ANY_STATUS, not f.statuses and not plan.asked_statuses)",
+  "cover(\"status\", _ANY_STATUS)"
+ ],
+ [
+  "any status: not covered",
+  "cover(\"status\", _ANY_STATUS, not f.statuses and not plan.asked_statuses)",
+  "pass"
+ ],
+ [
+  "neutral typo: lower cutoff",
+  "n=1, cutoff=0.9):\n            continue",
+  "n=1, cutoff=0.6):\n            continue"
+ ],
+ [
+  "day range months: year wrap",
+  "start_year = year if first_month <= month else year - 1",
+  "start_year = year"
+ ],
+ [
+  "leading span: weeks as days",
+  "days = count * 7 if match.group(\"unit\") in (\"settimane\", \"weeks\") else count",
+  "days = count"
+ ],
+ [
+  "leading span: not capped",
+  "min(first + timedelta(days=days), after)",
+  "first + timedelta(days=days)"
+ ],
+ [
+  "leading span: not consumed",
+  "_DAY_RANGE_MONTHS, _LEADING_SPAN, _DAY_RANGE,",
+  "_DAY_RANGE_MONTHS, _DAY_RANGE,"
+ ],
+ [
+  "passato: any following word",
+  "(?!\\s+(?:\\d|un|una|uno|del|dal|da|qualche|tanto|troppo|molto|poco))\"\n_HANDLED",
+  "\"\n_HANDLED"
+ ],
+ [
+  "count of status: off",
+  "or _COUNTED_STATUS.search(text)\n",
+  "\n"
+ ],
+ [
+  "count: measures counted",
+  "if _COUNT.search(text) and counted and not _DURATION.search(text):",
+  "if _COUNT.search(text) and counted:"
+ ],
+ [
+  "count: no 'number of'",
+  "|\\bcount\\b|\\bnumber of\\b\")",
+  "|\\bcount\\b\")"
+ ],
+ [
+  "payment word: no orders",
+  "|\\border|\\bpurchase",
+  "|\\bpurchase"
+ ],
+ [
+  "units: off",
+  "            or _UNITS.search(text)\n",
+  ""
+ ],
+ [
+  "units: bounds read as quantity",
+  "(?<!più di )(?<!more than )(?<!almeno )(?<!at least )",
+  ""
+ ],
+ [
+  "mid month: off",
+  "    if match := _MID_MONTH.search(text):",
+  "    if False and _MID_MONTH.search(text):"
+ ],
+ [
+  "mid month: 15th",
+  "return datetime(year_of(match, month), month, 16, tzinfo=UTC), None, match.span()",
+  "return datetime(year_of(match, month), month, 15, tzinfo=UTC), None, match.span()"
+ ],
+ [
+  "relative part: off",
+  "        text = named_relative_month(text, self._clock().astimezone(UTC))\n",
+  ""
+ ],
+ [
+  "relative part: this month as last",
+  "        if match.group(\"which\") in (\"mese scorso\", \"scorso mese\", \"mese passato\", \"last month\"):",
+  "        if True:"
+ ],
+ [
+  "relative part: no year wrap",
+  "(year, month - 1) if month > 1 else (year - 1, 12)",
+  "(year, month - 1 or 12)"
+ ],
+ [
+  "top product: no 'più soldi'",
+  "\\bpiù (?:soldi|incass\\w*|pezzi|unità)(?: vendut\\w*)?\\b",
+  "\\bpiù (?:incass\\w*)\\b"
+ ],
+ [
+  "top product: no 'most money'",
+  "\\bmost (?:money|revenue|units)\\b",
+  "\\bmost (?:units)\\b"
+ ],
+ [
+  "subject product: kept as filter",
+  "if intent == \"top_product\" and len(filters.product_ids) == 1:",
+  "if False:"
+ ],
+ [
+  "subject product: any number",
+  "if intent == \"top_product\" and len(filters.product_ids) == 1:",
+  "if intent == \"top_product\" and filters.product_ids:"
+ ],
+ [
+  "subject product: no ranking",
+  "(bool(_RANKING_REQUEST.search(text)) or subject_product is not None)",
+  "bool(_RANKING_REQUEST.search(text))"
+ ],
+ [
+  "subject product: not covered",
+  "if product_id not in f.product_ids and product_id != plan.subject_product:",
+  "if product_id not in f.product_ids:"
+ ],
+ [
+  "duration: 'volte' read as a duration",
+  "\\bquant[ie] (?:minuti|ore|giorni|secondi|settimane|mesi)\\b",
+  "\\bquant[ie] (?:minuti|ore|giorni|secondi|settimane|mesi|volte)\\b"
+ ]
+]

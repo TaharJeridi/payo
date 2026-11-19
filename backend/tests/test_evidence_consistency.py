@@ -309,7 +309,6 @@ def test_payment_set_questions_the_parser_cannot_structure_are_not_answered_by_t
         "Cosa succede ai pagamenti scaduti?",
         "Perché alcuni pagamenti restano aperti?",
         "How are payments reconciled?",
-        "ehi, quel pagamento da 89,70 è passato o no?",
         "Quali dati personali non vengono indicizzati dall'assistente?",
         "Quanti minuti dura il checkout?",
         "I pagamenti scaduti possono essere pagati?",
@@ -320,6 +319,16 @@ def test_payment_set_questions_the_parser_cannot_structure_are_not_answered_by_t
 def test_documentation_and_single_payment_questions_still_reach_the_semantic_route(kit, question):
     service, _ = kit
     assert service.retrieve(SEED_MERCHANT_ID, question).route == "semantic"
+
+
+def test_a_single_payment_by_bare_amount_reaches_the_sql_lookup(kit):
+    """Since TAH-144 an amount without a currency is an amount: the payment is found by SQL, not by similarity."""
+    service, _ = kit
+    retrieval = service.retrieve(SEED_MERCHANT_ID, "ehi, quel pagamento da 89,70 è passato o no?")
+    assert retrieval.route == "sql_find"
+    assert {c.chunk.source_key for c in retrieval.selected if c.chunk.source_type == "payment"} == {
+        f"payment:{pid('pro3_paid')}"
+    }
 
 
 def test_structured_questions_and_quoted_ids_are_not_affected(kit):

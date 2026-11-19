@@ -9,7 +9,7 @@ From ``backend/``:
 
 Spec files hold ``[name, original fragment, mutated fragment]`` triples. Mutants run in 2026-11-19: scoring 22,
 runner 6, metrics 1 (TAH-145); claims 17, service 3, scope 3, structured 2, parser 1, documents 1 (TAH-143);
-all killed.
+parser 37, language 2 (TAH-144, ``parser_tah144.json``, ``language_tah144.json``); all killed.
 """
 
 import json

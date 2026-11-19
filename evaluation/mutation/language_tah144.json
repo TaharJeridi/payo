@@ -1,0 +1,12 @@
+[
+ [
+  "english function words: off",
+  "        # Function words common in short English questions with no other marker (TAH-144: v3 q036, r017).\n        \"has\",\n        \"have\",\n        \"had\",\n        \"any\",\n        \"been\",\n        \"since\",\n        \"where\",\n        \"someone\",\n        \"anyone\",\n        \"to\",\n        \"from\",\n        \"and\",\n        \"or\",\n        \"by\",\n        \"at\",\n        \"it\",\n        \"can\",\n        \"will\",\n        \"would\",\n        \"orders\",\n        \"units\",\n        \"bought\",\n        \"between\",\n",
+  ""
+ ],
+ [
+  "english function words: no 'has'",
+  "        \"has\",\n        \"have\",\n",
+  "        \"have\",\n"
+ ]
+]

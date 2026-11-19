@@ -296,10 +296,14 @@ def test_a_correct_answer_is_left_unchanged(kit):
     assert "contradicted_status" not in answer.warnings and "contradicted_duration" not in answer.warnings
 
 
-def test_an_absence_from_semantic_retrieval_states_the_limit_instead(kit):
+def test_an_absence_from_semantic_retrieval_states_the_limit_instead(kit, docs):
+    # The q055 question itself reaches SQL since TAH-144 (tests/test_unanswered_questions.py); the
+    # semantic route is built here so the claim check is still tested on the evidence Qwen saw.
     service, chat = kit
     chat.reply = "There is no Pro payment for exactly 59.80 [1]."
-    answer = service.ask(SEED_MERCHANT_ID, "is there a Pro payment for exactly 59.80?")
+    question = "is there a Pro payment for exactly 59.80?"
+    evidence = payments(docs, "pro_expired", "pro_open", "starter2_expired")
+    answer = service.answer(Retrieval(SEED_MERCHANT_ID, question, candidates=evidence, selected=evidence))
     assert answer.warnings == ["unverified_absence"]
     assert answer.answer == UNVERIFIED_ABSENCE["en"]
 

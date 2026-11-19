@@ -230,8 +230,17 @@ def test_a_complete_query_with_no_match_still_says_none_were_found(kit):  # noqa
 
 def test_counts_over_an_unrecognised_noun_are_refused_without_a_figure(kit):  # noqa: F811
     service, _ = kit
-    retrieval = service.retrieve(SEED_MERCHANT_ID, "how many Pro orders did I receive in October 2026?")
+    retrieval = service.retrieve(SEED_MERCHANT_ID, "how many Pro charges did I receive in October 2026?")
     assert retrieval.route == "unrecognized_payment_set"
+    assert not FIGURE.search(service.answer(retrieval).answer)
+
+
+def test_orders_are_payments_but_an_unrepresented_verb_still_withholds_the_figure(kit):  # noqa: F811
+    # Since TAH-144 "orders" is a payment noun, as "ordini" already was (v3 q036, q080); "receive" is not a
+    # constraint the plan represents, so the count stays partial and gives no figure.
+    service, _ = kit
+    retrieval = service.retrieve(SEED_MERCHANT_ID, "how many Pro orders did I receive in October 2026?")
+    assert retrieval.route == "sql_partial"
     assert not FIGURE.search(service.answer(retrieval).answer)
 
 

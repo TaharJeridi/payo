@@ -35,10 +35,17 @@ _OTHER_TENANTS = re.compile(
 )
 _NUMBER = r"\d[\d.,]*\d|\d"
 _CURRENCY = r"€|\$|\beur\b|\beuro\b|\busd\b|\bdollari\b|\bdollars?\b"
-_AMOUNT = re.compile(rf"(?:(?P<pre>{_CURRENCY})\s*(?P<a>{_NUMBER}))|(?:(?P<b>{_NUMBER})\s*(?P<post>{_CURRENCY}))")
+# A number with exactly two decimals and no currency ("pagamenti da 9,90", "the 29.90 payment") is a price
+# (TAH-144: q040, q055, q149). Not a time ("alle 16.30") and not part of a longer number or date.
+_BARE_AMOUNT = r"(?<![\d.,:])(?<!alle )(?<!ore )(?<!at )(?P<c>\d{1,5}[.,]\d{2})(?![\d.,:]*\d)(?!\s*(?:%|h\b))"
+_AMOUNT = re.compile(
+    rf"(?:(?P<pre>{_CURRENCY})\s*(?P<a>{_NUMBER}))|(?:(?P<b>{_NUMBER})\s*(?P<post>{_CURRENCY}))|{_BARE_AMOUNT}"
+)
 _RANGE = re.compile(
-    rf"\b(?:tra|fra|between|da|from)\s+(?:(?P<c1>{_CURRENCY})\s*)?(?P<low>{_NUMBER})\s*(?:(?P<c2>{_CURRENCY})\s*)?"
-    rf"(?:e|a|and|to)\s+(?:(?P<c3>{_CURRENCY})\s*)?(?P<high>{_NUMBER})\s*(?P<c4>{_CURRENCY})?"
+    # "tra i 20 e i 50 euro": an article before each bound (TAH-144: r002, r012).
+    rf"\b(?:tra|fra|between|da|from)\s+(?:(?:i|gli|the)\s+)?(?:(?P<c1>{_CURRENCY})\s*)?(?P<low>{_NUMBER})\s*"
+    rf"(?:(?P<c2>{_CURRENCY})\s*)?(?:e|a|and|to)\s+(?:(?:i|gli|the)\s+)?(?:(?P<c3>{_CURRENCY})\s*)?(?P<high>{_NUMBER})"
+    rf"\s*(?P<c4>{_CURRENCY})?"
 )
 _ARTICLE = r"(?:\s+(?:i|il|gli|l'|the))?\s*$"
 _COMPARATORS: tuple[tuple[str, str, bool], ...] = (
@@ -88,7 +95,7 @@ _FAILED_PHRASES = (
     r"\bandat[oaie] male\b|\bnon (?:sono |è |e' )?(?:andat[oaie] a[ _]buon[ _]fine|riuscit[oaie])\b"
     r"|\bunsuccessful\b|\bnot successful\b|\b(?:went|gone) wrong\b"
 )
-_BARE_PRODUCT = {"payflow-pro": re.compile(r"\b(?:col|con il|con|del|il|piano|plan|the) pro\b")}
+_BARE_PRODUCT = {"payflow-pro": re.compile(r"\b(?:col|con il|con|del|il|piano|plan|the|a|an|any|un|uno) pro\b")}
 _STATUS_PATTERNS: tuple[tuple[PaymentStatus, str], ...] = (
     (
         PaymentStatus.OPEN,
@@ -106,7 +113,9 @@ _STATUS_PATTERNS: tuple[tuple[PaymentStatus, str], ...] = (
     (
         PaymentStatus.PAID,
         r"\bpagat[oaie]\b|\bcompletat[oaie]\b|\bandat[oi] a buon fine\b|\briuscit[oaie]\b"
-        r"|\bpaid\b|\bcompleted\b|\bsucceeded\b|\b(?:go|goes|went|gone) through\b",
+        r"|\bpaid\b|\bcompleted\b|\bsucceeded\b|\b(?:go|goes|went|gone) through\b"
+        # "è passato o no?": colloquial "went through", not "è passato un mese" (a period).
+        r"|\b(?:è|e'|sono) passat[oaie]\b(?!\s+(?:\d|un|una|uno|del|dal|da|qualche|tanto|troppo|molto|poco))",
     ),
 )
 _PAID_AFTER_EXPIRY = re.compile(
@@ -120,6 +129,7 @@ _RECOVERED = re.compile(
     r"\brecuperat[oaie]\b|\brecovered\b|\bsalvat[oaie] (?:dalla|con la|grazie alla|tramite la) riconciliazion"
     r"|\bsaved by (?:the )?reconcil|\brescued\b"
 )
+_COLLECTED = re.compile(r"\bincass\w*|\bcollect\w*|\bguadagn\w*|\bearn\w*")
 _RECONCILIATION = re.compile(r"\briconciliazion|\breconcil")
 _UNSUPPORTED = (
     ("rimborsi", re.compile(r"\brimbors|\brefund")),
@@ -142,7 +152,7 @@ _RESTRICTED: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("checkout_url", re.compile(r"\blink (?:di|del) checkout\b|\bcheckout (?:url|link)\b|\burl di pagamento\b")),
     ("idempotency_key", re.compile(r"\bidempotency[- ]key\b|\bchiave di idempotenza\b")),
 )
-_COUNT = re.compile(r"\bquant[ie]\b|\bnumero (?:di|dei|delle)\b|\bhow many\b|\bcount\b")
+_COUNT = re.compile(r"\bquant[ie]\b|\bnumero (?:di|dei|delle)\b|\bhow many\b|\bcount\b|\bnumber of\b")
 _TOTAL = re.compile(
     r"\bincass|\bfatturat|\bguadagnat|\bricavi\b|\btotale\b|\bin totale\b|\bsomma\b"
     r"|\bhow much\b.*\b(?:earn|made|receiv|collect)|\brevenue\b|\btotal\b"
@@ -153,6 +163,11 @@ _TOP_PRODUCT = re.compile(
     # A ranking of products (TAH-143, v3 q090): the backend's SQL ranking, never one computed by the model.
     r"|\bclassifica\b[^?.]{0,30}\bprodott\w*|\branking\b[^?.]{0,30}\bproducts?\b|\brank\w*\b[^?.]{0,20}\bproducts?\b"
     r"|\bproducts?\b[^?.]{0,10}\branked\b|\b(?:per|by) (?:unità|units) (?:vendut\w*|sold)\b"
+    # Which product sells or earns most (TAH-144: q087, q091, r003, r004). The backend ranks by units and
+    # also states the revenue leader, so both readings get their figure from SQL.
+    r"|\bprodott\w*\b[^?.]{0,40}\bpiù (?:soldi|incass\w*|pezzi|unità)(?: vendut\w*)?\b"
+    r"|\bprodott\w*\b[^?.]{0,30}\bvend\w* di più\b"
+    r"|\bproducts?\b[^?.]{0,30}\bmost (?:money|revenue|units)\b"
 )
 _RANKING_REQUEST = re.compile(r"\bclassifica\b|\branking\b|\brank\w*\b|\branked\b")
 _LISTING = re.compile(
@@ -160,12 +175,13 @@ _LISTING = re.compile(
     r"|esiste|esistono"
     r"|which|list|show|find|is there|are there)\b"
 )
-_PAYMENT_WORD = re.compile(r"\bpagament|\bpayment|\btransazion|\bacquist|\bordin")
+_PAYMENT_WORD = re.compile(r"\bpagament|\bpayment|\btransazion|\bacquist|\bordin|\border|\bpurchase|\bcheckouts?\b")
 _SALES = re.compile(r"\b(?:vendit[ae]|incassi|sales)\b")
 _LIST_VERB = re.compile(r"\b(?:elenca\w*|elenco|lista|mostra\w*|fammi vedere|list|show)\b")
 _MONEY = re.compile(
     r"\b(?:quant[oi] (?:ho|abbiamo|hai) (?:\w+ ){0,2}(?:incass|guadagn|fatturat|fatto|tirato|portato|ricevut)"
-    r"|quanti soldi|quanto (?:mi )?ha (?:portato|fruttato|reso)|how much (?:\w+ ){0,4}(?:earn|made|make|collect"
+    r"|quanti soldi|quanto (?:mi )?ha (?:portato|fruttato|reso)|quanto (?:mi )?(?:è|e') entrat\w*|how much came in"
+    r"|how much (?:\w+ ){0,4}(?:earn|made|make|collect"
     r"|receiv|brought|bring|revenue|money)|totale (?:incassat|dei pagament|delle vendit)|total (?:revenue|sales))"
 )
 _MONTHS = {
@@ -198,6 +214,12 @@ _PLURAL_PAYMENTS = re.compile(
     r"\b(?:pagamenti|transazioni|checkout|vendite|incassi|payments|transactions|checkouts|sales)\b"
 )
 _QUANTITY = re.compile(r"\b(?:quantità|quantita|quantity)\s*(?:di|pari a|of|=|:)?\s*(?P<n>\d{1,2})\b")
+# "bought 5 units", "comprato 3 pezzi" (TAH-144: q036). Not "più di un pezzo": a bound, not a quantity.
+_UNITS = re.compile(
+    r"(?<!più di )(?<!more than )(?<!almeno )(?<!at least )\b(?P<n>\d{1,2}|"
+    + "|".join(_NUMBER_WORDS)
+    + r")\s+(?:units?|unità|pezzi|copie|copies)\b"
+)
 _YEAR = r"(?:\s+(?P<year>\d{4}))?"
 _DAY_RANGE = re.compile(
     rf"\b(?:tra il|fra il|tra|fra|dal|between|from)\s+(?P<d1>\d{{1,2}})\s*(?:e il|e|al|a|and|to|-|–)\s*"
@@ -211,6 +233,23 @@ _MONTH_PART = re.compile(
 _DAY_OPERATOR = re.compile(
     r"\b(?P<op>dopo il|dopo l'|prima del|prima dell'|a partire dal|dal|dall'|fino al|fino all'|entro il|entro l'"
     rf"|after|before|since|until|by)\s*(?P<day>\d{{1,2}})\s+(?P<month>{_MONTH_NAMES}){_YEAR}\b"
+)
+# Day range with the month on both sides: "between 5 october and 10 october" (after english_dates).
+_DAY_RANGE_MONTHS = re.compile(
+    rf"\b(?:tra il|fra il|tra|fra|dal|between|from)\s+(?P<d1>\d{{1,2}})\s+(?P<m1>{_MONTH_NAMES})\s*"
+    rf"(?:e il|e|al|a|and|to|-|–)\s*(?P<d2>\d{{1,2}})\s+(?P<month>{_MONTH_NAMES}){_YEAR}\b"
+)
+# The first N days or weeks of a month: "nei primi 10 giorni di ottobre", "prime due settimane di ottobre",
+# "first 10 days of october" (TAH-144: r009, r010).
+_LEADING_SPAN = re.compile(
+    r"\b(?:prim[ei]|first)\s+(?P<n>\d{1,2}|" + "|".join(_NUMBER_WORDS) + r")\s+(?P<unit>giorni|settimane|days|weeks)"
+    rf"\s+(?:di |del mese di |of )?(?P<month>{_MONTH_NAMES}){_YEAR}\b"
+)
+# "since mid-October", "da metà ottobre in poi": from the 16th, the first day of the second half (TAH-144: r017).
+_MID_MONTH = re.compile(
+    r"\b(?P<op>since|from|after|starting|a partire da(?:lla)?|dopo|da|dalla)\s+(?:the\s+)?"
+    rf"(?:mid-?|metà (?:di |del mese di )?|meta (?:di )?|middle of )(?P<month>{_MONTH_NAMES}){_YEAR}\b"
+    r"(?:\s+in poi|\s+onwards?)?"
 )
 _ISO_DAY = re.compile(r"\b(\d{4}-\d{2}-\d{2})\b|\b(\d{1,2})/(\d{1,2})/(\d{4})\b")
 
@@ -231,6 +270,7 @@ class QueryPlan:
     unsupported_constraints: tuple[str, ...] = ()
     constraints: tuple[tuple[str, str], ...] = ()
     ranking: bool = False
+    subject_product: str | None = None
 
     @property
     def completeness(self) -> Completeness:
@@ -297,6 +337,7 @@ class QueryParser:
 
     def parse(self, question: str) -> QueryPlan:
         text = english_dates(" ".join(question.lower().replace("’", "'").replace("`", "'").split()))
+        text = named_relative_month(text, self._clock().astimezone(UTC))
         notes: list[str] = []
         text = corrected_typos(text, notes)
 
@@ -351,6 +392,19 @@ class QueryParser:
             asked, filters = filters.statuses, filters.model_copy(update={"statuses": ()})
 
         intent = self._intent(text, filters, asked)
+        subject_product = None
+        if intent == "top_product" and len(filters.product_ids) == 1:
+            # "Il Pro è il prodotto che vende di più?": one named product is what the question checks, not a
+            # filter (a ranking of one product would trivially confirm it). The full ranking answers it
+            # (TAH-144: v3 q091).
+            subject_product = filters.product_ids[0]
+            filters = filters.model_copy(update={"product_ids": ()})
+        collected_set = intent == "count" or (intent == "find" and plural)
+        if collected_set and not filters.statuses and not asked and _COLLECTED.search(scrubbed):
+            # "quanti pagamenti ho incassato?", "mostrami i pagamenti che ho incassato": collected payments
+            # are paid ones (TAH-144: r002). Without this the status-free count or list would answer a
+            # different question while "incassato" is read as the intent.
+            filters = filters.model_copy(update={"statuses": (PaymentStatus.PAID,)})
         requested = next((name for name, pattern in _RESTRICTED if pattern.search(scrubbed)), None)
         if intent in ("count", "total") and (requested or filters.payment_ids):
             intent = "find"
@@ -368,7 +422,8 @@ class QueryParser:
             notes=tuple(dict.fromkeys(notes)),
             language=language,
             requested_attribute=requested if intent == "find" else None,
-            ranking=intent == "top_product" and bool(_RANKING_REQUEST.search(text)),
+            ranking=intent == "top_product" and (bool(_RANKING_REQUEST.search(text)) or subject_product is not None),
+            subject_product=subject_product,
         )
         listing = intent == "find" and not filters.payment_ids and not _EXPLANATION.search(text)
         if filters.payment_ids:
@@ -405,7 +460,8 @@ class QueryParser:
             return "top_product"
         if _MONEY.search(text) and not filters.payment_ids:
             return "total"
-        if _COUNT.search(text) and (_PAYMENT_WORD.search(text) or _COUNTED_PRODUCT.search(text)):
+        counted = _PAYMENT_WORD.search(text) or _COUNTED_PRODUCT.search(text) or _COUNTED_STATUS.search(text)
+        if _COUNT.search(text) and counted and not _DURATION.search(text):
             return "count"
         listed = bool(_LIST_VERB.search(text) and _PLURAL_PAYMENTS.search(text))
         if _TOTAL.search(text) and not filters.payment_ids and not (listed and not _TOTAL_WORD.search(text)):
@@ -441,7 +497,7 @@ class QueryParser:
         exact: int | None = None
         currency = None
         for found in _AMOUNT.finditer(text):
-            cents = parse_amount(found.group("a") or found.group("b"))
+            cents = parse_amount(found.group("a") or found.group("b") or found.group("c"))
             if cents is None:
                 notes.append(f"ignored amount {found.group(0)!r}")
                 continue
@@ -487,7 +543,11 @@ class QueryParser:
     def _quantity(text: str) -> int | None:
         names = "|".join(re.escape(a) for aliases in _PRODUCT_ALIASES.values() for a in aliases)
         words = "|".join(_NUMBER_WORDS)
-        match = re.search(rf"\b(?P<n>\d{{1,2}}|{words})\s+(?:x\s+)?(?:{names})\b", text) or _QUANTITY.search(text)
+        match = (
+            re.search(rf"\b(?P<n>\d{{1,2}}|{words})\s+(?:x\s+)?(?:{names})\b", text)
+            or _QUANTITY.search(text)
+            or _UNITS.search(text)
+        )
         if not match:
             return None
         value = match.group("n")
@@ -529,7 +589,7 @@ class QueryParser:
             return start, start + timedelta(days=7)
         if re.search(r"\bquesto mese\b|\bthis month\b", text):
             return month_bounds(today.year, today.month)
-        if re.search(r"\b(?:mese scorso|scorso mese|last month)\b", text):
+        if re.search(r"\b(?:mese scorso|scorso mese|mese passato|last month)\b", text):
             year, month = (today.year, today.month - 1) if today.month > 1 else (today.year - 1, 12)
             return month_bounds(year, month)
         if re.search(r"\bquest'anno\b|\bthis year\b", text):
@@ -583,8 +643,10 @@ _VAGUE_PERIOD = re.compile(
     r"\b(?:(?:last |next |this |la |lo |l')?(?:primavera|estate|autunno|inverno|spring|summer|autumn|fall|winter)"
     r"(?: scors[oa]| passat[oa])?|trimestre|semestre|quarter|anno scorso|scorso anno|last year|scors[oa]|passat[oa])\b"
 )
+_PASSED_VERB = r"\b(?:è|e'|sono) passat[oaie]\b(?!\s+(?:\d|un|una|uno|del|dal|da|qualche|tanto|troppo|molto|poco))"
 _HANDLED_PERIOD = (
-    r"\b(?:mese scorso|scorso mese|last month|questo mese|this month|questa settimana|this week|quest'anno|this year)\b"
+    r"\b(?:mese scorso|scorso mese|mese passato|last month|questo mese|this month|questa settimana|this week"
+    r"|quest'anno|this year)\b|" + _PASSED_VERB
 )
 _QUANTITY_WORD = re.compile(r"\b(?:quantità|quantita|quantity|pezzi|unità|units?|copie)\b")
 _EXPLANATION = re.compile(
@@ -599,7 +661,19 @@ _FILTER_WORDS = (
     "maggiore", "maggiori", "minore", "minori", "quantità", "expired", "failed", "declined",
 )  # fmt: skip
 _COMMON_WORDS = frozenset(
-    ("pagamento", "pagamenti", "pagare", "payment", "payments", "importo", "importi", "quanti", "quante", "quanto")
+    (
+        "pagamento",
+        "pagamenti",
+        "pagare",
+        "payment",
+        "payments",
+        "importo",
+        "importi",
+        "quanti",
+        "quante",
+        "quanto",
+        "quantity",
+    )  # fmt: skip
 )
 _OPEN_PATTERN = dict(_STATUS_PATTERNS)[PaymentStatus.OPEN]
 
@@ -626,7 +700,7 @@ def unresolved_terms(text: str, plan: QueryPlan) -> tuple[str, ...]:
     text = text.replace("a buon fine", "a_buon_fine")
     consumed: list[tuple[int, int]] = []
     dates: list[tuple[int, int]] = []
-    for pattern in (_ISO_RANGE, _DAY_RANGE, _MONTH_PART, _DAY_OPERATOR):
+    for pattern in (_ISO_RANGE, _MID_MONTH, _DAY_RANGE_MONTHS, _LEADING_SPAN, _DAY_RANGE, _MONTH_PART, _DAY_OPERATOR):
         consumed += [m.span() for m in pattern.finditer(text)]
     for pattern in (_ISO_DAY, _DAY_MONTH, _MONTH):
         for match in pattern.finditer(text):
@@ -641,6 +715,7 @@ def unresolved_terms(text: str, plan: QueryPlan) -> tuple[str, ...]:
         names = "|".join(re.escape(a) for aliases in _PRODUCT_ALIASES.values() for a in aliases)
         consumed += [m.span() for m in re.finditer(rf"\b\d{{1,2}}\s+(?:x\s+)?(?:{names})\b", text)]
         consumed += [m.span() for m in _QUANTITY.finditer(text)]
+        consumed += [m.span() for m in _UNITS.finditer(text)]
 
     def inside(position: int) -> bool:
         return any(a <= position < b for a, b in consumed)
@@ -706,6 +781,15 @@ _STATUS_PLURAL = re.compile(
 )
 
 
+# "quanti minuti dura il checkout?": a duration, not a count of payments ("quante volte" still counts).
+_DURATION = re.compile(
+    r"\bquant[ie] (?:minuti|ore|giorni|secondi|settimane|mesi)\b"
+    r"|\bhow (?:long|many (?:minutes|hours|days|seconds|weeks|months))\b"
+)
+# "quanti pagati?", "how many failed?": a status used as the counted noun (TAH-144: q058).
+_COUNTED_STATUS = re.compile(rf"\b(?:quant[ie]|how many)\s+(?:sono\s+)?(?:stat[ie]\s+)?{_STATUS_PLURAL.pattern}")
+
+
 def asks_for_payment_set(text: str) -> bool:
     """A question whose answer is a count, a total or a list of payments.
 
@@ -727,6 +811,26 @@ _EN_MONTH_DAY = re.compile(
     r"\b(?P<month>january|february|march|april|may|june|july|august|september|october|november|december)"
     r"\s+(?P<day>\d{1,2})(?:st|nd|rd|th)?(?:,?\s+(?P<year>\d{4}))?\b"
 )
+
+
+_RELATIVE_MONTH_PART = re.compile(
+    r"\b(?P<part>prima metà|prima meta|seconda metà|seconda meta|prima quindicina|seconda quindicina"
+    r"|prima settimana|ultima settimana|first half|second half|first week|last week)\s+"
+    r"(?:del |dello |di |of )?(?P<which>mese scorso|scorso mese|mese passato|last month|questo mese|this month)\b"
+)
+
+
+def named_relative_month(text: str, now: datetime) -> str:
+    """ "seconda metà del mese scorso" -> "seconda metà di ottobre 2026" (TAH-144: q076)."""
+
+    def name(match: re.Match[str]) -> str:
+        year, month = now.year, now.month
+        if match.group("which") in ("mese scorso", "scorso mese", "mese passato", "last month"):
+            year, month = (year, month - 1) if month > 1 else (year - 1, 12)
+        italian = next(n for n, m in _MONTHS.items() if m == month)
+        return f"{match.group('part')} di {italian} {year}"
+
+    return _RELATIVE_MONTH_PART.sub(name, text)
 
 
 def english_dates(text: str) -> str:
@@ -753,6 +857,26 @@ def qualified_date(text: str, today: datetime) -> tuple[datetime | None, datetim
         except ValueError:
             return None
 
+    if match := _MID_MONTH.search(text):
+        month = _MONTHS[match.group("month")]
+        return datetime(year_of(match, month), month, 16, tzinfo=UTC), None, match.span()
+    if match := _DAY_RANGE_MONTHS.search(text):
+        first_month, month = _MONTHS[match.group("m1")], _MONTHS[match.group("month")]
+        year = year_of(match, month)
+        start_year = year if first_month <= month else year - 1
+        start, end = day(start_year, first_month, match.group("d1")), day(year, month, match.group("d2"))
+        if start and end and start <= end:
+            return start, end + timedelta(days=1), match.span()
+    if match := _LEADING_SPAN.search(text):
+        month = _MONTHS[match.group("month")]
+        year = year_of(match, month)
+        value = match.group("n")
+        count = int(value) if value.isdigit() else _NUMBER_WORDS[value]
+        days = count * 7 if match.group("unit") in ("settimane", "weeks") else count
+        first = datetime(year, month, 1, tzinfo=UTC)
+        after = first + timedelta(days=monthrange(year, month)[1])
+        if days >= 1:
+            return first, min(first + timedelta(days=days), after), match.span()
     if match := _DAY_RANGE.search(text):
         month = _MONTHS[match.group("month")]
         year = year_of(match, month)
@@ -875,12 +999,19 @@ _NEUTRAL_WORDS = frozenset(
             "please could would can will shall should may might just only also too still yet already ever now",
             "currently right so then tell show list give find get got getting see look check want need know let us",
             "about up out over into as if than kindly thanks thank hi hello quick quickly through via actually",
-            "make makes question domanda",
+            "make makes question domanda dato quel quei effettivamente realmente veramente",
+            "where someone somebody anyone anybody bought buy buys purchased comprato comprata comprati comprate",
+            "giusto vero right correct true",
             "happened happen sitting customer customers buyer buyers pay pays payment payments transaction",
             "transactions order orders purchase purchases sale sales checkouts amount amounts money euros product",
             "products data number numbers total totals overall altogether summary count",
         )
     ).split()
+)
+_LONG_NEUTRAL_WORDS = tuple(w for w in _NEUTRAL_WORDS if len(w) >= 9)
+_ANY_STATUS = re.compile(
+    r"\b(?:in |di |con )?(?:qualsiasi|qualunque|ogni) stato\b|\b(?:in |with )?(?:any|every) (?:status|state)\b"
+    r"|\bwhatever (?:the |their )?status\b"
 )
 _AMBIGUOUS_WORDS = frozenset(
     " ".join(
@@ -913,7 +1044,9 @@ _DESCRIBES = {
     ),
     "creation_unknown": re.compile(r"\b(?:esito|outcome|creazione|creation|conosce|pers[aoie]|lost)\b"),
     "pending": re.compile(r"\b(?:bloccat\w*|stuck|ferm[oiae])\b"),
-    "paid": re.compile(r"\b(?:chius[oaie]|conclus[oaie]|closed|arrivat\w*|ricevut\w*|received)\b"),
+    "paid": re.compile(
+        r"\b(?:chius[oaie]|conclus[oaie]|closed|arrivat\w*|ricevut\w*|received)\b|\b(?:è|e'|sono) passat[oaie]\b"
+    ),
     "unpaid": re.compile(r"\b(?:pers[aoie]|lost|mancat\w*|missed)\b"),
     "product": re.compile(r"\b(?:packs?|piano|piani|plans?|licenz[ae]|licen[cs]es?)\b"),
     "amount": re.compile(
@@ -931,6 +1064,7 @@ _EXCLUSION = re.compile(
 )
 _RELATIVE_DATES = re.compile(
     r"\b(?:oggi|today|ieri|yesterday|questa settimana|this week|questo mese|this month|mese scorso|scorso mese"
+    r"|mese passato"
     r"|last month|quest'anno|this year)\b"
 )
 _CREATED_WORD = re.compile(r"\bcreat\w*|\bcreated\b")
@@ -980,7 +1114,7 @@ def constraint_coverage(text: str, plan: QueryPlan) -> Coverage:
         return negation[-1].group(0) if negation else None
 
     for product_id, aliases in _PRODUCT_ALIASES.items():
-        if product_id not in f.product_ids:
+        if product_id not in f.product_ids and product_id != plan.subject_product:
             continue
         names = (*aliases, CATALOG[product_id].name.lower(), product_id)
         pattern = "|".join(rf"\b{re.escape(n)}\b" for n in sorted(names, key=len, reverse=True))
@@ -996,6 +1130,7 @@ def constraint_coverage(text: str, plan: QueryPlan) -> Coverage:
                     excluded_statuses.append(status)
                     unresolved.append(f"{word} … {m.group(0).strip()}")
     cover("status", _SALES, PaymentStatus.PAID in f.statuses)
+    cover("status", _COLLECTED, PaymentStatus.PAID in f.statuses)
     statuses = {*f.statuses, *plan.asked_statuses}
     cover("status", _DESCRIBES["creation_unknown"], PaymentStatus.CREATION_UNKNOWN in statuses)
     pending = (PaymentStatus.OPEN, PaymentStatus.CREATING, PaymentStatus.CREATION_UNKNOWN)
@@ -1003,6 +1138,8 @@ def constraint_coverage(text: str, plan: QueryPlan) -> Coverage:
     cover("status", _DESCRIBES["paid"], PaymentStatus.PAID in statuses)
     cover("status", _DESCRIBES["unpaid"], bool(statuses & {PaymentStatus.FAILED, PaymentStatus.EXPIRED}))
     cover("product", _DESCRIBES["product"], bool(f.product_ids))
+    # "in qualsiasi stato" / "any status": the question asks explicitly for no status filter (TAH-144: r012).
+    cover("status", _ANY_STATUS, not f.statuses and not plan.asked_statuses)
     if f.amount is not None:
         cover("amount", _AMOUNT)
         cover("amount", _RANGE)
@@ -1011,6 +1148,7 @@ def constraint_coverage(text: str, plan: QueryPlan) -> Coverage:
             for comparator in _COMPARATOR_WORDS:
                 cover("amount", comparator)
     cover("quantity", _QUANTITY, f.quantity is not None)
+    cover("quantity", _UNITS, f.quantity is not None)
     if f.quantity is not None:
         alias_names = "|".join(re.escape(a) for aliases in _PRODUCT_ALIASES.values() for a in aliases)
         words = "|".join(_NUMBER_WORDS)
@@ -1018,6 +1156,9 @@ def constraint_coverage(text: str, plan: QueryPlan) -> Coverage:
     dated = f.created_from is not None or f.created_to is not None
     for date_pattern in (
         _ISO_RANGE,
+        _MID_MONTH,
+        _DAY_RANGE_MONTHS,
+        _LEADING_SPAN,
         _DAY_RANGE,
         _MONTH_PART,
         _DAY_OPERATOR,
@@ -1051,6 +1192,8 @@ def constraint_coverage(text: str, plan: QueryPlan) -> Coverage:
         word = m.group(0)
         if inside(m.start()) or word in _NEUTRAL_WORDS or len(word) == 1:
             continue
+        if len(word) >= 9 and get_close_matches(word, _LONG_NEUTRAL_WORDS, n=1, cutoff=0.9):
+            continue  # a misspelt neutral word ("effetivamente"): it cannot change the result either
         if word in _AMBIGUOUS_WORDS:
             ambiguous.append(word)
         elif word in _UNSUPPORTED_WORDS:
