@@ -26,11 +26,11 @@ export function PaymentDetailPage() {
 
   return (
     <div className="space-y-4">
-      <Link to="/payments" className="text-sm text-indigo-600">
+      <Link to="/payments" className="text-sm font-medium text-primary hover:text-primary-strong">
         ← Pagamenti
       </Link>
       <div className="flex flex-wrap items-center gap-3">
-        <h1 className="font-mono text-xl font-bold">{payment.id}</h1>
+        <h1 className="break-all font-mono text-xl font-bold text-navy">{payment.id}</h1>
         <StatusBadge status={payment.status} />
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
@@ -38,22 +38,22 @@ export function PaymentDetailPage() {
           <dl className="grid grid-cols-[auto,1fr] gap-x-6 gap-y-2 text-sm">
             {facts.map(([label, value]) => (
               <div key={label} className="contents">
-                <dt className="text-slate-500">{label}</dt>
+                <dt className="text-muted">{label}</dt>
                 <dd className="break-all">{value}</dd>
               </div>
             ))}
           </dl>
         </Card>
         <Card title="Storico">
-          <ol className="relative space-y-4 border-l border-slate-200 pl-5" aria-label="Storico del pagamento">
+          <ol className="relative space-y-4 border-l border-line pl-5" aria-label="Storico del pagamento">
             {payment.history.map((event, index) => (
               <li key={`${event.created_at}-${index}`} className="text-sm">
-                <span className="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border-2 border-white bg-indigo-500" />
+                <span className="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border-2 border-surface bg-primary" />
                 <p className="font-medium">
                   {event.from_status ? `${STATUS_LABEL[event.from_status]} → ` : "Creato come "}
                   {STATUS_LABEL[event.to_status]}
                 </p>
-                <p className="text-slate-500">
+                <p className="text-muted">
                   {formatDateTime(event.created_at)} · {SOURCE_LABEL[event.source] ?? event.source}
                   {event.reason ? ` · ${event.reason}` : ""}
                 </p>
@@ -64,9 +64,9 @@ export function PaymentDetailPage() {
       </div>
       <Link
         to={`/assistant?q=${encodeURIComponent(`Che cosa è successo al pagamento ${payment.id}?`)}`}
-        className="inline-block text-sm font-medium text-indigo-600"
+        className="inline-block text-sm font-medium text-primary hover:text-primary-strong"
       >
-        Chiedi all'assistente →
+        Chiedi a Payo di questo pagamento →
       </Link>
     </div>
   );

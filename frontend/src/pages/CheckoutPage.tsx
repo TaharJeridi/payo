@@ -6,7 +6,7 @@ import type { CheckoutResult } from "../api/client";
 import { useProducts } from "../api/hooks";
 import type { CheckoutRequest } from "../api/types";
 import { useAuth } from "../auth/AuthContext";
-import { Button, Card, ErrorBox, Spinner, StatusBadge } from "../components/ui";
+import { Button, Card, ErrorBox, FIELD_CLASS, PageHeader, Spinner, StatusBadge } from "../components/ui";
 import { IdempotencyKeys, checkoutWithRetry, type RetryOptions } from "../lib/idempotency";
 import { formatMoney } from "../lib/format";
 
@@ -72,16 +72,16 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
-      <div>
-        <h1 className="mb-4 text-2xl font-bold">Nuovo checkout</h1>
+      <div className="space-y-4">
+        <PageHeader title="Nuovo checkout" description="Crea un pagamento di prova con Stripe in modalità test" />
         <Card>
           <form onSubmit={onSubmit} className="space-y-4">
-            <label className="block text-sm font-medium text-slate-700">
+            <label className="block text-sm font-medium text-ink">
               Prodotto
               <select
                 value={selected?.id ?? ""}
                 onChange={(event) => setProductId(event.target.value)}
-                className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                className={FIELD_CLASS}
               >
                 {products.data.map((product) => (
                   <option key={product.id} value={product.id}>
@@ -90,7 +90,7 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
                 ))}
               </select>
             </label>
-            <label className="block text-sm font-medium text-slate-700">
+            <label className="block text-sm font-medium text-ink">
               Quantità
               <input
                 type="number"
@@ -100,16 +100,16 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
                 value={quantityText}
                 aria-invalid={!quantityValid}
                 onChange={(event) => setQuantityText(event.target.value)}
-                className="mt-1 block w-32 rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                className={`${FIELD_CLASS} w-32`}
               />
             </label>
-            <label className="block text-sm font-medium text-slate-700">
+            <label className="block text-sm font-medium text-ink">
               Email del cliente (facoltativa)
               <input
                 type="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                className={FIELD_CLASS}
               />
             </label>
             {!quantityValid && (
@@ -118,8 +118,8 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
               </p>
             )}
             {selected && quantityValid && (
-              <p className="text-sm text-slate-600">
-                Totale: <strong>{formatMoney(selected.unit_amount * quantity, selected.currency)}</strong> · calcolato
+              <p className="text-sm text-muted">
+                Totale: <strong className="text-ink">{formatMoney(selected.unit_amount * quantity, selected.currency)}</strong> · calcolato
                 dal backend sul catalogo
               </p>
             )}
@@ -134,7 +134,7 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
           </form>
         </Card>
       </div>
-      <div className="space-y-4 lg:pt-12">
+      <div className="space-y-4 lg:pt-16">
         {error !== null && (
           <ErrorBox error={error} {...(request ? { onRetry: () => void submit() } : {})} />
         )}
@@ -150,19 +150,19 @@ export function CheckoutPage({ retryOptions }: { retryOptions?: RetryOptions }) 
                   href={checkoutUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-500"
+                  className="inline-block rounded-lg bg-primary px-4 py-2 font-semibold text-white hover:bg-primary-strong"
                 >
                   Apri la pagina di pagamento Stripe ↗
                 </a>
               ) : (
-                <p className="text-slate-500">Nessun link di pagamento disponibile per questo stato.</p>
+                <p className="text-muted">Nessun link di pagamento disponibile per questo stato.</p>
               )}
               <p>
-                <Link to={`/payments/${result.response.payment_id}`} className="text-indigo-600 underline">
+                <Link to={`/payments/${result.response.payment_id}`} className="text-primary underline">
                   Vedi il pagamento
                 </Link>
               </p>
-              <p className="text-xs text-slate-500">Carta di test: 4242 4242 4242 4242, qualsiasi data futura e CVC.</p>
+              <p className="text-xs text-muted">Carta di test: 4242 4242 4242 4242, qualsiasi data futura e CVC.</p>
             </div>
           </Card>
         )}

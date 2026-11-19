@@ -16,9 +16,9 @@
 | **Engineering hygiene** | 900+ backend tests on a real PostgreSQL (unit, concurrency, migrations, security, evaluation scorer) and frontend tests, targeted mutation testing, mypy strict, ruff, Docker Compose deployment, CI |
 | **Product surface** | React + TypeScript merchant dashboard served behind nginx with a strict CSP |
 
-| Overview | Assistant |
+| Dashboard | Ask Payo |
 |---|---|
-| ![Merchant dashboard overview with payment KPIs](../../docs/screenshots/overview.png) | ![RAG assistant answering with cited sources](../../docs/screenshots/assistant.png) |
+| ![Payo dashboard with payment KPIs and recent transactions](../../docs/screenshots/payo-dashboard.png) | ![Ask Payo answering with cited payment sources](../../docs/screenshots/payo-ai-assistant.png) |
 
 Screenshots taken on the synthetic evaluation merchant (`python -m app.rag.evaluation seed`); every payment shown is fake.
 
@@ -29,7 +29,7 @@ Everything runs locally: Docker Compose for the stack, Ollama on the host for th
 ## Overview
 
 The **Payment Engine** provides multi-merchant Stripe Checkout (TEST mode only), a PostgreSQL ledger of transactions, client-side idempotency, hardened Stripe webhooks and reconciliation of payments whose outcome was never confirmed.
-On top of it, a **RAG assistant** answers a merchant's questions about its own payments with **Qwen via Ollama** and **Qdrant**, and a **React dashboard** (Vite, TypeScript, Tailwind, TanStack Query) lets the merchant follow payments, create checkouts and talk to the assistant.
+On top of it, a **RAG assistant** answers a merchant's questions about its own payments with **Qwen via Ollama** and **Qdrant**, and a **React dashboard** (Vite, TypeScript, Tailwind, TanStack Query), shown to users as **Payo**, lets the merchant follow payments, create checkouts and talk to the assistant.
 
 > ⚠️ Demo only. The app refuses `sk_live_` keys at startup and ignores `livemode` events/sessions. No card data ever touches this backend: card entry happens on the Stripe-hosted Checkout page.
 
@@ -458,7 +458,7 @@ docker compose up --build -d dashboard        # http://127.0.0.1:8080, sign in w
 cd frontend && npm ci && npm run dev          # development: http://127.0.0.1:5173, /api proxied to :8000
 npm run typecheck && npm test && npm run build
 ```
-Pages: overview (KPIs from `GET /payments/stats`, recent payments, system status), payments (status filter, pagination, detail with history timeline), new checkout (Idempotency-Key generated per purchase and reused on automatic retries after `503`/`409`, honouring `Retry-After`), assistant (answers with clickable `[n]` citations; payment sources link to the payment) and system status.
+Pages: overview (KPIs from `GET /payments/stats`, recent payments, system status), payments (status filter, pagination, detail with history timeline), new checkout (Idempotency-Key generated per purchase and reused on automatic retries after `503`/`409`, honouring `Retry-After`), assistant, labelled *Ask Payo* (answers with clickable `[n]` citations; payment sources link to the payment) and system status. Brand colours and fonts are design tokens in `frontend/src/index.css` and `frontend/tailwind.config.js`.
 The API key stays in memory in the tab (optionally `sessionStorage`), never `localStorage`; requests never send cookies. nginx serves the build and proxies `/api` on the same origin, with a strict CSP, `X-Frame-Options: DENY` and `Referrer-Policy: no-referrer`; the Stripe webhook path is not exposed through it.
 
 ### 3. Create a merchant and its API key

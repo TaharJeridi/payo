@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 
 import { useAsk } from "../api/hooks";
 import type { RagAnswer } from "../api/types";
+import { LogoMark } from "../components/Logo";
 import { Button, Card, ErrorBox } from "../components/ui";
 import { paymentIdFromSourceKey, splitCitations } from "../lib/format";
 
@@ -50,13 +51,17 @@ export function AssistantPage() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-4">
-      <div>
-        <h1 className="text-2xl font-bold">Assistente</h1>
-        <p className="text-sm text-slate-600">
-          Qwen risponde solo con i dati dei tuoi pagamenti e la documentazione PayFlow, citando le fonti. Verifica sempre
-          importi e stati nella pagina del pagamento.
-        </p>
-      </div>
+      <header className="flex items-start gap-3">
+        <LogoMark className="mt-1 h-9 w-9 shrink-0" />
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight text-navy">Ask Payo</h1>
+          <p className="mt-1 text-sm text-muted">
+            Chiedi a Payo dei tuoi pagamenti o di come funziona la piattaforma. Le risposte usano solo i tuoi dati e la
+            documentazione, citano le fonti e sono calcolate dal backend o scritte dal modello locale Qwen. Verifica
+            sempre importi e stati nella pagina del pagamento.
+          </p>
+        </div>
+      </header>
 
       {exchanges.length === 0 && (
         <div className="flex flex-wrap gap-2">
@@ -65,7 +70,7 @@ export function AssistantPage() {
               key={suggestion}
               type="button"
               onClick={() => submit(suggestion)}
-              className="rounded-full bg-white px-3 py-1 text-sm text-slate-700 ring-1 ring-slate-300 hover:bg-slate-50"
+              className="rounded-full bg-surface px-3 py-1.5 text-sm text-navy ring-1 ring-inset ring-field hover:ring-primary"
             >
               {suggestion}
             </button>
@@ -76,14 +81,14 @@ export function AssistantPage() {
       <div className="space-y-4" aria-live="polite">
         {exchanges.map((exchange) => (
           <div key={exchange.id} className="space-y-2">
-            <p className="ml-auto w-fit max-w-[85%] rounded-2xl bg-indigo-600 px-4 py-2 text-sm text-white">
+            <p className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-navy px-4 py-2 text-sm text-white">
               {exchange.question}
             </p>
             {exchange.answer && <AnswerView answer={exchange.answer} exchangeId={exchange.id} />}
             {exchange.error !== null && <ErrorBox error={exchange.error} />}
             {!exchange.answer && exchange.error === null && (
-              <p role="status" className="text-sm text-slate-500">
-                Qwen sta rispondendo…
+              <p role="status" className="text-sm text-muted">
+                Payo sta preparando la risposta…
               </p>
             )}
           </div>
@@ -91,7 +96,10 @@ export function AssistantPage() {
         <div ref={bottom} />
       </div>
 
-      <form onSubmit={onSubmit} className="sticky bottom-4 flex gap-2 rounded-xl border bg-white p-2 shadow-sm">
+      <form
+        onSubmit={onSubmit}
+        className="sticky bottom-4 flex gap-2 rounded-card border border-field bg-surface p-2 shadow-card focus-within:border-primary"
+      >
         <label htmlFor="question" className="sr-only">
           Domanda
         </label>
@@ -100,8 +108,8 @@ export function AssistantPage() {
           value={question}
           maxLength={1000}
           onChange={(event) => setQuestion(event.target.value)}
-          placeholder="Chiedi qualcosa sui tuoi pagamenti…"
-          className="flex-1 rounded-lg px-3 py-2 text-sm focus:outline-none"
+          placeholder="Chiedi a Payo qualcosa sui tuoi pagamenti…"
+          className="min-w-0 flex-1 rounded-lg bg-transparent px-3 py-2 text-sm text-ink placeholder:text-muted focus:outline-none"
         />
         <Button type="submit" disabled={ask.isPending || question.trim() === ""}>
           Invia
@@ -122,7 +130,7 @@ function AnswerView({ answer, exchangeId }: { answer: RagAnswer; exchangeId: num
             <a
               key={index}
               href={`#${anchor(part.citation)}`}
-              className="mx-0.5 rounded bg-indigo-100 px-1 text-xs font-semibold text-indigo-700"
+              className="mx-0.5 rounded bg-primary/10 px-1 text-xs font-semibold text-primary"
             >
               {part.citation}
             </a>
@@ -132,22 +140,22 @@ function AnswerView({ answer, exchangeId }: { answer: RagAnswer; exchangeId: num
         )}
       </p>
       {answer.sources.length > 0 && (
-        <div className="mt-4 border-t pt-3">
-          <h3 className="mb-2 text-xs font-semibold uppercase text-slate-500">Fonti</h3>
+        <div className="mt-4 border-t border-line pt-3">
+          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">Fonti</h3>
           <ol className="space-y-1 text-sm">
             {answer.sources.map((source) => {
               const paymentId = paymentIdFromSourceKey(source.source_key);
               return (
-                <li key={source.number} id={anchor(source.number)} className={source.cited ? "" : "text-slate-500"}>
+                <li key={source.number} id={anchor(source.number)} className={source.cited ? "" : "text-muted"}>
                   <span className="mr-2 font-semibold">[{source.number}]</span>
                   {paymentId ? (
-                    <Link to={`/payments/${paymentId}`} className="text-indigo-700 underline">
+                    <Link to={`/payments/${paymentId}`} className="text-primary underline">
                       {source.title}
                     </Link>
                   ) : (
                     <span>{source.title}</span>
                   )}
-                  <span className="ml-2 text-xs text-slate-400">
+                  <span className="ml-2 text-xs text-muted">
                     {source.cited ? "citata" : "non citata"} · {source.score.toFixed(2)}
                   </span>
                 </li>
@@ -162,10 +170,10 @@ function AnswerView({ answer, exchangeId }: { answer: RagAnswer; exchangeId: num
         </p>
       )}
       {!answer.used_llm && answer.sources.length > 0 && (
-        <p className="mt-2 text-xs text-slate-500">Risposta scritta dal backend con i dati PayFlow, senza Qwen.</p>
+        <p className="mt-2 text-xs text-muted">Risposta calcolata dal backend con i dati di Payo, senza Qwen.</p>
       )}
       {!answer.used_llm && answer.sources.length === 0 && (
-        <p className="mt-2 text-xs text-slate-500">Nessuna fonte pertinente: Qwen non è stato interpellato.</p>
+        <p className="mt-2 text-xs text-muted">Nessuna fonte pertinente: Qwen non è stato interpellato.</p>
       )}
     </Card>
   );

@@ -95,6 +95,21 @@ describe("overview and payments", () => {
     );
   });
 
+  it("shows the Payo brand and navigation, with Ask Payo for the assistant", async () => {
+    const { client } = fakeApi({
+      ...HEALTH,
+      "GET /payments/stats": () => json(STATS),
+      "GET /payments": () => json({ items: [payment()], total: 1, limit: 5, offset: 0 }),
+    });
+    renderApp("/", client);
+
+    expect(await screen.findByRole("img", { name: "Payo" })).toBeInTheDocument();
+    const nav = screen.getByRole("navigation", { name: "Principale" });
+    expect(within(nav).getByRole("link", { name: "Ask Payo" })).toHaveAttribute("href", "/assistant");
+    expect(within(nav).getByRole("link", { name: "Panoramica" })).toHaveAttribute("aria-current", "page");
+    expect(screen.queryByText(/PayFlow/)).toBeNull();
+  });
+
   it("filters by status and paginates through the API", async () => {
     const { client, calls } = fakeApi({
       "GET /payments": (call) => {
@@ -247,7 +262,7 @@ describe("assistant", () => {
     expect(await screen.findByTestId("answer-warnings")).toHaveTextContent(
       "Risposta non verificata dal backend: nessuna fonte citata; importo non presente nelle fonti citate.",
     );
-    expect(await screen.findByText("Risposta scritta dal backend con i dati PayFlow, senza Qwen.")).toBeInTheDocument();
+    expect(await screen.findByText("Risposta calcolata dal backend con i dati di Payo, senza Qwen.")).toBeInTheDocument();
     expect(await screen.findByText("Nessuna fonte pertinente: Qwen non è stato interpellato.")).toBeInTheDocument();
     expect(screen.getAllByTestId("answer-warnings")).toHaveLength(1);
   });

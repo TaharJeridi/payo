@@ -29,6 +29,16 @@ export const STATUS_TONE: Record<PaymentStatus, string> = {
   expired: "bg-slate-200 text-slate-700 ring-slate-300",
 };
 
+/** Solid colour of each status in the overview bars: same hue family as STATUS_TONE. */
+export const STATUS_BAR: Record<PaymentStatus, string> = {
+  creating: "bg-sky-500",
+  open: "bg-amber-500",
+  creation_unknown: "bg-violet-500",
+  paid: "bg-emerald-500",
+  failed: "bg-rose-500",
+  expired: "bg-slate-400",
+};
+
 export const SOURCE_LABEL: Record<string, string> = {
   api: "API",
   webhook: "Webhook Stripe",

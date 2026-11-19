@@ -2,7 +2,8 @@ import { useState, type FormEvent } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 import { isWellFormedKey, useAuth } from "../auth/AuthContext";
-import { Button, ErrorBox } from "../components/ui";
+import { Logo } from "../components/Logo";
+import { Button, ErrorBox, FIELD_CLASS } from "../components/ui";
 
 export function LoginPage() {
   const { apiKey, login } = useAuth();
@@ -38,13 +39,19 @@ export function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
-      <form onSubmit={onSubmit} className="w-full max-w-md space-y-5 rounded-xl border bg-white p-8 shadow-sm">
+    <main className="flex min-h-screen flex-col items-center justify-center gap-8 px-4 py-10">
+      <Logo />
+      <form
+        onSubmit={onSubmit}
+        className="w-full max-w-md space-y-5 rounded-card border border-line bg-surface p-8 shadow-card"
+      >
         <div>
-          <h1 className="text-2xl font-bold text-indigo-700">PayFlow AI</h1>
-          <p className="mt-1 text-sm text-slate-600">Dashboard merchant · Stripe TEST mode</p>
+          <h1 className="text-2xl font-bold tracking-tight text-navy">Benvenuto in Payo</h1>
+          <p className="mt-1 text-sm text-muted">
+            Dashboard dimostrativa per i merchant · Stripe in modalità test, dati sintetici
+          </p>
         </div>
-        <label className="block text-sm font-medium text-slate-700">
+        <label className="block text-sm font-medium text-ink">
           API key del merchant
           <input
             type="password"
@@ -53,7 +60,7 @@ export function LoginPage() {
             value={value}
             onChange={(event) => setValue(event.target.value)}
             placeholder="pf_…"
-            className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 font-mono text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className={`${FIELD_CLASS} font-mono`}
           />
         </label>
         {formatError && (
@@ -66,18 +73,18 @@ export function LoginPage() {
             error={error}
           />
         )}
-        <label className="flex items-center gap-2 text-sm text-slate-600">
-          <input type="checkbox" checked={remember} onChange={(event) => setRemember(event.target.checked)} />
+        <label className="flex items-center gap-2 text-sm text-muted">
+          <input type="checkbox" className="h-4 w-4 accent-primary" checked={remember} onChange={(event) => setRemember(event.target.checked)} />
           Ricorda per questa sessione del browser (sessionStorage)
         </label>
         <Button type="submit" disabled={busy || value.trim() === ""} className="w-full">
           {busy ? "Verifica…" : "Accedi"}
         </Button>
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-muted">
           La chiave resta in memoria in questa scheda e non viene mai salvata in localStorage. Si crea con{" "}
-          <code className="rounded bg-slate-100 px-1">python -m app.merchants.cli create</code>.
+          <code className="rounded bg-page px-1 text-ink">python -m app.merchants.cli create</code>.
         </p>
       </form>
-    </div>
+    </main>
   );
 }

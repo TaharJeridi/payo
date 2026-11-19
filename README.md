@@ -6,6 +6,8 @@ PayFlow is a demonstration project I developed to explore the design and integra
 
 The project simulates a payment management platform with an AI assistant that lets users ask questions in natural language, in Italian or English, about their payment data and the platform's technical documentation. Questions about payments are answered from the database whenever possible; documentation and explanations are retrieved semantically and phrased by a local language model, with numbered citations to the sources it used.
 
+The demo application is called Payo.
+
 ## Technologies and concepts
 
 - **Local LLMs:** Qwen 2.5 (7B Instruct) running locally through Ollama.
@@ -20,6 +22,16 @@ The project simulates a payment management platform with an AI assistant that le
 The goal of PayFlow is to gain hands-on experience in AI systems architecture, local language models, semantic search and the integration of artificial intelligence into practical software applications.
 
 This project is intended for educational and demonstration purposes only. It uses synthetic data and is not designed for production use or real financial transactions.
+
+## Screenshots
+
+**Dashboard**
+
+![Payo dashboard with payment totals, recent transactions and payments by status](docs/screenshots/payo-dashboard.png)
+
+**Ask Payo**
+
+![Ask Payo answering a question about failed payments, with cited sources](docs/screenshots/payo-ai-assistant.png)
 
 ## Documentation
 

@@ -7,7 +7,7 @@ import { STATUS_LABEL, STATUS_TONE } from "../lib/format";
 export function StatusBadge({ status }: { status: PaymentStatus }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset ${STATUS_TONE[status]}`}
+      className={`inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset ${STATUS_TONE[status]}`}
     >
       {STATUS_LABEL[status]}
     </span>
@@ -16,10 +16,10 @@ export function StatusBadge({ status }: { status: PaymentStatus }) {
 
 export function Card({ title, children, action }: { title?: string; children: ReactNode; action?: ReactNode }) {
   return (
-    <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+    <section className="rounded-card border border-line bg-surface p-5 shadow-card">
       {(title || action) && (
         <header className="mb-4 flex items-center justify-between gap-4">
-          {title && <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">{title}</h2>}
+          {title && <h2 className="text-sm font-semibold text-navy">{title}</h2>}
           {action}
         </header>
       )}
@@ -30,8 +30,8 @@ export function Card({ title, children, action }: { title?: string; children: Re
 
 export function Spinner({ label = "Caricamento…" }: { label?: string }) {
   return (
-    <p role="status" className="flex items-center gap-2 text-sm text-slate-500">
-      <span className="h-4 w-4 animate-spin rounded-full border-2 border-slate-300 border-t-slate-600" />
+    <p role="status" className="flex items-center gap-2 text-sm text-muted">
+      <span className="h-4 w-4 animate-spin rounded-full border-2 border-line border-t-primary" aria-hidden="true" />
       {label}
     </p>
   );
@@ -39,7 +39,7 @@ export function Spinner({ label = "Caricamento…" }: { label?: string }) {
 
 const ERROR_MESSAGES: Record<string, string> = {
   network_error: "L'API non è raggiungibile. Lo stack è avviato?",
-  rag_unavailable: "L'assistente non è disponibile: Ollama o Qdrant non rispondono.",
+  rag_unavailable: "Ask Payo non è disponibile: Ollama o Qdrant non rispondono.",
   payment_outcome_unknown: "Stripe non ha confermato l'esito. Riprova: verrà usata la stessa chiave di idempotenza.",
   idempotency_operation_in_progress: "La richiesta precedente è ancora in corso. Riprova tra qualche secondo.",
   rate_limited: "Troppe richieste. Riprova tra un minuto.",
@@ -64,6 +64,23 @@ export function ErrorBox({ error, onRetry }: { error: unknown; onRetry?: () => v
   );
 }
 
+/** Shared look of text inputs and selects: visible >= 3:1 border, blue focus. */
+export const FIELD_CLASS =
+  "mt-1 block w-full rounded-lg border border-field bg-surface px-3 py-2 text-sm text-ink placeholder:text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30";
+
+/** Page title with an optional one-line description. */
+export function PageHeader({ title, description, children }: { title: string; description?: string; children?: ReactNode }) {
+  return (
+    <header className="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h1 className="text-2xl font-bold tracking-tight text-navy">{title}</h1>
+        {description && <p className="mt-1 text-sm text-muted">{description}</p>}
+      </div>
+      {children}
+    </header>
+  );
+}
+
 export function Button({
   children,
   variant = "primary",
@@ -71,13 +88,13 @@ export function Button({
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "secondary" }) {
   const tone =
     variant === "primary"
-      ? "bg-indigo-600 text-white hover:bg-indigo-500 disabled:bg-indigo-300"
-      : "bg-white text-slate-700 ring-1 ring-inset ring-slate-300 hover:bg-slate-50 disabled:text-slate-400";
+      ? "bg-accent text-ink hover:bg-accent-strong disabled:bg-accent/40 disabled:text-ink/50"
+      : "bg-surface text-navy ring-1 ring-inset ring-field hover:bg-page disabled:text-muted/60 disabled:ring-line";
   return (
     <button
       type="button"
       {...props}
-      className={`inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold shadow-sm transition disabled:cursor-not-allowed ${tone} ${props.className ?? ""}`}
+      className={`inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed ${tone} ${props.className ?? ""}`}
     >
       {children}
     </button>

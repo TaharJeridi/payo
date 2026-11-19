@@ -2,7 +2,7 @@ import { Link, useSearchParams } from "react-router-dom";
 
 import { usePayments } from "../api/hooks";
 import { PAYMENT_STATUSES, type PaymentStatus } from "../api/types";
-import { Button, Card, ErrorBox, Spinner, StatusBadge } from "../components/ui";
+import { Button, Card, ErrorBox, PageHeader, Spinner, StatusBadge } from "../components/ui";
 import { STATUS_LABEL, formatDateTime, formatMoney } from "../lib/format";
 
 export const PAGE_SIZE = 20;
@@ -30,7 +30,7 @@ export function PaymentsPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Pagamenti</h1>
+      <PageHeader title="Pagamenti" description="Esplora le transazioni e filtrale per stato" />
       <div role="group" aria-label="Filtra per stato" className="flex flex-wrap gap-2">
         <FilterChip active={!status} onClick={() => update({ status: undefined })}>
           Tutti
@@ -44,54 +44,77 @@ export function PaymentsPage() {
       <Card>
         {query.isPending && <Spinner />}
         {query.isError && <ErrorBox error={query.error} onRetry={() => void query.refetch()} />}
-        {query.data && query.data.items.length === 0 && <p className="text-sm text-slate-500">Nessun pagamento.</p>}
+        {query.data && query.data.items.length === 0 && <p className="text-sm text-muted">Nessun pagamento.</p>}
         {query.data && query.data.items.length > 0 && (
-          <div className="overflow-x-auto">
+          <ul className="divide-y divide-line sm:hidden" aria-label="Pagamenti">
+            {query.data.items.map((payment) => (
+              <li key={payment.id} className="flex items-start justify-between gap-3 py-3 text-sm">
+                <div className="min-w-0">
+                  <Link to={`/payments/${payment.id}`} className="font-mono text-primary hover:underline">
+                    {payment.id.slice(0, 8)}…
+                  </Link>
+                  <p className="text-muted">
+                    {payment.product_id} × {payment.quantity}
+                  </p>
+                  <p className="text-xs text-muted">{formatDateTime(payment.created_at)}</p>
+                </div>
+                <div className="flex shrink-0 flex-col items-end gap-1">
+                  <span className="font-semibold">{formatMoney(payment.amount, payment.currency)}</span>
+                  <StatusBadge status={payment.status} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+        {query.data && query.data.items.length > 0 && (
+          <div className="hidden overflow-x-auto sm:block">
             <table className="min-w-full text-left text-sm">
-              <thead className="text-xs uppercase text-slate-500">
+              <thead className="border-b border-line text-xs font-semibold text-muted">
                 <tr>
-                  <th className="py-2 pr-4">Pagamento</th>
-                  <th className="py-2 pr-4">Prodotto</th>
-                  <th className="py-2 pr-4">Importo</th>
-                  <th className="py-2 pr-4">Stato</th>
-                  <th className="py-2 pr-4">Creato</th>
+                  <th scope="col" className="py-2 pr-4">Pagamento</th>
+                  <th scope="col" className="py-2 pr-4">Prodotto</th>
+                  <th scope="col" className="py-2 pr-4">Importo</th>
+                  <th scope="col" className="py-2 pr-4">Stato</th>
+                  <th scope="col" className="py-2 pr-4">Creato</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-line">
                 {query.data.items.map((payment) => (
                   <tr key={payment.id}>
                     <td className="py-2 pr-4 font-mono">
-                      <Link to={`/payments/${payment.id}`} className="text-indigo-700 hover:underline">
+                      <Link to={`/payments/${payment.id}`} className="text-primary hover:underline">
                         {payment.id.slice(0, 8)}…
                       </Link>
                     </td>
                     <td className="py-2 pr-4">
                       {payment.product_id} × {payment.quantity}
                     </td>
-                    <td className="py-2 pr-4">{formatMoney(payment.amount, payment.currency)}</td>
+                    <td className="py-2 pr-4 font-semibold">{formatMoney(payment.amount, payment.currency)}</td>
                     <td className="py-2 pr-4">
                       <StatusBadge status={payment.status} />
                     </td>
-                    <td className="py-2 pr-4 text-slate-500">{formatDateTime(payment.created_at)}</td>
+                    <td className="whitespace-nowrap py-2 pr-4 text-muted">{formatDateTime(payment.created_at)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         )}
-        <footer className="mt-4 flex items-center justify-between text-sm text-slate-600">
-          <span>
-            {total} pagamenti · pagina {page + 1} di {pages}
-          </span>
-          <div className="flex gap-2">
-            <Button variant="secondary" disabled={page === 0} onClick={() => update({ page: page - 1 })}>
-              Precedente
-            </Button>
-            <Button variant="secondary" disabled={page + 1 >= pages} onClick={() => update({ page: page + 1 })}>
-              Successiva
-            </Button>
-          </div>
-        </footer>
+        {query.data && (
+          <footer className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm text-muted">
+            <span>
+              {total} pagamenti · pagina {page + 1} di {pages}
+            </span>
+            <div className="flex gap-2">
+              <Button variant="secondary" disabled={page === 0} onClick={() => update({ page: page - 1 })}>
+                Precedente
+              </Button>
+              <Button variant="secondary" disabled={page + 1 >= pages} onClick={() => update({ page: page + 1 })}>
+                Successiva
+              </Button>
+            </div>
+          </footer>
+        )}
       </Card>
     </div>
   );
@@ -104,7 +127,7 @@ function FilterChip({ active, onClick, children }: { active: boolean; onClick: (
       aria-pressed={active}
       onClick={onClick}
       className={`rounded-full px-3 py-1 text-sm font-medium ring-1 ring-inset ${
-        active ? "bg-indigo-600 text-white ring-indigo-600" : "bg-white text-slate-700 ring-slate-300 hover:bg-slate-50"
+        active ? "bg-navy text-white ring-navy" : "bg-surface text-ink ring-field hover:ring-primary"
       }`}
     >
       {children}
