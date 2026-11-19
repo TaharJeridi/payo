@@ -85,7 +85,7 @@ From the repository root on the Mac:
 ```bash
 # 0. What is being measured
 (cd backend && python3 -c "from app.rag.evaluation.__main__ import code_fingerprint; print(code_fingerprint())")
-#    expected c0e82af410ef (code of 2026-11-19); a different value means the code changed since this README
+#    expected 27de194cbb1c (code with the TAH-144 parser rules, 2026-11-19); a different value means the code changed
 shasum -a 256 backend/app/rag/evaluation/cases.json backend/app/rag/evaluation/generalization*.json
 #    593241fb0d03…, 05c26453f7b4…, 3cc7194e4b0f…, e5454c628bdd… (the v3 hash is also checked by the script)
 (cd baseline_tah142 && shasum -a 256 -c SHA256SUMS) && (cd baseline_blind_v3 && shasum -a 256 -c SHA256SUMS)

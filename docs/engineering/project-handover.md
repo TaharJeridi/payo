@@ -1,6 +1,6 @@
 # PayFlow — project handover
 
-Entry point for an engineer or agent who takes over PayFlow without the earlier conversations. It summarises and links; it does not repeat the detailed documents. Last verified against the repository on **2026-11-19**. Code fingerprint before that session's changes: `25fb355902b3` (the code of the TAH-142 real runs); after them: `c0e82af410ef` (not yet run with Qwen).
+Entry point for an engineer or agent who takes over PayFlow without the earlier conversations. It summarises and links; it does not repeat the detailed documents. Last verified against the repository on **2026-11-19**. Code fingerprint of the TAH-142 real runs: `25fb355902b3`; of the published commit `054f255`: `99e584c2f409`; after the TAH-144 parser work: `27de194cbb1c` (not yet run with Qwen).
 
 This file is in `docs/engineering/`, which the RAG indexer does **not** read (it indexes only `docs/*.md`). Editing it does not change the assistant's answers.
 
@@ -86,18 +86,18 @@ Recurring principles: deterministic over probabilistic on the financial path; no
 
 False backend answers presented as complete on v3: 10 → 0 per run. Isolation passed in every run. These pass counts use the **old scorer**. Re-scored with the TAH-145 rules (same answers): v3 109 / 108 / 111, v2 91 / 94 / 91, v1 and historical unchanged ([`evaluation/scorer_integrity/`](../../evaluation/scorer_integrity/README.md)).
 
-**Implemented and verified without models (2026-11-19), real runs pending:** TAH-145 (scorer integrity) and TAH-143 / ADR 0014 (claim checks, backend durations, SQL rankings for "classifica", out-of-scope route). Evidence: [`evaluation/tah143/README.md`](../../evaluation/tah143/README.md).
+**Implemented and verified without models (2026-11-19), real runs pending:** TAH-145 (scorer integrity), TAH-143 / ADR 0014 (claim checks, backend durations, SQL rankings for "classifica", out-of-scope route) and the TAH-144 parser rules (amounts without a currency, ranges with articles, parts of a month, counts of a status, units, product rankings). Evidence: [`evaluation/tah143/README.md`](../../evaluation/tah143/README.md), [`evaluation/tah144/README.md`](../../evaluation/tah144/README.md).
 
-**Tests** (2026-11-19): 940 backend tests pass, 3 skipped (live Ollama/Qdrant, Stripe test mode, saved-runs path); ruff, ruff format and mypy clean; 35 frontend tests pass and `tsc` is clean. Targeted mutation testing: 56/56 mutants killed (specs and runner in `evaluation/mutation/`).
+**Tests** (2026-11-19): 1,035 backend tests pass, 3 skipped (live Ollama/Qdrant, Stripe test mode, saved-runs path); ruff, ruff format and mypy clean; 36 frontend tests pass and `tsc` is clean. Targeted mutation testing: 95/95 mutants killed (specs and runner in `evaluation/mutation/`).
 
-**Open problems:** TAH-143 (Qwen factual errors in explanations), TAH-144 (legitimate questions without an answer), TAH-136 (aggregate templates only in Italian), TAH-132 (docs-it-pii, low), TAH-145 (scorer integrity, this session).
+**Open problems:** TAH-143 (Qwen factual errors in explanations; real runs pending), TAH-144 (legitimate questions without an answer; 14 of the v3 cases now answered by the backend and 3 more by Qwen on SQL evidence (real run pending); the rest listed in its README), TAH-145 (scorer integrity; real series pending), TAH-132 (docs-it-pii, low). TAH-136 (aggregates in the question's language) is closed.
 
 **Not implemented / proposed:** regeneration on `uncited`; JSON claim contract; LLM-assisted parsing. Not used any more: `nomic-embed-text` collection (kept only for the comparison logs).
 
 ### Repository state — read before any git command
 
-- `git log` has **one commit** (`72f9a92`, payment engine). Almost all AI work (RAG, parser, evaluation, docs, frontend, migrations 0002–0004) was **uncommitted** on 2026-11-19. Saved runs, reports and the `baseline_*/` folders are git-ignored by design (see [evaluation](../quality/evaluation.md#artefacts-that-are-not-in-the-repository)); keep an off-repository copy.
-- Do **not** run `git checkout`, `reset`, `clean` or `stash`: they would destroy the work. Ask the owner before the first commit; a commit (with the baselines force-added or archived elsewhere) is the most urgent hygiene task.
+- The repository is public: https://github.com/TaharJeridi/payo, branch `main`, first public commit `054f255` (2026-11-19, CI green). Later work is committed locally and pushed only with the owner's authorisation; never rewrite the published history or force-push.
+- Saved runs, reports and the `baseline_*/` folders are git-ignored by design (see [evaluation](../quality/evaluation.md#artefacts-that-are-not-in-the-repository)); the owner keeps an off-repository copy. `.env` and `private/` are ignored and never published.
 - In the sandboxed development shell used on this project, deleting files in the folder is disabled by default, so git commands that delete lock files fail; ask for delete permission first.
 
 ## E. Linear
@@ -109,8 +109,9 @@ Project: [PayFlow — AI Reliability & Quality](https://linear.app/tahar-jeridi-
 | TAH-126…131, 133–135, 137–142 | various | Done | TAH-142 closed after real runs |
 | TAH-145 | REL-01 scorer integrity | In Progress (created 2026-11-19) | blocks TAH-143; closes with the first real series judged by the new rules |
 | TAH-143 | REL-02 Qwen factual errors | In Progress | ADR 0014 implemented; closes only after the real runs in `evaluation/tah143/README.md` §6 |
-| TAH-144 | REL-05 unanswered legitimate questions | Backlog | q052, lookup-async, parser gaps |
-| TAH-136 | REL-04 IT templates for EN questions | Todo | `_count`, `_total`, `_top_product` |
+| TAH-144 | REL-05 unanswered legitimate questions | In Progress | parser rules done (`evaluation/tah144/`); open: q035, q042, q052, q063, r004, real runs, new blind set |
+| TAH-136 | REL-04 IT templates for EN questions | Done | `4217060`, verified 2026-11-19 |
+| TAH-146, TAH-147 | public release, Payo branding | Done | milestone *Payo — First Public Portfolio Release* |
 | TAH-132 | REL-03 docs-it-pii | Backlog, low | Qwen variability |
 
 Rule from the project description: results are recorded only when measured with real Qwen; issues close only with every acceptance criterion verified.
@@ -146,6 +147,6 @@ Without Docker (as done in the cloud/VM sessions): a local PostgreSQL 16 with us
 
 1. **Real runs on the Mac** (closes TAH-145 and, if the criteria hold, TAH-143): exact commands and closing criteria in [`evaluation/tah143/README.md` §6](../../evaluation/tah143/README.md#6-real-evaluation-mac-pending). Compare only with the `-rescored` baselines.
 2. **TAH-143 follow-ups if the runs show them:** claim phrasings not recognised; q099 (documentation contradiction) is out of reach of deterministic checks.
-3. **TAH-144.** Reason-based filters (`checkout_session_expired`, async failures), amounts without a currency (q040, q055, q149: today they reach the semantic route, where ADR 0014 now blocks the false answers but cannot give the right one), the "creation problem" criterion (r015).
-4. **TAH-136.** English templates for aggregates (including the new ranking lines) and the tenant notice; `detect_language` reads "Should I raise the Starter price…" (q142) as Italian because "I" is counted as the Italian article.
-5. **Hygiene.** First commit of the AI work and an off-repo copy of the baselines; a new blind set before any new generalization claim.
+3. **TAH-144.** Still open: reason-based filters (`checkout_session_expired`, async failures), quantity bounds ("più di un pezzo"), "no checkout page created", the "creation problem" criterion (r015), the month of "da metà mese". Amounts without a currency, ranges with articles and parts of a month are done ([`evaluation/tah144/`](../../evaluation/tah144/README.md)).
+4. **Language.** Short English questions with no other marker are now detected (q142, q036, r017); `detect_language` is still a word count, not a classifier.
+5. **Generalization.** A new blind set before any new generalization claim (required by TAH-143 and TAH-144).
