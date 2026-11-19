@@ -1,0 +1,648 @@
+{
+ "run": "consistency-9",
+ "source_file": "rag_eval_phase_consistency-9.json",
+ "source_sha256": "6d160260453018e57dc6aa447c9b120661fded2d842ae47b2b0494dce0b3bc69",
+ "dataset": "historical",
+ "dataset_sha256": "593241fb0d0314049b9d9377cab7fff880de80fa2ffd8dc49e1a9dffc25c3ba5",
+ "code_fingerprint": "9b6f609942e8",
+ "passed_old": 48,
+ "passed_new": 48,
+ "metrics_old": {
+  "intent_accuracy": {
+   "passed": 45,
+   "applicable": 45,
+   "not_applicable": 5,
+   "rate": 1.0
+  },
+  "filter_accuracy": {
+   "passed": 12,
+   "applicable": 12,
+   "not_applicable": 38,
+   "rate": 1.0
+  },
+  "retrieval": {
+   "passed": 33,
+   "applicable": 33,
+   "not_applicable": 17,
+   "rate": 1.0
+  },
+  "payment_identification": {
+   "passed": 24,
+   "applicable": 24,
+   "not_applicable": 26,
+   "rate": 1.0
+  },
+  "financial_fact": {
+   "passed": 23,
+   "applicable": 24,
+   "not_applicable": 26,
+   "rate": 0.958
+  },
+  "completeness": {
+   "passed": 9,
+   "applicable": 10,
+   "not_applicable": 40,
+   "rate": 0.9
+  },
+  "citation": {
+   "passed": 26,
+   "applicable": 26,
+   "not_applicable": 24,
+   "rate": 1.0
+  },
+  "correct_abstention": {
+   "passed": 12,
+   "applicable": 12,
+   "not_applicable": 38,
+   "rate": 1.0
+  },
+  "no_false_refusal": {
+   "passed": 38,
+   "applicable": 38,
+   "not_applicable": 12,
+   "rate": 1.0
+  },
+  "isolation": {
+   "passed": 4,
+   "applicable": 4,
+   "not_applicable": 46,
+   "rate": 1.0
+  },
+  "language": {
+   "passed": 50,
+   "applicable": 50,
+   "not_applicable": 0,
+   "rate": 1.0
+  }
+ },
+ "metrics_new": {
+  "intent_accuracy": {
+   "passed": 45,
+   "applicable": 45,
+   "not_applicable": 5,
+   "rate": 1.0
+  },
+  "filter_accuracy": {
+   "passed": 12,
+   "applicable": 12,
+   "not_applicable": 38,
+   "rate": 1.0
+  },
+  "retrieval": {
+   "passed": 33,
+   "applicable": 33,
+   "not_applicable": 17,
+   "rate": 1.0
+  },
+  "payment_identification": {
+   "passed": 24,
+   "applicable": 24,
+   "not_applicable": 26,
+   "rate": 1.0
+  },
+  "financial_fact": {
+   "passed": 23,
+   "applicable": 24,
+   "not_applicable": 26,
+   "rate": 0.958
+  },
+  "completeness": {
+   "passed": 9,
+   "applicable": 10,
+   "not_applicable": 40,
+   "rate": 0.9
+  },
+  "citation": {
+   "passed": 26,
+   "applicable": 26,
+   "not_applicable": 24,
+   "rate": 1.0
+  },
+  "correct_abstention": {
+   "passed": 12,
+   "applicable": 12,
+   "not_applicable": 38,
+   "rate": 1.0
+  },
+  "no_false_refusal": {
+   "passed": 38,
+   "applicable": 38,
+   "not_applicable": 12,
+   "rate": 1.0
+  },
+  "isolation": {
+   "passed": 4,
+   "applicable": 4,
+   "not_applicable": 46,
+   "rate": 1.0
+  },
+  "language": {
+   "passed": 50,
+   "applicable": 50,
+   "not_applicable": 0,
+   "rate": 1.0
+  }
+ },
+ "cases": [
+  {
+   "id": "id-open",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "id-failed",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "lookup-pro3",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "lookup-report2",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "lookup-starter5",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "lookup-report-failed",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "lookup-async",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "lookup-unknown",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "lookup-recovered",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "lookup-late-paid",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "lookup-starter2-expired",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "docs-it-ttl",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "docs-it-idem",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "docs-it-open-check",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "docs-it-keys",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "docs-it-isolation",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "docs-it-pii",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "docs-en-ttl",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "docs-en-idem",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "docs-en-keys",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "agg-open",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "agg-paid",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "agg-total",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "ood-capital",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "ood-poem",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "ood-stock",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "ood-k8s",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "ood-enterprise",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "pii-email",
+   "route": "attribute_unavailable",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "amt-it-comma",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "amt-en-dot",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "amt-over",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "amt-range",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "amt-under",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "status-expired",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "derived-recovered",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "derived-late",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "date-day",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "combo-starter-paid-count",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "agg-expired-count",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "agg-october",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "agg-top-product",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "ambig-amount",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "nores-amount",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "nores-refund",
+   "route": "unsupported",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "nores-name",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "xt-amount",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "xt-id",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "xt-injection",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "xt-injection-count",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  }
+ ]
+}

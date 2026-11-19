@@ -1,0 +1,2941 @@
+[
+ {
+  "id": "q001",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q002",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q003",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q004",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q006",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q007",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q008",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "python": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q009",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q010",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q011",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q012",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q013",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q014",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q015",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "a09af299-4928-5c76-8b7d-57384748df48"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "a09af299-4928-5c76-8b7d-57384748df48"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q016",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q017",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "677506ad-3644-5406-854b-b276c8e7e1e6"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "677506ad-3644-5406-854b-b276c8e7e1e6"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q018",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "495e7eea-5125-53a6-a872-ea91fe3e8291"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "495e7eea-5125-53a6-a872-ea91fe3e8291"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q019",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q020",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q021",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q022",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q023",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q024",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q025",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q026",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q027",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q028",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ],
+   "count": 4
+  },
+  "python": {
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ],
+   "count": 4
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q029",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 6
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 6
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q031",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "python": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q032",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "495e7eea-5125-53a6-a872-ea91fe3e8291"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "495e7eea-5125-53a6-a872-ea91fe3e8291"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q034",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "495e7eea-5125-53a6-a872-ea91fe3e8291"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "495e7eea-5125-53a6-a872-ea91fe3e8291"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q035",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 5
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 5
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q035",
+  "which": "interpretation 1",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 5
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 5
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q035",
+  "which": "interpretation 2",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q036",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q038",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 6
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 6
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q038",
+  "which": "interpretation 1",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 6
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 6
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q038",
+  "which": "interpretation 2",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ],
+   "count": 4
+  },
+  "python": {
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ],
+   "count": 4
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q039",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q040",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 4
+  },
+  "python": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 4
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q040",
+  "which": "interpretation 1",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 4
+  },
+  "python": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 4
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q040",
+  "which": "interpretation 2",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 6
+  },
+  "python": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 6
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q042",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q043",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q044",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 2
+  },
+  "python": {
+   "payment_ids": [
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 2
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q045",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "python": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q046",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "python": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q049",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "python": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q051",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "a09af299-4928-5c76-8b7d-57384748df48"
+   ],
+   "count": 2
+  },
+  "python": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "a09af299-4928-5c76-8b7d-57384748df48"
+   ],
+   "count": 2
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q052",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q053",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 10
+  },
+  "python": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 10
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q054",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 20
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 20
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q055",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q057",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q058",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 10
+  },
+  "python": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 10
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q059",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q060",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 6
+  },
+  "python": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 6
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q061",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q062",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 8
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 8
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q062",
+  "which": "interpretation 1",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 8
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 8
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q062",
+  "which": "interpretation 2",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ],
+   "count": 4
+  },
+  "python": {
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ],
+   "count": 4
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q063",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 5
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 5
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q063",
+  "which": "interpretation 1",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 5
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 5
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q063",
+  "which": "interpretation 2",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q065",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 9
+  },
+  "python": {
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 9
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q066",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "python": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q067",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 9
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 9
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q068",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q069",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 11
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 11
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q070",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q072",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 17940,
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ]
+  },
+  "python": {
+   "amount_cents": 17940,
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q073",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 6930,
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "python": {
+   "amount_cents": 6930,
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q074",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 19600,
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ]
+  },
+  "python": {
+   "amount_cents": 19600,
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q076",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 7940,
+   "payment_ids": [
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "python": {
+   "amount_cents": 7940,
+   "payment_ids": [
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q077",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 0,
+   "payment_ids": []
+  },
+  "python": {
+   "amount_cents": 0,
+   "payment_ids": []
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q078",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 4900,
+   "payment_ids": [
+    "495e7eea-5125-53a6-a872-ea91fe3e8291"
+   ]
+  },
+  "python": {
+   "amount_cents": 4900,
+   "payment_ids": [
+    "495e7eea-5125-53a6-a872-ea91fe3e8291"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q079",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q079",
+  "which": "interpretation 1",
+  "measure": "sum_amount",
+  "sql": {
+   "amount_cents": 8880,
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ]
+  },
+  "python": {
+   "amount_cents": 8880,
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q079",
+  "which": "interpretation 2",
+  "measure": "sum_amount",
+  "sql": {
+   "amount_cents": 14860,
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ]
+  },
+  "python": {
+   "amount_cents": 14860,
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q080",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 20750,
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ]
+  },
+  "python": {
+   "amount_cents": 20750,
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q081",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 31560,
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ]
+  },
+  "python": {
+   "amount_cents": 31560,
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q082",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 10840,
+   "payment_ids": [
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "python": {
+   "amount_cents": 10840,
+   "payment_ids": [
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q083",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 33520,
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "python": {
+   "amount_cents": 33520,
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q084",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 0,
+   "payment_ids": []
+  },
+  "python": {
+   "amount_cents": 0,
+   "payment_ids": []
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q085",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 24870,
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "python": {
+   "amount_cents": 24870,
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q087",
+  "which": "primary",
+  "measure": "top_collected_product",
+  "sql": {
+   "products": [
+    "Financial Report Pack"
+   ],
+   "totals": {
+    "payflow-pro": 17940,
+    "payflow-starter": 6930,
+    "payflow-report": 19600
+   }
+  },
+  "python": {
+   "products": [
+    "Financial Report Pack"
+   ],
+   "totals": {
+    "payflow-pro": 17940,
+    "payflow-report": 19600,
+    "payflow-starter": 6930
+   }
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q089",
+  "which": "primary",
+  "measure": "best_selling_units",
+  "sql": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-pro": 6,
+    "payflow-starter": 7,
+    "payflow-report": 4
+   }
+  },
+  "python": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-pro": 6,
+    "payflow-report": 4,
+    "payflow-starter": 7
+   }
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q090",
+  "which": "primary",
+  "measure": "best_selling_units",
+  "sql": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-pro": 6,
+    "payflow-starter": 7,
+    "payflow-report": 4
+   }
+  },
+  "python": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-pro": 6,
+    "payflow-report": 4,
+    "payflow-starter": 7
+   }
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q091",
+  "which": "primary",
+  "measure": "best_selling_units",
+  "sql": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-pro": 6,
+    "payflow-starter": 7,
+    "payflow-report": 4
+   }
+  },
+  "python": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-pro": 6,
+    "payflow-report": 4,
+    "payflow-starter": 7
+   }
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q143",
+  "which": "interpretation 1",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q143",
+  "which": "interpretation 2",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 4
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 4
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q144",
+  "which": "interpretation 1",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q144",
+  "which": "interpretation 2",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c"
+   ],
+   "count": 2
+  },
+  "python": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c"
+   ],
+   "count": 2
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q144",
+  "which": "interpretation 3",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q145",
+  "which": "interpretation 1",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 44470,
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "python": {
+   "amount_cents": 44470,
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q145",
+  "which": "interpretation 2",
+  "measure": "sum_units",
+  "sql": {
+   "units": 17,
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "python": {
+   "units": 17,
+   "payment_ids": [
+    "371294c3-b3f9-5b4f-8495-2db0d1fec346",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "a09af299-4928-5c76-8b7d-57384748df48",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q146",
+  "which": "interpretation 1",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q146",
+  "which": "interpretation 2",
+  "measure": "best_selling_units",
+  "sql": {
+   "products": [
+    "Financial Report Pack"
+   ],
+   "totals": {
+    "payflow-report": 4
+   }
+  },
+  "python": {
+   "products": [
+    "Financial Report Pack"
+   ],
+   "totals": {
+    "payflow-report": 4
+   }
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q147",
+  "which": "interpretation 1",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q147",
+  "which": "interpretation 2",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 2
+  },
+  "python": {
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 2
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q148",
+  "which": "interpretation 1",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q148",
+  "which": "interpretation 2",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 7
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 7
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q149",
+  "which": "interpretation 1",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 6
+  },
+  "python": {
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 6
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "q149",
+  "which": "interpretation 2",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r001",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286"
+   ],
+   "count": 2
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286"
+   ],
+   "count": 2
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r002",
+  "which": "primary",
+  "measure": "count",
+  "sql": {
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 6
+  },
+  "python": {
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "677506ad-3644-5406-854b-b276c8e7e1e6",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 6
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r003",
+  "which": "primary",
+  "measure": "best_selling_units",
+  "sql": {
+   "products": [
+    "PayFlow Pro"
+   ],
+   "totals": {
+    "payflow-starter": 2,
+    "payflow-report": 4,
+    "payflow-pro": 5
+   }
+  },
+  "python": {
+   "products": [
+    "PayFlow Pro"
+   ],
+   "totals": {
+    "payflow-pro": 5,
+    "payflow-report": 4,
+    "payflow-starter": 2
+   }
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r004",
+  "which": "primary",
+  "measure": "top_collected_product",
+  "sql": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-pro": 2990,
+    "payflow-starter": 4950
+   }
+  },
+  "python": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-starter": 4950,
+    "payflow-pro": 2990
+   }
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r004",
+  "which": "interpretation 1",
+  "measure": "top_collected_product",
+  "sql": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-pro": 2990,
+    "payflow-starter": 4950
+   }
+  },
+  "python": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-starter": 4950,
+    "payflow-pro": 2990
+   }
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r004",
+  "which": "interpretation 2",
+  "measure": "top_collected_product",
+  "sql": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-pro": 2990,
+    "payflow-starter": 5940
+   }
+  },
+  "python": {
+   "products": [
+    "PayFlow Starter"
+   ],
+   "totals": {
+    "payflow-starter": 5940,
+    "payflow-pro": 2990
+   }
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r007",
+  "which": "interpretation 1",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "73074148-bca3-5e91-969f-141d6491488b"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r007",
+  "which": "interpretation 2",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r008",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 23720,
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "python": {
+   "amount_cents": 23720,
+   "payment_ids": [
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "73074148-bca3-5e91-969f-141d6491488b",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r009",
+  "which": "primary",
+  "measure": "sum_collected",
+  "sql": {
+   "amount_cents": 14950,
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ]
+  },
+  "python": {
+   "amount_cents": 14950,
+   "payment_ids": [
+    "64cef59a-67fc-513e-877e-a7d47a8e3030",
+    "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+    "c3dcc710-9742-5f8a-a48a-5c02065d5d3e"
+   ]
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r010",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 2
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 2
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r011",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 2
+  },
+  "python": {
+   "payment_ids": [
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 2
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r012",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 7
+  },
+  "python": {
+   "payment_ids": [
+    "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+    "4343f610-5f37-53d9-9691-a6a60855d8f7",
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+    "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+    "fb81ab87-a24f-5de6-80f5-9567db719da7"
+   ],
+   "count": 7
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r013",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "python": {
+   "payment_ids": [],
+   "count": 0
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r014",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "a807d01f-9ea7-531d-a38e-aa71369014db"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r015",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c"
+   ],
+   "count": 3
+  },
+  "python": {
+   "payment_ids": [
+    "4838cd98-4bca-5e0b-b151-8235b47e0e85",
+    "495e7eea-5125-53a6-a872-ea91fe3e8291",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c"
+   ],
+   "count": 3
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r016",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 6
+  },
+  "python": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 6
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r016",
+  "which": "interpretation 1",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 6
+  },
+  "python": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf",
+    "f022dabf-46e8-5163-a7c2-87d33898a90a"
+   ],
+   "count": 6
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r016",
+  "which": "interpretation 2",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 4
+  },
+  "python": {
+   "payment_ids": [
+    "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+    "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+    "a807d01f-9ea7-531d-a38e-aa71369014db",
+    "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf"
+   ],
+   "count": 4
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r017",
+  "which": "primary",
+  "measure": "list",
+  "sql": {
+   "payment_ids": [
+    "677506ad-3644-5406-854b-b276c8e7e1e6"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "677506ad-3644-5406-854b-b276c8e7e1e6"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ },
+ {
+  "id": "r018",
+  "which": "primary",
+  "measure": "single_payment",
+  "sql": {
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7"
+   ],
+   "count": 1
+  },
+  "python": {
+   "payment_ids": [
+    "4343f610-5f37-53d9-9691-a6a60855d8f7"
+   ],
+   "count": 1
+  },
+  "oracles_agree": true,
+  "problems": []
+ }
+]

@@ -1,0 +1,77 @@
+[
+ {
+  "id": "q038",
+  "finding": "major: 'came in' = created or paid",
+  "change": "second reading made explicit; clarify_or_interpret"
+ },
+ {
+  "id": "q063",
+  "finding": "reading 'bought' as completed purchases",
+  "change": "second reading made explicit; clarify_or_interpret"
+ },
+ {
+  "id": "q035",
+  "finding": "reading 'bought' as completed purchases",
+  "change": "second reading made explicit; clarify_or_interpret"
+ },
+ {
+  "id": "q062",
+  "finding": "'did I get' = created or paid",
+  "change": "second reading made explicit; clarify_or_interpret"
+ },
+ {
+  "id": "q079",
+  "finding": "measure was list for a sum; creation_unknown reading only in notes",
+  "change": "second reading made explicit; clarify_or_interpret"
+ },
+ {
+  "id": "r016",
+  "finding": "'never got paid' = not paid or final non-paid",
+  "change": "second reading made explicit; clarify_or_interpret"
+ },
+ {
+  "id": "q040",
+  "finding": "'da 9,90' could mean the 9,90 product",
+  "change": "second reading made explicit; clarify_or_interpret"
+ },
+ {
+  "id": "r004",
+  "finding": "found while building typed facts: 'metà mese' boundary changes the amount (notes only)",
+  "change": "second reading made explicit; clarify_or_interpret"
+ },
+ {
+  "id": "q082",
+  "finding": "weekday filter outside the contract",
+  "change": "108,40 € or a declared inability without a number both pass; any other number fails"
+ },
+ {
+  "id": "q091",
+  "finding": "pass criterion too strict",
+  "change": "must not confirm; must give Starter 7 vs Pro 6 units; Pro leading by paid orders (4) may be added"
+ },
+ {
+  "id": "q125",
+  "finding": "key fact beyond the documentation",
+  "change": "removed the fact about issuing keys through the CLI"
+ },
+ {
+  "id": "q059",
+  "finding": "minor",
+  "change": "count is by recorded status (3); mentioning that their checkout pages are past expiry is a plus"
+ },
+ {
+  "id": "q061",
+  "finding": "minor",
+  "change": "count is by recorded status (3 expired); mentioning the 3 open payments past expiry is acceptable if not counted"
+ },
+ {
+  "id": "q021",
+  "finding": "minor",
+  "change": "kept: same fact as q010 asked in the other language"
+ },
+ {
+  "id": "q113",
+  "finding": "minor",
+  "change": "kept: an operator-minded merchant question about legacy data"
+ }
+]

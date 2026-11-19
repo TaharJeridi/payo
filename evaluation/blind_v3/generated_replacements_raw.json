@@ -1,0 +1,632 @@
+[
+  {
+    "id": "r001",
+    "language": "it",
+    "question": "Ma quanti Financial Report mi sono andati persi? intendo quelli falliti o scaduti",
+    "area": "count",
+    "phrasing": "colloquial",
+    "intended_meaning": "Count the Financial Report Pack payments whose status is failed or expired.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "count",
+      "filters": {
+        "payment_ids": [], "products": ["payflow-report"], "statuses": ["failed", "expired"],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": null, "created_before": null,
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": ["0ffe4c86-91d9-53c5-b488-9c758a2de11d", "6ceb8bff-fed6-5ff5-af6a-193d05ecd286"],
+      "count": 2,
+      "amount_eur": null,
+      "product": "Financial Report Pack",
+      "key_facts": ["2 payments", "1 failed (0ffe4c86..., checkout_session_creation_rejected)", "1 expired (6ceb8bff..., checkout_session_expired)"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "The open Report payment 633941c9 (P18) must not be counted as lost: it is still open."
+  },
+  {
+    "id": "r002",
+    "language": "it",
+    "question": "quanti pagamneti tra i 20 e i 50 euro ho effetivamente incassato?",
+    "area": "count",
+    "phrasing": "typo",
+    "intended_meaning": "Count paid payments with amount between 20 and 50 EUR inclusive.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "count",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": ["paid"],
+        "amount_eur": {"eq": null, "min": 20.00, "max": 50.00, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": null, "created_before": null,
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [
+        "64cef59a-67fc-513e-877e-a7d47a8e3030",
+        "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+        "4343f610-5f37-53d9-9691-a6a60855d8f7",
+        "495e7eea-5125-53a6-a872-ea91fe3e8291",
+        "fb81ab87-a24f-5de6-80f5-9567db719da7",
+        "677506ad-3644-5406-854b-b276c8e7e1e6"
+      ],
+      "count": 6,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["6 payments"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "Paid amounts in range: 29,90 (x3), 49,00 (x2), 49,50. Excluded paid: 9,90 (x2), 89,70, 98,00. Non-paid payments in range (e.g. 49,00 expired/failed/open, 29,90 expired/failed/open) must not be counted."
+  },
+  {
+    "id": "r003",
+    "language": "it",
+    "question": "Nella prima metà di ottobre qual era il prodotto che vendeva più pezzi?",
+    "area": "ranking",
+    "phrasing": "precise",
+    "intended_meaning": "Best-selling product by units in paid payments created 1-15 October 2026.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "best_selling_units",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": ["paid"],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": "2026-10-01", "created_before": "2026-10-16",
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [],
+      "count": null,
+      "amount_eur": null,
+      "product": "PayFlow Pro",
+      "key_facts": ["PayFlow Pro", "5 units of Pro", "Financial Report Pack 4 units", "PayFlow Starter 2 units"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "Paid in 1-15 Oct: P01 Pro 1, P02 Starter 1, P03 Pro 1, P05 Pro 3, P06 Report 1, P08 Report 1, P09 Report 2, P11 Starter 1. Differs from the whole-month best seller (Starter, 7 units). Same winner if the half ends on Oct 14 (Starter 1) or if filtered by paid_at."
+  },
+  {
+    "id": "r004",
+    "language": "it",
+    "question": "da metà mese in poi quale prodotto mi ha portato più soldi?",
+    "area": "ranking",
+    "phrasing": "terse",
+    "intended_meaning": "Product with the highest collected amount among paid payments created from mid-October 2026 onward.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "top_collected_product",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": ["paid"],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": "2026-10-16", "created_before": "2026-11-01",
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [],
+      "count": null,
+      "amount_eur": 49.50,
+      "product": "PayFlow Starter",
+      "key_facts": ["PayFlow Starter", "49,50 €", "PayFlow Pro 29,90 €", "Financial Report Pack collected nothing in this period"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "Paid from Oct 16: P13 Starter 49,50, P14 Pro 29,90. Report has P12 expired and P18 open (49,00 each) which must not be counted. If 'metà mese' starts on Oct 15, P11 Starter 9,90 adds -> Starter 59,40; winner unchanged. Differs from whole-month top collected (Report 196,00)."
+  },
+  {
+    "id": "r005",
+    "language": "en",
+    "question": "Is there any rate limiting on the API? We're planning to run 3 replicas behind a load balancer, will the limit still hold?",
+    "area": "documentation",
+    "phrasing": "multi_part",
+    "intended_meaning": "How rate limiting works and whether it works across multiple instances.",
+    "expected_behavior": "answer",
+    "data_query": null,
+    "expected_answer": {
+      "payment_ids": [],
+      "count": null,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["rate limiting is per merchant", "it is in-process, designed for one instance", "several replicas would need a shared store such as Redis", "so with 3 replicas the limit would not be shared/enforced globally as-is"]
+    },
+    "doc_section": "7. Production guards",
+    "interpretations": [],
+    "notes": ""
+  },
+  {
+    "id": "r006",
+    "language": "it",
+    "question": "se per sbaglio la mia app riusa la stessa Idempotency-Key ma con una quantità diversa, cosa mi risponde PayFlow? e se invece i parametri sono identici?",
+    "area": "documentation",
+    "phrasing": "multi_part",
+    "intended_meaning": "Behaviour of client idempotency when a key is reused with different vs identical parameters.",
+    "expected_behavior": "answer",
+    "data_query": null,
+    "expected_answer": {
+      "payment_ids": [],
+      "count": null,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["same key with different parameters -> 409 idempotency_key_reused (client bug, not silently fixed)", "same key with same parameters -> 200 with Idempotent-Replayed: true, the same payment in its current state", "parameters compared via request fingerprint (product, quantity, customer email)"]
+    },
+    "doc_section": "3. Client idempotency",
+    "interpretations": [],
+    "notes": "Optional: while the first request's lease runs, a concurrent request with the same key gets 409 idempotency_operation_in_progress."
+  },
+  {
+    "id": "r007",
+    "language": "it",
+    "question": "qual è stato l'ordine più grosso del mese scorso?",
+    "area": "ambiguous",
+    "phrasing": "colloquial",
+    "intended_meaning": "The biggest order in October 2026, where 'biggest' may mean highest amount or most units.",
+    "expected_behavior": "clarify_or_interpret",
+    "data_query": null,
+    "expected_answer": {
+      "payment_ids": [],
+      "count": null,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["either asks whether 'più grosso' means amount or units, or states the interpretation and answers it correctly"]
+    },
+    "doc_section": null,
+    "interpretations": [
+      {
+        "meaning": "Order with the highest amount",
+        "data_query": {
+          "measure": "list",
+          "filters": {
+            "payment_ids": [], "products": [], "statuses": [],
+            "amount_eur": {"eq": 98.00, "min": null, "max": null, "gt": null, "lt": null},
+            "quantity": null,
+            "created_from": "2026-10-01", "created_before": "2026-11-01",
+            "paid_from": null, "paid_before": null,
+            "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+            "failure_reasons": [], "checkout_page_created": null
+          }
+        },
+        "expected_answer": {
+          "payment_ids": ["73074148-bca3-5e91-969f-141d6491488b"],
+          "count": 1,
+          "amount_eur": 98.00,
+          "product": "Financial Report Pack",
+          "key_facts": ["98,00 €", "Financial Report Pack x2", "status paid", "created 2026-10-12"]
+        }
+      },
+      {
+        "meaning": "Order with the most units",
+        "data_query": {
+          "measure": "list",
+          "filters": {
+            "payment_ids": [], "products": [], "statuses": [],
+            "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+            "quantity": 5,
+            "created_from": "2026-10-01", "created_before": "2026-11-01",
+            "paid_from": null, "paid_before": null,
+            "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+            "failure_reasons": [], "checkout_page_created": null
+          }
+        },
+        "expected_answer": {
+          "payment_ids": ["fb81ab87-a24f-5de6-80f5-9567db719da7"],
+          "count": 1,
+          "amount_eur": 49.50,
+          "product": "PayFlow Starter",
+          "key_facts": ["5 units", "PayFlow Starter", "49,50 €", "status paid", "created 2026-10-18"]
+        }
+      }
+    ],
+    "notes": "98,00 is the highest amount in any status, so restricting to paid gives the same answer. 5 is the highest quantity in any status."
+  },
+  {
+    "id": "r008",
+    "language": "it",
+    "question": "Quanto ho incassato in tutto dagli ordini con più di un pezzo?",
+    "area": "total",
+    "phrasing": "precise",
+    "intended_meaning": "Gross collected from paid payments with quantity greater than 1.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "sum_collected",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": ["paid"],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": {"gt": 1},
+        "created_from": null, "created_before": null,
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [
+        "6f97abac-0cf7-5b24-ac75-ead99fb40ec8",
+        "73074148-bca3-5e91-969f-141d6491488b",
+        "fb81ab87-a24f-5de6-80f5-9567db719da7"
+      ],
+      "count": 3,
+      "amount_eur": 237.20,
+      "product": null,
+      "key_facts": ["237,20 €", "3 paid payments"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "quantity filter expressed as {\"gt\": 1} (quantity > 1). 89,70 (Pro x3) + 98,00 (Report x2) + 49,50 (Starter x5) = 237,20. Excluded multi-unit non-paid: P16 Starter x2 expired 19,80, P20 Pro x2 creation_unknown 59,80."
+  },
+  {
+    "id": "r009",
+    "language": "it",
+    "question": "Mi serve un dato veloce: quanto ho incassato col Pro nelle prime due settimane di ottobre?",
+    "area": "total",
+    "phrasing": "polite",
+    "intended_meaning": "Gross collected from paid PayFlow Pro payments created 1-14 October 2026.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "sum_collected",
+      "filters": {
+        "payment_ids": [], "products": ["payflow-pro"], "statuses": ["paid"],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": "2026-10-01", "created_before": "2026-10-15",
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [
+        "64cef59a-67fc-513e-877e-a7d47a8e3030",
+        "c3dcc710-9742-5f8a-a48a-5c02065d5d3e",
+        "6f97abac-0cf7-5b24-ac75-ead99fb40ec8"
+      ],
+      "count": 3,
+      "amount_eur": 149.50,
+      "product": "PayFlow Pro",
+      "key_facts": ["149,50 €", "3 paid Pro payments"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "29,90 + 29,90 + 89,70 = 149,50. P04 (expired) and P10 (failed, Oct 14) are not collected. Same result for 1-15 Oct (no Pro paid on Oct 15). P14 (Oct 19) is outside."
+  },
+  {
+    "id": "r010",
+    "language": "it",
+    "question": "nei primi 10 giorni di ottobre è andato storto qualcosa? quali pagamenti sono falliti o scaduti?",
+    "area": "find",
+    "phrasing": "multi_part",
+    "intended_meaning": "List payments created 1-10 October 2026 with status failed or expired.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "list",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": ["failed", "expired"],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": "2026-10-01", "created_before": "2026-10-11",
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [
+        "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf",
+        "0ffe4c86-91d9-53c5-b488-9c758a2de11d"
+      ],
+      "count": 2,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["ee1e4caa... PayFlow Pro 29,90 € expired (checkout_session_expired), 2026-10-06", "0ffe4c86... Financial Report Pack 49,00 € failed (checkout_session_creation_rejected), 2026-10-09"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "P08 (Oct 10) had a creation_unknown hiccup but ended paid; mentioning it as an aside is acceptable, listing it as failed/expired is wrong."
+  },
+  {
+    "id": "r011",
+    "language": "it",
+    "question": "Il 28 ottobre ho avuto ordini? che fine hanno fatto?",
+    "area": "find",
+    "phrasing": "colloquial",
+    "intended_meaning": "List payments created on 28 October 2026 and their current status.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "list",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": [],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": "2026-10-28", "created_before": "2026-10-29",
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [
+        "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+        "f022dabf-46e8-5163-a7c2-87d33898a90a"
+      ],
+      "count": 2,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["2 payments", "633941c9... Financial Report Pack 49,00 € status open", "f022dabf... PayFlow Starter 9,90 € status open", "neither has been paid"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "Both still show status open even though their checkout expiry time has passed; the answer must report the recorded status (open), not invent 'expired'."
+  },
+  {
+    "id": "r012",
+    "language": "it",
+    "question": "fammi vedere tutti i pagamenti tra i 40 e i 60 euro, in qualsiasi stato",
+    "area": "find",
+    "phrasing": "terse",
+    "intended_meaning": "List all payments with amount between 40 and 60 EUR inclusive, any status.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "list",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": [],
+        "amount_eur": {"eq": null, "min": 40.00, "max": 60.00, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": null, "created_before": null,
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [
+        "4343f610-5f37-53d9-9691-a6a60855d8f7",
+        "0ffe4c86-91d9-53c5-b488-9c758a2de11d",
+        "495e7eea-5125-53a6-a872-ea91fe3e8291",
+        "6ceb8bff-fed6-5ff5-af6a-193d05ecd286",
+        "fb81ab87-a24f-5de6-80f5-9567db719da7",
+        "633941c9-55a6-5efe-bd88-3e90e814cd5a",
+        "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+      ],
+      "count": 7,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["7 payments", "includes 59,80 € PayFlow Pro x2 creation_unknown", "includes 49,50 € Starter x5 paid", "five Financial Report Pack payments of 49,00 € (paid x2, failed, expired, open)"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "P06 49 paid, P07 49 failed, P08 49 paid, P12 49 expired, P13 49,50 paid, P18 49 open, P20 59,80 creation_unknown. 7 <= 8 so all should be shown."
+  },
+  {
+    "id": "r013",
+    "language": "it",
+    "question": "nell'ultima settimana di ottobre è arrivato qualche pagamento andato a buon fine? se sì fammeli vedere",
+    "area": "find",
+    "phrasing": "indirect",
+    "intended_meaning": "List paid payments from the last week of October 2026.",
+    "expected_behavior": "no_match",
+    "data_query": {
+      "measure": "list",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": ["paid"],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": "2026-10-25", "created_before": "2026-11-01",
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [],
+      "count": 0,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["no paid payment in the last week of October", "must not list open or creation_unknown payments as paid"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "Last paid payment was P14, paid 2026-10-19. Created that week but not paid: P17, P18, P19 (open), P20 (creation_unknown); mentioning them as not paid is fine. Result is empty whether the week starts Oct 24, 25 or 26, and whether filtered by created_at or paid_at."
+  },
+  {
+    "id": "r014",
+    "language": "it",
+    "question": "Tra i pagamenti falliti, ce n'è qualcuno in cui la pagina di checkout era stata creata davvero?",
+    "area": "find",
+    "phrasing": "precise",
+    "intended_meaning": "List failed payments whose checkout page was actually created at the provider.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "list",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": ["failed"],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": null, "created_before": null,
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": true
+      }
+    },
+    "expected_answer": {
+      "payment_ids": ["a807d01f-9ea7-531d-a38e-aa71369014db"],
+      "count": 1,
+      "amount_eur": null,
+      "product": "PayFlow Pro",
+      "key_facts": ["only one: a807d01f...", "PayFlow Pro 29,90 €", "reason async_payment_failed", "the other two failed payments (0ffe4c86..., 7d25ddea...) never had a checkout page"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": ""
+  },
+  {
+    "id": "r015",
+    "language": "it",
+    "question": "quali pagamenti hanno avuto problemi a parlare con Stripe nel momento in cui sono stati creati? e come sono finiti?",
+    "area": "find",
+    "phrasing": "indirect",
+    "intended_meaning": "List payments whose creation outcome was lost (went through creation_unknown) and their final outcome.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "list",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": [],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": null, "created_before": null,
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [
+        "495e7eea-5125-53a6-a872-ea91fe3e8291",
+        "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+        "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+      ],
+      "count": 3,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["3 payments", "495e7eea... recovered by reconciliation, now paid (49,00 €)", "7d25ddea... failed, checkout_session_not_created", "4838cd98... still creation_unknown, reconciliation attempts failing with payment_provider_unavailable"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "Criterion: history contains a transition to creation_unknown (reason stripe_outcome_unknown). No single filter field expresses it; it is the union of recovered=true (P08), failure_reasons checkout_session_not_created (P15) and status creation_unknown (P20). Listing only current creation_unknown (P20) is incomplete."
+  },
+  {
+    "id": "r016",
+    "language": "en",
+    "question": "show me every order under 30 bucks that never got paid",
+    "area": "find",
+    "phrasing": "colloquial",
+    "intended_meaning": "List payments with amount below 30 EUR whose status is not paid.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "list",
+      "filters": {
+        "payment_ids": [], "products": [], "statuses": ["creating", "open", "failed", "expired", "creation_unknown"],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": 30.00},
+        "quantity": null,
+        "created_from": null, "created_before": null,
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": [
+        "ee1e4caa-c0e7-529f-806e-4fe62d29d9bf",
+        "a807d01f-9ea7-531d-a38e-aa71369014db",
+        "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+        "4ad709ca-2b89-54ab-b7f2-858d7c7a80b4",
+        "68b1f78a-bd95-5ca8-bd25-8017ac984576",
+        "f022dabf-46e8-5163-a7c2-87d33898a90a"
+      ],
+      "count": 6,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["6 payments", "2 expired (ee1e4caa... 29,90 €, 4ad709ca... 19,80 €)", "2 failed (a807d01f... 29,90 €, 7d25ddea... 9,90 €)", "2 still open (68b1f78a... 29,90 €, f022dabf... 9,90 €)"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "29,90 < 30 so Pro single-unit payments qualify. If 'never got paid' is read as final states only (failed/expired), the 4 non-open ones are the answer; an answer that states this reading is acceptable. Paid P02/P11 (9,90) and P01/P03/P14 (29,90) must be excluded."
+  },
+  {
+    "id": "r017",
+    "language": "en",
+    "question": "Since mid-October, has any Pro checkout actually been paid?",
+    "area": "find",
+    "phrasing": "precise",
+    "intended_meaning": "List paid PayFlow Pro payments created from mid-October 2026 onward.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "list",
+      "filters": {
+        "payment_ids": [], "products": ["payflow-pro"], "statuses": ["paid"],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": "2026-10-15", "created_before": "2026-11-01",
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": ["677506ad-3644-5406-854b-b276c8e7e1e6"],
+      "count": 1,
+      "amount_eur": null,
+      "product": "PayFlow Pro",
+      "key_facts": ["one payment: 677506ad...", "29,90 €", "created 2026-10-19, paid 2026-10-19 22:08:01 UTC"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "Same result for created_from Oct 14/15/16. Other Pro payments since then are 68b1f78a (open) and 4838cd98 (creation_unknown), not paid. Noting that 677506ad was paid after its checkout had expired is a plus."
+  },
+  {
+    "id": "r018",
+    "language": "it",
+    "question": "il 4343f610-5f37-53d9-9691-a6a60855d8f7 a che ora è stato pagato? quanto ci ha messo il cliente dalla creazione?",
+    "area": "payment_by_id",
+    "phrasing": "multi_part",
+    "intended_meaning": "When payment 4343f610 was paid and the time between creation and payment.",
+    "expected_behavior": "answer",
+    "data_query": {
+      "measure": "single_payment",
+      "filters": {
+        "payment_ids": ["4343f610-5f37-53d9-9691-a6a60855d8f7"], "products": [], "statuses": [],
+        "amount_eur": {"eq": null, "min": null, "max": null, "gt": null, "lt": null},
+        "quantity": null,
+        "created_from": null, "created_before": null,
+        "paid_from": null, "paid_before": null,
+        "recovered": null, "recovery_source": null, "paid_after_expiry": null, "confirmed_by": null,
+        "failure_reasons": [], "checkout_page_created": null
+      }
+    },
+    "expected_answer": {
+      "payment_ids": ["4343f610-5f37-53d9-9691-a6a60855d8f7"],
+      "count": null,
+      "amount_eur": 49.00,
+      "product": "Financial Report Pack",
+      "key_facts": ["status paid", "paid 2026-10-08 16:33:01 UTC", "created 2026-10-08 16:30:00 UTC", "about 3 minutes (3 min 1 s)", "Financial Report Pack, 49,00 €"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": "Times are UTC; the answer should not present them in a different time zone without saying so. Payment confirmed by webhook."
+  },
+  {
+    "id": "r019",
+    "language": "it",
+    "question": "secondo te per un piccolo negozio online conviene di più Stripe o Satispay?",
+    "area": "out_of_scope",
+    "phrasing": "colloquial",
+    "intended_meaning": "General advice comparing payment providers, unrelated to the merchant's PayFlow data or documentation.",
+    "expected_behavior": "refuse",
+    "data_query": null,
+    "expected_answer": {
+      "payment_ids": [],
+      "count": null,
+      "amount_eur": null,
+      "product": null,
+      "key_facts": ["out of scope: the assistant only answers about the merchant's PayFlow payments and documentation", "no comparison or recommendation of other services"]
+    },
+    "doc_section": null,
+    "interpretations": [],
+    "notes": ""
+  }
+]

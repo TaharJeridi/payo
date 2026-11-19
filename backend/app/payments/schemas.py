@@ -26,8 +26,10 @@ class CheckoutRequest(BaseModel):
 
 class CheckoutResponse(BaseModel):
     payment_id: uuid.UUID
-    checkout_session_id: str
-    checkout_url: str
+    checkout_session_id: str | None
+    # Present only while the payment is pending and the session can still be paid.
+    checkout_url: str | None
+    checkout_expires_at: datetime | None
     amount: int
     currency: str
     status: PaymentStatus
@@ -45,10 +47,22 @@ class PaymentRead(BaseModel):
     status: PaymentStatus
     stripe_checkout_session_id: str | None
     stripe_payment_intent_id: str | None
+    checkout_expires_at: datetime | None
     failure_reason: str | None
     paid_at: datetime | None
     created_at: datetime
     updated_at: datetime
+
+
+class CurrencyAmount(BaseModel):
+    currency: str
+    amount: int
+
+
+class PaymentStats(BaseModel):
+    total: int
+    by_status: dict[PaymentStatus, int]
+    paid_totals: list[CurrencyAmount]
 
 
 class PaymentPage(BaseModel):
@@ -56,3 +70,17 @@ class PaymentPage(BaseModel):
     total: int
     limit: int
     offset: int
+
+
+class PaymentEventRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    from_status: PaymentStatus | None
+    to_status: PaymentStatus
+    source: str
+    reason: str | None
+    created_at: datetime
+
+
+class PaymentDetail(PaymentRead):
+    history: list[PaymentEventRead]

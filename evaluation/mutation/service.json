@@ -1,0 +1,1 @@
+[["claims not enforced", "        if report.blocking:", "        if False:"], ["offer not mapped to scope", "        if \"offer\" in kinds:", "        if False:"], ["scope route removed", "        if out_of_scope_request(question):", "        if False:"]]

@@ -1,8 +1,16 @@
 .venv
+venv
 __pycache__
-*.pyc
+*.py[cod]
 .pytest_cache
 .mypy_cache
 .ruff_cache
+.hypothesis
+.coverage
+htmlcov
+*.log
 .env
 .env.*
+.DS_Store
+Dockerfile
+.dockerignore

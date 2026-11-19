@@ -1,26 +1,47 @@
+import itertools
+
 import pytest
 from pydantic import ValidationError
 
 from app.core.config import Settings
 from app.core.errors import ProductNotFound
 from app.payments.catalog import CATALOG, get_product
-from app.payments.state import PaymentStatus, can_transition
+from app.payments.state import FINAL_STATUSES, can_transition
+from app.payments.state import PaymentStatus as S
+
+SPEC_ALLOWED = {
+    (S.CREATING, S.OPEN),
+    (S.CREATING, S.CREATION_UNKNOWN),
+    (S.CREATING, S.PAID),
+    (S.CREATING, S.FAILED),
+    (S.CREATING, S.EXPIRED),
+    (S.CREATION_UNKNOWN, S.CREATING),
+    (S.CREATION_UNKNOWN, S.OPEN),
+    (S.CREATION_UNKNOWN, S.PAID),
+    (S.CREATION_UNKNOWN, S.FAILED),
+    (S.CREATION_UNKNOWN, S.EXPIRED),
+    (S.OPEN, S.PAID),
+    (S.OPEN, S.FAILED),
+    (S.OPEN, S.EXPIRED),
+    (S.FAILED, S.PAID),
+    (S.EXPIRED, S.PAID),
+}
 
 
-@pytest.mark.parametrize(
-    ("current", "target", "allowed"),
-    [
-        (PaymentStatus.PENDING, PaymentStatus.PAID, True),
-        (PaymentStatus.PENDING, PaymentStatus.FAILED, True),
-        (PaymentStatus.FAILED, PaymentStatus.PAID, True),
-        (PaymentStatus.PAID, PaymentStatus.FAILED, False),
-        (PaymentStatus.PAID, PaymentStatus.PENDING, False),
-        (PaymentStatus.FAILED, PaymentStatus.PENDING, False),
-        (PaymentStatus.PENDING, PaymentStatus.PENDING, False),
-    ],
-)
-def test_state_machine(current, target, allowed):
-    assert can_transition(current, target) is allowed
+@pytest.mark.parametrize(("current", "target"), list(itertools.product(S, S)), ids=str)
+def test_transition_matrix_matches_spec(current, target):
+    assert can_transition(current, target) is ((current, target) in SPEC_ALLOWED)
+
+
+def test_paid_is_terminal_and_open_never_goes_back():
+    assert not any(can_transition(S.PAID, t) for t in S)
+    assert not can_transition(S.OPEN, S.CREATING)
+    assert not can_transition(S.OPEN, S.CREATION_UNKNOWN)
+
+
+def test_six_distinct_lifecycle_states():
+    assert {s.value for s in S} == {"creating", "open", "creation_unknown", "paid", "failed", "expired"}
+    assert {S.PAID, S.FAILED, S.EXPIRED} == FINAL_STATUSES
 
 
 def test_catalog_is_immutable():

@@ -1,0 +1,1 @@
+[["advice not detected", "    if _ADVICE.search(text):", "    if False:"], ["data requests not excluded", "    return bool(_GENERATION.search(text)) and not _DATA_REQUEST.search(text)", "    return bool(_GENERATION.search(text))"], ["generation not detected", "    return bool(_GENERATION.search(text)) and not _DATA_REQUEST.search(text)", "    return False"]]

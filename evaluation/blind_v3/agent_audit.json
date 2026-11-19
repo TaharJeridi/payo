@@ -1,0 +1,96 @@
+[
+ {
+  "agent_id": "a9a750185cfa0a18f",
+  "role": "generator (150 questions)",
+  "agent_type": "general-purpose",
+  "model": "withheld in the public copy",
+  "fresh_context": true,
+  "working_directory": "<repo>/evaluation/blind_v3",
+  "tool_calls": [
+   {
+    "tool": "Read",
+    "file_path": "<workdir>/generator/specification.md"
+   },
+   {
+    "tool": "Write",
+    "file_path": "<workdir>/generator/questions.json"
+   },
+   {
+    "tool": "Edit",
+    "file_path": "<workdir>/generator/questions.json"
+   }
+  ],
+  "context_metadata_injected": [
+   "attached project name and one document file name (no content)",
+   "tool list, date, model identity, generic agent system prompt"
+  ]
+ },
+ {
+  "agent_id": "aec5b3e6146c48289",
+  "role": "generator, blind replacements (19 questions)",
+  "agent_type": "general-purpose",
+  "model": "withheld in the public copy",
+  "fresh_context": true,
+  "working_directory": "<workdir>",
+  "tool_calls": [
+   {
+    "tool": "Read",
+    "file_path": "<workdir>/generator2/specification.md"
+   },
+   {
+    "tool": "Read",
+    "file_path": "<workdir>/generator2/existing_questions.txt"
+   },
+   {
+    "tool": "Write",
+    "file_path": "<workdir>/generator2/questions.json"
+   }
+  ],
+  "context_metadata_injected": [
+   "attached project name and one document file name (no content)",
+   "tool list, date, model identity, generic agent system prompt"
+  ]
+ },
+ {
+  "agent_id": "a0ddf97b1aca11be1",
+  "role": "reviewer",
+  "agent_type": "general-purpose",
+  "model": "withheld in the public copy",
+  "fresh_context": true,
+  "working_directory": "<workdir>",
+  "tool_calls": [
+   {
+    "tool": "Read",
+    "file_path": "<workdir>/reviewer/specification.md"
+   },
+   {
+    "tool": "Read",
+    "file_path": "<workdir>/reviewer/dataset.json"
+   },
+   {
+    "tool": "Read",
+    "file_path": "<workdir>/reviewer/dataset.json"
+   },
+   {
+    "tool": "Read",
+    "file_path": "<workdir>/reviewer/dataset.json"
+   },
+   {
+    "tool": "Read",
+    "file_path": "<workdir>/reviewer/dataset.json"
+   },
+   {
+    "tool": "Read",
+    "file_path": "<workdir>/reviewer/oracle_check.json"
+   },
+   {
+    "tool": "Write",
+    "file_path": "<workdir>/reviewer/review.json"
+   }
+  ],
+  "context_metadata_injected": [
+   "attached project name and one document file name (no content)",
+   "tool list, date, model identity, generic agent system prompt"
+  ]
+ }
+]

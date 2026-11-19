@@ -1,24 +1,67 @@
+# Secrets and local configuration (only .env.example is committed)
 .env
 .env.*
 !.env.example
+.envrc
 *.pem
 *.key
 secrets/
+.pypirc
 
+# Python
 __pycache__/
-*.py[cod]
+*.py[codz]
+*$py.class
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
 .venv/
 venv/
+env/
+
+# Python tooling and tests
 .pytest_cache/
 .mypy_cache/
+.dmypy.json
+dmypy.json
 .ruff_cache/
+.hypothesis/
+.tox/
+.nox/
 .coverage
+.coverage.*
+coverage.xml
 htmlcov/
-*.egg-info/
-dist/
-build/
 
+# Node / frontend
+node_modules/
+*.tsbuildinfo
+coverage/
+.eslintcache
+.npm/
+.vite/
+vite.config.ts.timestamp-*
+*.tgz
+playwright-report/
+test-results/
+
+# Logs and local reports (may contain ids or keys printed by the CLI)
+*.log
+npm-debug.log*
+rag_eval*.json
+
+# Editors and OS
 .idea/
 .vscode/
 .DS_Store
-*.log
+rag_eval*.md
+
+# Evaluation artefacts kept out of the repository (see docs/quality/evaluation.md)
+# Full runs and reports stay local; frozen baselines are archived separately, not committed.
+baseline_*/
+rag_eval_phase_*.raw
+
+# Private originals and release archives (never published)
+private/

@@ -1,0 +1,69 @@
+{
+ "q082": {
+  "primary": {
+   "query": {
+    "measure": "sum_collected",
+    "filters": {
+     "created_weekdays": [
+      5,
+      6
+     ]
+    }
+   },
+   "expected": {
+    "amount_eur": 108.4
+   }
+  }
+ },
+ "q145": {
+  "interpretation 2": {
+   "query": {
+    "measure": "sum_units",
+    "filters": {
+     "statuses": [
+      "paid"
+     ],
+     "created_from": "2026-10-01",
+     "created_before": "2026-11-01"
+    }
+   },
+   "expected": {
+    "units": 17
+   }
+  }
+ },
+ "r008": {
+  "primary": {
+   "query": {
+    "measure": "sum_collected",
+    "filters": {
+     "quantity": {
+      "gt": 1
+     }
+    }
+   },
+   "expected": {
+    "amount_eur": 237.2
+   }
+  }
+ },
+ "r015": {
+  "primary": {
+   "query": {
+    "measure": "list",
+    "filters": {
+     "history_includes": [
+      "creation_unknown"
+     ]
+    }
+   },
+   "expected": {
+    "payment_ids": [
+     "495e7eea-5125-53a6-a872-ea91fe3e8291",
+     "7d25ddea-d6f7-5014-b252-49f1f9ac246c",
+     "4838cd98-4bca-5e0b-b151-8235b47e0e85"
+    ]
+   }
+  }
+ }
+}

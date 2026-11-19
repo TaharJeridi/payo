@@ -6,12 +6,11 @@ from concurrent.futures import ThreadPoolExecutor
 from sqlalchemy import func, select
 
 from app.db.session import get_session_factory
-from app.payments.catalog import get_product
 from app.payments.models import Payment
 from app.payments.state import PaymentStatus
 from app.webhooks.models import StripeEvent
 from app.webhooks.service import Outcome, WebhookProcessor
-from tests.conftest import build_event
+from tests.conftest import build_event, post_checkout
 
 COMPLETED = "checkout.session.completed"
 ASYNC_OK = "checkout.session.async_payment_succeeded"
@@ -52,7 +51,7 @@ def test_event_payload_is_not_trusted_without_stripe_confirmation(create_checkou
     response = send_event(forged)
 
     assert response.json()["outcome"] == "no_change"
-    assert _payment(db, checkout["payment_id"]).status is PaymentStatus.PENDING
+    assert _payment(db, checkout["payment_id"]).status is PaymentStatus.OPEN
 
 
 def test_duplicate_event_is_processed_once(create_checkout, gateway, send_event, db):
@@ -70,13 +69,13 @@ def test_duplicate_event_is_processed_once(create_checkout, gateway, send_event,
     assert _event_count(db) == 1
 
 
-def test_async_payment_flow_pending_then_paid(create_checkout, gateway, send_event, db):
+def test_async_payment_flow_open_then_paid(create_checkout, gateway, send_event, db):
     checkout = create_checkout()
     session_id = checkout["checkout_session_id"]
     gateway.update_remote(session_id, status="complete", payment_status="unpaid")
 
     assert send_event(build_event(COMPLETED, {"id": session_id})).json()["outcome"] == "no_change"
-    assert _payment(db, checkout["payment_id"]).status is PaymentStatus.PENDING
+    assert _payment(db, checkout["payment_id"]).status is PaymentStatus.OPEN
 
     gateway.mark_paid(session_id)
     assert send_event(build_event(ASYNC_OK, {"id": session_id})).json()["outcome"] == "processed_paid"
@@ -95,13 +94,14 @@ def test_async_payment_failure_marks_failed(create_checkout, gateway, send_event
     assert payment.failure_reason == "async_payment_failed"
 
 
-def test_expired_session_marks_failed(create_checkout, gateway, send_event, db):
+def test_expired_session_is_marked_expired(create_checkout, gateway, send_event, db):
     checkout = create_checkout()
     gateway.update_remote(checkout["checkout_session_id"], status="expired")
 
     response = send_event(build_event(EXPIRED, {"id": checkout["checkout_session_id"]}))
 
-    assert response.json()["outcome"] == "processed_failed"
+    assert response.json()["outcome"] == "processed_expired"
+    assert _payment(db, checkout["payment_id"]).status is PaymentStatus.EXPIRED
     assert _payment(db, checkout["payment_id"]).failure_reason == "checkout_session_expired"
 
 
@@ -131,18 +131,12 @@ def test_out_of_order_async_success_before_completed(create_checkout, gateway, s
 
 
 def test_failed_locally_can_be_recovered_by_verified_stripe_payment(client, gateway, send_event, db):
-    gateway.fail_create = True
-    client.post("/payments/checkout", json={"product_id": "payflow-pro"})
+    gateway.create_behaviours = ["reject"]
+    post_checkout(client)
     payment = db.execute(select(Payment)).scalar_one()
     assert payment.status is PaymentStatus.FAILED
 
-    gateway.fail_create = False
-    remote = gateway.create_checkout_session(
-        payment_id=payment.id,
-        product=get_product("payflow-pro"),
-        quantity=1,
-        customer_email=None,
-    )
+    remote = gateway.create_for(payment.id)
     gateway.mark_paid(remote.id)
 
     response = send_event(build_event(COMPLETED, {"id": remote.id}))
@@ -203,7 +197,7 @@ def test_livemode_event_is_ignored(create_checkout, gateway, send_event, db):
 
     assert response.json()["outcome"] == "ignored_livemode"
     assert gateway.retrieve_calls == []
-    assert _payment(db, checkout["payment_id"]).status is PaymentStatus.PENDING
+    assert _payment(db, checkout["payment_id"]).status is PaymentStatus.OPEN
 
 
 def test_livemode_remote_session_is_rejected(create_checkout, gateway, send_event, db):
@@ -219,12 +213,7 @@ def test_livemode_remote_session_is_rejected(create_checkout, gateway, send_even
 
 
 def test_unknown_payment_is_acknowledged(gateway, send_event):
-    remote = gateway.create_checkout_session(
-        payment_id=uuid.uuid4(),
-        product=get_product("payflow-pro"),
-        quantity=1,
-        customer_email=None,
-    )
+    remote = gateway.create_for(uuid.uuid4())
     gateway.mark_paid(remote.id)
 
     response = send_event(build_event(COMPLETED, {"id": remote.id}))
@@ -240,7 +229,7 @@ def test_stripe_outage_is_not_recorded_so_stripe_retries(create_checkout, gatewa
 
     gateway.fail_retrieve = True
     failed = send_event(event)
-    assert failed.status_code == 502
+    assert failed.status_code == 503
     assert _event_count(db) == 0
 
     gateway.fail_retrieve = False

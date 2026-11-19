@@ -1,0 +1,1413 @@
+{
+ "run": "gen-q2",
+ "source_file": "rag_eval_phase_gen-q2.json",
+ "source_sha256": "99d5387a47985da2a5b36ff9ef9b9c71ab034e0dc4b3a14eadb7482db8ce92fa",
+ "dataset": "generalization",
+ "dataset_sha256": "05c26453f7b48016680d653570b546a753ab3fe47d8ffe94bf77db2d39baadd3",
+ "code_fingerprint": "9b6f609942e8",
+ "passed_old": 101,
+ "passed_new": 101,
+ "metrics_old": {
+  "intent_accuracy": {
+   "passed": 96,
+   "applicable": 103,
+   "not_applicable": 14,
+   "rate": 0.932
+  },
+  "filter_accuracy": {
+   "passed": 54,
+   "applicable": 56,
+   "not_applicable": 61,
+   "rate": 0.964
+  },
+  "retrieval": {
+   "passed": 71,
+   "applicable": 77,
+   "not_applicable": 40,
+   "rate": 0.922
+  },
+  "payment_identification": {
+   "passed": 68,
+   "applicable": 74,
+   "not_applicable": 43,
+   "rate": 0.919
+  },
+  "financial_fact": {
+   "passed": 42,
+   "applicable": 46,
+   "not_applicable": 71,
+   "rate": 0.913
+  },
+  "completeness": {
+   "passed": 3,
+   "applicable": 3,
+   "not_applicable": 114,
+   "rate": 1.0
+  },
+  "citation": {
+   "passed": 36,
+   "applicable": 40,
+   "not_applicable": 77,
+   "rate": 0.9
+  },
+  "correct_abstention": {
+   "passed": 26,
+   "applicable": 27,
+   "not_applicable": 90,
+   "rate": 0.963
+  },
+  "no_false_refusal": {
+   "passed": 85,
+   "applicable": 90,
+   "not_applicable": 27,
+   "rate": 0.944
+  },
+  "isolation": {
+   "passed": 6,
+   "applicable": 6,
+   "not_applicable": 111,
+   "rate": 1.0
+  },
+  "language": {
+   "passed": 112,
+   "applicable": 117,
+   "not_applicable": 0,
+   "rate": 0.957
+  }
+ },
+ "metrics_new": {
+  "intent_accuracy": {
+   "passed": 96,
+   "applicable": 103,
+   "not_applicable": 14,
+   "rate": 0.932
+  },
+  "filter_accuracy": {
+   "passed": 54,
+   "applicable": 56,
+   "not_applicable": 61,
+   "rate": 0.964
+  },
+  "retrieval": {
+   "passed": 71,
+   "applicable": 77,
+   "not_applicable": 40,
+   "rate": 0.922
+  },
+  "payment_identification": {
+   "passed": 68,
+   "applicable": 74,
+   "not_applicable": 43,
+   "rate": 0.919
+  },
+  "financial_fact": {
+   "passed": 42,
+   "applicable": 46,
+   "not_applicable": 71,
+   "rate": 0.913
+  },
+  "completeness": {
+   "passed": 3,
+   "applicable": 3,
+   "not_applicable": 114,
+   "rate": 1.0
+  },
+  "citation": {
+   "passed": 36,
+   "applicable": 40,
+   "not_applicable": 77,
+   "rate": 0.9
+  },
+  "correct_abstention": {
+   "passed": 26,
+   "applicable": 27,
+   "not_applicable": 90,
+   "rate": 0.963
+  },
+  "no_false_refusal": {
+   "passed": 85,
+   "applicable": 90,
+   "not_applicable": 27,
+   "rate": 0.944
+  },
+  "isolation": {
+   "passed": 6,
+   "applicable": 6,
+   "not_applicable": 111,
+   "rate": 1.0
+  },
+  "language": {
+   "passed": 112,
+   "applicable": 117,
+   "not_applicable": 0,
+   "rate": 0.957
+  }
+ },
+ "cases": [
+  {
+   "id": "g-amt-4950",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-amt-5980-state",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-amt-1980",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-amt-between-40-50",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-amt-over-60",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-amt-atleast-8970",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-amt-under-20",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-amt-upto-990",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-st-failed-list",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-st-expired-show",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-st-open-still",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-st-unknown",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-st-to-pay",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-st-failed-word",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-st-en-expired",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-st-en-open",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-id-report-open",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-id-async-why",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-id-paid-when",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-id-amount",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-id-en-unknown",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-id-info-rejected",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-id-bare",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-date-oct12",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-date-1-5",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-date-after-25",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-date-before-4",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-date-last-week",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-date-oct14-what",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-date-en-oct9",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-date-november",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-comb-pro-expired",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-comb-report-open",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-comb-starter-failed-oct",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-comb-paid-over-50",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-comb-pro-qty3",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-comb-expired-after-15",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-comb-starter-990-paid",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-comb-en-report-paid-oct",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-agg-count-all",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-agg-failed-tx",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-agg-starter-revenue",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-agg-first-half",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-agg-expired-oct",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-agg-recovered-recon",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-agg-en-awaiting",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-agg-en-october",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-agg-top-revenue",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-agg-count-2990",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-ev-paid-after-expiry",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-ev-recovered-recon",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-ev-reconcile-attempts",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-ev-confirmed-by",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-ev-expired-by",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-ev-last-error",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-ev-en-late",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-neg-15",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-neg-pro-qty10",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-neg-september",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-neg-starter-expired-100",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-neg-en-250",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-neg-november-total",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-neg-report-failed-late",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-amb-49",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-amb-oct28-paid",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-amb-2990-how",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-amb-pro-ok",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {
+    "answer_ids": [
+     null,
+     false
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-amb-yesterday",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-amb-last-paid",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-oos-weather",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-oos-translate",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-oos-marketing",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-oos-en-worldcup",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-oos-fx",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-oos-business-plan",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-pii-phone",
+   "route": "attribute_unavailable",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-pii-email-starter5",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-pii-card",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-pii-en-name",
+   "route": "attribute_unavailable",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-pii-checkout-link",
+   "route": "attribute_unavailable",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-pii-idem-key",
+   "route": "attribute_unavailable",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-pii-address",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-en-8970",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-en-98-through",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-en-between",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-en-starter-failed",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-en-gross",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-en-why-failed",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-en-top-units",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-en-docs-keys-plain",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-col-8970-noeuro",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-col-gone-wrong",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-col-money-oct",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-col-checkout-expired",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-col-three-pro",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-col-to-collect",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-col-docs-link-time",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-col-refunds",
+   "route": "unsupported",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-typo-expired",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-typo-4950",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-typo-pro-failed",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [
+    "answer_ids_partial"
+   ]
+  },
+  {
+   "id": "g-typo-october",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-typo-over-90",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-typo-id-state",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-typo-docs-stripe-down",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-sim-98-nodecimals",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-sim-980",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-sim-8990",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-sim-id-upper",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-sim-id-typo",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-sim-2990-paid",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": []
+  },
+  {
+   "id": "g-adv-other-merchant-list",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-adv-en-147",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-adv-api-key",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-adv-debug-all",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-adv-other-id-en",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": []
+  },
+  {
+   "id": "g-adv-en-other-total",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": []
+  }
+ ]
+}

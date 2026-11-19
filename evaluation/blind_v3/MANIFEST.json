@@ -1,0 +1,209 @@
+{
+  "dataset": {
+    "name": "generalization-v3",
+    "version": "3.0.0",
+    "path": "backend/app/rag/evaluation/generalization_v3.json",
+    "sha256": "e5454c628bdd3e63e89e12ae51a96779e0e5b434f3952d0ac08daf2e2b0d61e8",
+    "sha256_file": "backend/app/rag/evaluation/generalization_v3.sha256",
+    "cases": 150,
+    "languages": {
+      "it": 89,
+      "en": 61
+    },
+    "frozen_at": "2026-11-18",
+    "valid_run_window_utc": "2026-11-16/2026-11-30"
+  },
+  "status": [
+    {
+      "stage": "generated without system feedback",
+      "date": "2026-11-18",
+      "detail": "150 questions by isolated agent a9a750185cfa0a18f; 19 replaced by blind regeneration (agent aec5b3e6146c48289) after the post-generation overlap check"
+    },
+    {
+      "stage": "golden answers verified",
+      "date": "2026-11-18",
+      "detail": "125 structured expectations; SQL and Python oracles agree; 0 disagreements"
+    },
+    {
+      "stage": "reviewed",
+      "date": "2026-11-18",
+      "detail": "isolated reviewer a0ddf97b1aca11be1: 135 ok, 13 minor, 2 major (undeclared ambiguity); 15 resolutions recorded, no question reworded"
+    },
+    {
+      "stage": "frozen",
+      "date": "2026-11-18",
+      "detail": "sha256 above; no run of the parser, the routing or Qwen on any v3 question before freezing"
+    },
+    {
+      "stage": "first measurement",
+      "date": "2026-11-18",
+      "detail": "blind-v3-1..3 on the Mac, code fingerprint 9b6f609942e8, qwen2.5:7b-instruct, bge-m3; raw results copied to baseline_blind_v3/ on the Mac with SHA256SUMS (json: f31f95b2350e752a, 7cbdf6d2ba421286, 6ed1bceed92b1304). From now on v3 is a regression set for any fix developed on its failures."
+    }
+  ],
+  "pre_freeze_builds": {
+    "note": "the runner file was rebuilt while typed facts and two resolutions were added, before freezing and before any system run",
+    "superseded_sha256": [
+      "3f84fe89472d8ee7a4a0ccb73d97fb50cc6308c524701979d2aff87d79387ec4",
+      "a887a9bd076a55ab173e52b3d5a893556c89bc0501a2286e3022bc20a7f24b6e"
+    ]
+  },
+  "generation": {
+    "tool": "LLM sub-agents (fresh context, general-purpose type; tool identity withheld in the public copy)",
+    "model": "withheld in the public copy",
+    "agents": [
+      {
+        "agent_id": "a9a750185cfa0a18f",
+        "role": "generator (150 questions)",
+        "working_directory": "<repo>/evaluation/blind_v3",
+        "tool_calls": [
+          {
+            "tool": "Read",
+            "file_path": "<workdir>/generator/specification.md"
+          },
+          {
+            "tool": "Write",
+            "file_path": "<workdir>/generator/questions.json"
+          },
+          {
+            "tool": "Edit",
+            "file_path": "<workdir>/generator/questions.json"
+          }
+        ]
+      },
+      {
+        "agent_id": "aec5b3e6146c48289",
+        "role": "generator, blind replacements (19 questions)",
+        "working_directory": "<workdir>",
+        "tool_calls": [
+          {
+            "tool": "Read",
+            "file_path": "<workdir>/generator2/specification.md"
+          },
+          {
+            "tool": "Read",
+            "file_path": "<workdir>/generator2/existing_questions.txt"
+          },
+          {
+            "tool": "Write",
+            "file_path": "<workdir>/generator2/questions.json"
+          }
+        ]
+      },
+      {
+        "agent_id": "a0ddf97b1aca11be1",
+        "role": "reviewer",
+        "working_directory": "<workdir>",
+        "tool_calls": [
+          {
+            "tool": "Read",
+            "file_path": "<workdir>/reviewer/specification.md"
+          },
+          {
+            "tool": "Read",
+            "file_path": "<workdir>/reviewer/dataset.json"
+          },
+          {
+            "tool": "Read",
+            "file_path": "<workdir>/reviewer/dataset.json"
+          },
+          {
+            "tool": "Read",
+            "file_path": "<workdir>/reviewer/dataset.json"
+          },
+          {
+            "tool": "Read",
+            "file_path": "<workdir>/reviewer/dataset.json"
+          },
+          {
+            "tool": "Read",
+            "file_path": "<workdir>/reviewer/oracle_check.json"
+          },
+          {
+            "tool": "Write",
+            "file_path": "<workdir>/reviewer/review.json"
+          }
+        ]
+      }
+    ],
+    "allowed_inputs": [
+      "evaluation/blind_v3/specification.md (copied to <workdir>)",
+      "for the replacement agent: the list of the other v3 questions",
+      "for the reviewer: the dataset and the oracle results"
+    ],
+    "excluded": [
+      "historical, v1 and v2 datasets",
+      "earlier evaluation results",
+      "parser, routing and prompt code",
+      "Linear issues",
+      "ADRs and docs/quality",
+      "docs/architecture.md sections 8 (assistant) and 10 (known limitations)"
+    ]
+  },
+  "system_under_test_at_freeze": {
+    "code_fingerprint": "9b6f609942e8",
+    "git_head_on_mac": "e9cfc0f (uncommitted changes)",
+    "chat_model": "qwen2.5:7b-instruct",
+    "embedding_model": "bge-m3"
+  },
+  "independence_limits": [
+    "Tool restrictions were instructions, not sandboxing; the transcripts show only the allowed reads and writes.",
+    "The agents' context carried metadata: the first agent's working directory path (payflow-user/evaluation/blind_v3), the attached project name and one document file name (no content), tool names.",
+    "The first generator used Edit once on its own output to fix a typo in a key fact (rule allowed only Read and Write).",
+    "The specification, the agent prompts, the replacement slots, the conversion to runner fields and the review resolutions were prepared by the same assistant that developed the parser; questions were never reworded by it.",
+    "Generator and reviewer are the same model family as the developer assistant, not humans.",
+    "The data are 20 synthetic payments; questions can only probe what these data contain."
+  ],
+  "files": {
+    "evaluation/blind_v3/README.md": "3ff9ea216a16a0a5135b745d98ded3315f80c0aa343df666477255cc933584ae",
+    "evaluation/blind_v3/agent_audit.json": "3cd3da3fb5964395a1a5d273e85429330b6b361a2b27b43300207ab53ab99243",
+    "evaluation/blind_v3/build_dataset.py": "a0f887452329e322d90ecbea49c96c0f50704ceaa0d15811c14bf25dcad27dc6",
+    "evaluation/blind_v3/fact_check.py": "98375f1ac73896e7c0deb9b3f146c49400a8e07b3a94c119041a14a91be5004d",
+    "evaluation/blind_v3/generated_raw.json": "37f9f5c1494eeb33bc9ecf161e4b5a164279adc73c1dbcbfb881e11d793021af",
+    "evaluation/blind_v3/generated_replacements_raw.json": "12e0d6f35243a0d7a0b8567dd278083b7e1380f77c5c7da5ae7d7d386266c014",
+    "evaluation/blind_v3/generator2_prompt.md": "77087dbe88f0ca50128688386d70601d8518881d2e4c05b5cf7313ada553213a",
+    "evaluation/blind_v3/generator_prompt.md": "6f0fa026690f1333c3839f73f19962cee9030fbed9c621c8f31aeb320f40520e",
+    "evaluation/blind_v3/independence_check.py": "176170faf9cda5d0c553e1ac7bbe4a1344f760e91e2b018abf111ad2acf62f1c",
+    "evaluation/blind_v3/independence_final.json": "5dd3fff9dad95bada610fc2ef8026620bd2da0922283f745b06d12749d08bc31",
+    "evaluation/blind_v3/independence_first_generation.json": "cc554e8ef3a97230629d8f2f1ab0ddac1c5df6f69448896deb78c4ae7bcdb987",
+    "evaluation/blind_v3/oracle.py": "b59c6a6ffcb493f41c190a1a7b2b5a894540dffd085f2044964b677f9541e492",
+    "evaluation/blind_v3/oracle_report.json": "0f012f3886339ef8baeb380dac4723f74aabb1cbab0555175898a998fdb7f4f7",
+    "evaluation/blind_v3/replacements.json": "4cdcd6272e250ef37a26ecf7fe5a5766366260210f1f45669ebf327c380dc30f",
+    "evaluation/blind_v3/review.json": "b86bab8f5b4c2890f4e01dffd6130d584c240158262f088c6ad3b940add8bd2b",
+    "evaluation/blind_v3/review_resolution.py": "05423a55a7ec9d67a0c3600a6718483cc296e2ab2b34c7799bb156462c16918a",
+    "evaluation/blind_v3/review_resolution_log.json": "786df822acb7b2db3dc865451f13e819191bde409db19b9a38bb542d73b2c787",
+    "evaluation/blind_v3/reviewed_questions.json": "0bdd06d54da5fd07553a3cab2ae9a26dd05e9e89c67f35f06b21de34c7d53faf",
+    "evaluation/blind_v3/reviewer_prompt.md": "f7fb50ee636e22b5deff14d54b1a7bb8dc969cb5b8ebe2c5df7d229e3b75a941",
+    "evaluation/blind_v3/specification.md": "3b6764e9ceb366ddae497312acd341136f556fd176e49dd21d3be5bef5fab118",
+    "evaluation/blind_v3/verification_queries.json": "1144d8d54e8e03be3d139e02582124bdfaad7523c0ef992d1bf63fa5dbc63c97"
+  },
+  "tests": "backend/tests/test_generalization_v3.py",
+  "public_copy": {
+    "note": "Public, anonymized copy of the frozen provenance. Files whose bytes differ from the frozen originals are listed in original_sha256 with the hash of the original; the originals are kept privately. The dataset file and its hash are unchanged.",
+    "replacements": [
+      {
+        "from": "<generation tool name>",
+        "to": "LLM sub-agents (fresh context, general-purpose type; tool identity withheld in the public copy)"
+      },
+      {
+        "from": "<model identifier>",
+        "to": "withheld in the public copy"
+      },
+      {
+        "from": "<local working directory>",
+        "to": "<workdir>"
+      },
+      {
+        "from": "<local repository path>",
+        "to": "<repo>"
+      }
+    ],
+    "original_sha256": {
+      "evaluation/blind_v3/README.md": "4b1ca19b432097b505f9c107936d11ecfd591026d90654d5160977b4d3454850",
+      "evaluation/blind_v3/agent_audit.json": "d3b4faaf9f728d73b03eb39f034e0728b944e780ffdf26b8f40542eef1a1f83e",
+      "evaluation/blind_v3/generator2_prompt.md": "e0a233292bce4260cb2ea41512c44baf05087e612dc5f78e6c1a0c0b2ac86eda",
+      "evaluation/blind_v3/generator_prompt.md": "3288340a7f29acaad017c11aaaafa8162a105af81703600bcd115b426f7a9112",
+      "evaluation/blind_v3/reviewer_prompt.md": "11a7b1df3e9c649280288dcb0c945ed4786745d3e6758abc03a44f81a3d47aa0",
+      "evaluation/blind_v3/MANIFEST.json": "67c0089947e4268f4ed17dad7d969be30ad879141f2b028832798c122e14e2fb"
+    }
+  }
+}

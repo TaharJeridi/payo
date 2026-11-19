@@ -28,8 +28,8 @@ jobs:
     env:
       TEST_DATABASE_URL: postgresql+psycopg://payflow:payflow@localhost:5432/payflow_test
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -40,9 +40,28 @@ jobs:
       - run: mypy
       - run: pytest -q
 
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npx vitest run
+      - run: npm run build
+
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: docker build --target runtime -t payflow-api backend
       - run: docker build --target dev -t payflow-tests backend
+      - run: docker build -t payflow-dashboard frontend
+      - run: cp .env.example .env && docker compose config --quiet   # placeholders only, no secrets

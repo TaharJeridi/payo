@@ -1,0 +1,1 @@
+[["ranking flag off", "ranking=intent == \"top_product\" and bool(_RANKING_REQUEST.search(text)),", "ranking=False,"]]

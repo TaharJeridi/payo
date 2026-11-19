@@ -11,9 +11,10 @@ from sqlalchemy.orm import Session, sessionmaker
 
 from app.core.errors import InvalidWebhook
 from app.integrations.stripe_gateway import CheckoutSessionData, PaymentGateway
+from app.payments.ledger import EventSource, PaymentLedger
 from app.payments.models import Payment
 from app.payments.repository import PaymentRepository
-from app.payments.state import PaymentStatus, can_transition
+from app.payments.sync import SyncResult, apply_remote_state
 from app.webhooks.models import StripeEvent
 
 logger = logging.getLogger(__name__)
@@ -30,8 +31,10 @@ HANDLED_EVENT_TYPES = frozenset(e.value for e in EventType)
 
 
 class Outcome(enum.StrEnum):
+    PROCESSED_OPEN = "processed_open"
     PROCESSED_PAID = "processed_paid"
     PROCESSED_FAILED = "processed_failed"
+    PROCESSED_EXPIRED = "processed_expired"
     NO_CHANGE = "no_change"
     STALE_EVENT = "stale_event"
     DUPLICATE = "duplicate"
@@ -39,6 +42,17 @@ class Outcome(enum.StrEnum):
     IGNORED_LIVEMODE = "ignored_livemode"
     PAYMENT_NOT_FOUND = "payment_not_found"
     VERIFICATION_FAILED = "verification_failed"
+
+
+_OUTCOME_BY_RESULT: dict[SyncResult, Outcome] = {
+    SyncResult.OPEN: Outcome.PROCESSED_OPEN,
+    SyncResult.PAID: Outcome.PROCESSED_PAID,
+    SyncResult.FAILED: Outcome.PROCESSED_FAILED,
+    SyncResult.EXPIRED: Outcome.PROCESSED_EXPIRED,
+    SyncResult.NO_CHANGE: Outcome.NO_CHANGE,
+    SyncResult.STALE: Outcome.STALE_EVENT,
+    SyncResult.VERIFICATION_FAILED: Outcome.VERIFICATION_FAILED,
+}
 
 
 class WebhookProcessor:
@@ -132,43 +146,22 @@ class WebhookProcessor:
             logger.warning("webhook_payment_not_found event_id=%s session_id=%s", event_id, session_id)
             return Outcome.PAYMENT_NOT_FOUND
 
-        mismatch = self._verify(payment, session_id, remote)
-        if mismatch is not None:
+        result, mismatch = apply_remote_state(
+            payment,
+            session_id,
+            remote,
+            ledger=PaymentLedger(session, lambda: datetime.now(UTC)),
+            source=EventSource.WEBHOOK,
+            event_type=event_type,
+            event_id=event_id,
+        )
+        if result is SyncResult.VERIFICATION_FAILED:
             logger.error(
                 "webhook_verification_failed payment_id=%s session_id=%s reason=%s", payment.id, session_id, mismatch
             )
-            if can_transition(payment.status, PaymentStatus.FAILED):
-                payment.status = PaymentStatus.FAILED
-                payment.failure_reason = f"stripe_verification_failed:{mismatch}"
-                payment.last_stripe_event_id = event_id
-            return Outcome.VERIFICATION_FAILED
-
-        if payment.stripe_checkout_session_id is None:
-            payment.stripe_checkout_session_id = remote.id
-        if remote.payment_intent_id:
-            payment.stripe_payment_intent_id = remote.payment_intent_id
-        if remote.customer_email and not payment.customer_email:
-            payment.customer_email = remote.customer_email
-
-        target, reason = self._decide(event_type, remote)
-        if target is None:
-            return Outcome.NO_CHANGE
-        if payment.status == target:
-            return Outcome.NO_CHANGE
-        if not can_transition(payment.status, target):
-            logger.info(
-                "webhook_stale_event payment_id=%s current=%s target=%s", payment.id, payment.status.value, target.value
-            )
-            return Outcome.STALE_EVENT
-
-        payment.status = target
-        payment.last_stripe_event_id = event_id
-        if target is PaymentStatus.PAID:
-            payment.paid_at = datetime.now(UTC)
-            payment.failure_reason = None
-            return Outcome.PROCESSED_PAID
-        payment.failure_reason = reason
-        return Outcome.PROCESSED_FAILED
+        elif result is SyncResult.STALE:
+            logger.info("webhook_stale_event payment_id=%s current=%s", payment.id, payment.status.value)
+        return _OUTCOME_BY_RESULT[result]
 
     @staticmethod
     def _locate_payment(session: Session, session_id: str, remote: CheckoutSessionData) -> Payment | None:
@@ -182,31 +175,3 @@ class WebhookProcessor:
             if payment is not None:
                 return payment
         return repo.get_by_session_for_update(session_id)
-
-    @staticmethod
-    def _verify(payment: Payment, session_id: str, remote: CheckoutSessionData) -> str | None:
-        if remote.livemode:
-            return "livemode_session"
-        if remote.id != session_id:
-            return "session_id_mismatch"
-        if payment.stripe_checkout_session_id and payment.stripe_checkout_session_id != remote.id:
-            return "session_id_mismatch"
-        if remote.metadata.get("payment_id") != str(payment.id):
-            return "metadata_mismatch"
-        if remote.client_reference_id and remote.client_reference_id != str(payment.id):
-            return "client_reference_mismatch"
-        if remote.amount_total != payment.amount:
-            return "amount_mismatch"
-        if (remote.currency or "").lower() != payment.currency:
-            return "currency_mismatch"
-        return None
-
-    @staticmethod
-    def _decide(event_type: str, remote: CheckoutSessionData) -> tuple[PaymentStatus | None, str | None]:
-        if remote.payment_status == "paid":
-            return PaymentStatus.PAID, None
-        if remote.status == "expired":
-            return PaymentStatus.FAILED, "checkout_session_expired"
-        if event_type == EventType.ASYNC_FAILED.value and remote.payment_status == "unpaid":
-            return PaymentStatus.FAILED, "async_payment_failed"
-        return None, None

@@ -1,5 +1,11 @@
 name: payflow-ai
 
+x-app-env: &app-env
+  DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-payflow}:${POSTGRES_PASSWORD:-payflow}@db:5432/${POSTGRES_DB:-payflow}
+  OLLAMA_BASE_URL: ${OLLAMA_BASE_URL_DOCKER:-http://host.docker.internal:11434}
+  QDRANT_URL: http://qdrant:6333
+  RAG_DOCS_DIR: /app/rag_docs
+
 services:
   db:
     image: postgres:16-alpine
@@ -9,7 +15,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-payflow}
       POSTGRES_DB: ${POSTGRES_DB:-payflow}
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./docker/postgres/init-test-db.sql:/docker-entrypoint-initdb.d/init-test-db.sql:ro
@@ -24,12 +30,71 @@ services:
       context: ./backend
     restart: unless-stopped
     env_file: .env
-    environment:
-      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-payflow}:${POSTGRES_PASSWORD:-payflow}@db:5432/${POSTGRES_DB:-payflow}
+    environment: *app-env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
     depends_on:
       db:
+        condition: service_healthy
+
+  # Settles non-final payments from Stripe's data, with per-payment backoff (lost webhooks,
+  # lost API responses). Starts after the api, which is the one applying migrations.
+  reconciler:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    env_file: .env
+    environment: *app-env
+    command: ["python", "-m", "app.reconcile", "--loop"]
+    depends_on:
+      api:
+        condition: service_healthy
+
+  qdrant:
+    image: qdrant/qdrant:v1.12.4
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  # Embeds payments and docs/ into Qdrant through Ollama, incrementally, every RAG_INDEX_INTERVAL_SECONDS.
+  # Ollama runs natively on the host (Metal on macOS) and is reached through host.docker.internal.
+  rag-indexer:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    env_file: .env
+    environment: *app-env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./docs:/app/rag_docs:ro
+    command: ["python", "-m", "app.rag.index", "--loop"]
+    depends_on:
+      api:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+
+  # Merchant dashboard (React). nginx serves the build and proxies /api to the api service,
+  # so the browser talks to a single origin: no CORS, strict CSP.
+  dashboard:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      api:
         condition: service_healthy
 
   tests:
@@ -56,3 +121,4 @@ services:
 
 volumes:
   pgdata:
+  qdrant_data:

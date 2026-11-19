@@ -1,0 +1,1 @@
+[["no duration fact", "    if payment.paid_at is not None and payment.created_at is not None:", "    if False:"]]

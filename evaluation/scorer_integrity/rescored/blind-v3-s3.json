@@ -1,0 +1,2157 @@
+{
+ "run": "blind-v3-s3",
+ "source_file": "rag_eval_phase_blind-v3-s3.json",
+ "source_sha256": "e1ee7e84007af08dc612cc2b42ea5dd15061d9765a3f2296181a30ff396e691e",
+ "dataset": "generalization-v3",
+ "dataset_sha256": "e5454c628bdd3e63e89e12ae51a96779e0e5b434f3952d0ac08daf2e2b0d61e8",
+ "code_fingerprint": "25fb355902b3",
+ "passed_old": 111,
+ "passed_new": 111,
+ "metrics_old": {
+  "intent_accuracy": {
+   "passed": 0,
+   "applicable": 0,
+   "not_applicable": 150,
+   "rate": null
+  },
+  "filter_accuracy": {
+   "passed": 0,
+   "applicable": 0,
+   "not_applicable": 150,
+   "rate": null
+  },
+  "retrieval": {
+   "passed": 61,
+   "applicable": 74,
+   "not_applicable": 76,
+   "rate": 0.824
+  },
+  "payment_identification": {
+   "passed": 42,
+   "applicable": 52,
+   "not_applicable": 98,
+   "rate": 0.808
+  },
+  "financial_fact": {
+   "passed": 19,
+   "applicable": 33,
+   "not_applicable": 117,
+   "rate": 0.576
+  },
+  "completeness": {
+   "passed": 0,
+   "applicable": 0,
+   "not_applicable": 150,
+   "rate": null
+  },
+  "citation": {
+   "passed": 40,
+   "applicable": 46,
+   "not_applicable": 104,
+   "rate": 0.87
+  },
+  "correct_abstention": {
+   "passed": 28,
+   "applicable": 29,
+   "not_applicable": 121,
+   "rate": 0.966
+  },
+  "no_false_refusal": {
+   "passed": 90,
+   "applicable": 108,
+   "not_applicable": 42,
+   "rate": 0.833
+  },
+  "isolation": {
+   "passed": 150,
+   "applicable": 150,
+   "not_applicable": 0,
+   "rate": 1.0
+  },
+  "language": {
+   "passed": 141,
+   "applicable": 150,
+   "not_applicable": 0,
+   "rate": 0.94
+  }
+ },
+ "metrics_new": {
+  "intent_accuracy": {
+   "passed": 0,
+   "applicable": 0,
+   "not_applicable": 150,
+   "rate": null
+  },
+  "filter_accuracy": {
+   "passed": 0,
+   "applicable": 0,
+   "not_applicable": 150,
+   "rate": null
+  },
+  "retrieval": {
+   "passed": 61,
+   "applicable": 74,
+   "not_applicable": 76,
+   "rate": 0.824
+  },
+  "payment_identification": {
+   "passed": 42,
+   "applicable": 52,
+   "not_applicable": 98,
+   "rate": 0.808
+  },
+  "financial_fact": {
+   "passed": 19,
+   "applicable": 33,
+   "not_applicable": 117,
+   "rate": 0.576
+  },
+  "completeness": {
+   "passed": 0,
+   "applicable": 0,
+   "not_applicable": 150,
+   "rate": null
+  },
+  "citation": {
+   "passed": 40,
+   "applicable": 46,
+   "not_applicable": 104,
+   "rate": 0.87
+  },
+  "correct_abstention": {
+   "passed": 28,
+   "applicable": 29,
+   "not_applicable": 121,
+   "rate": 0.966
+  },
+  "no_false_refusal": {
+   "passed": 90,
+   "applicable": 108,
+   "not_applicable": 42,
+   "rate": 0.833
+  },
+  "isolation": {
+   "passed": 150,
+   "applicable": 150,
+   "not_applicable": 0,
+   "rate": 1.0
+  },
+  "language": {
+   "passed": 141,
+   "applicable": 150,
+   "not_applicable": 0,
+   "rate": 0.94
+  }
+ },
+ "cases": [
+  {
+   "id": "v3-q001",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 2990}"
+   ]
+  },
+  {
+   "id": "v3-q002",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 2990}",
+    "{\"reason\": \"async_payment_failed\"}"
+   ]
+  },
+  {
+   "id": "v3-q003",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 8970}"
+   ]
+  },
+  {
+   "id": "v3-q004",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 4900}",
+    "{\"status\": \"paid\"}"
+   ]
+  },
+  {
+   "id": "v3-q006",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 4900}"
+   ]
+  },
+  {
+   "id": "v3-q007",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 5980}",
+    "{\"reason\": \"payment_provider_unavailable\"}"
+   ]
+  },
+  {
+   "id": "v3-q008",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q009",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 2990}"
+   ]
+  },
+  {
+   "id": "v3-q010",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 4900}",
+    "{\"status\": \"failed\"}"
+   ]
+  },
+  {
+   "id": "v3-q011",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 990}",
+    "{\"status\": \"paid\"}"
+   ]
+  },
+  {
+   "id": "v3-q012",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"status\": \"paid\"}"
+   ]
+  },
+  {
+   "id": "v3-q013",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"status\": \"expired\"}",
+    "{\"reason\": \"checkout_session_expired\"}"
+   ]
+  },
+  {
+   "id": "v3-q014",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q015",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q016",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q017",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q018",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 4900}"
+   ]
+  },
+  {
+   "id": "v3-q019",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q020",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"reason\": \"payment_provider_unavailable\"}"
+   ]
+  },
+  {
+   "id": "v3-q021",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q022",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q023",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q024",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q025",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 8970}"
+   ]
+  },
+  {
+   "id": "v3-q026",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q027",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q028",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q029",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q031",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q032",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q034",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {
+    "answer_ids": [
+     null,
+     false
+    ]
+   },
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"ids\": [\"495e7eea-5125-53a6-a872-ea91fe3e8291\"]}: fail (expected payments missing missing=495e7eea)"
+   ]
+  },
+  {
+   "id": "v3-q035",
+   "route": "unrecognized_payment_set",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "clarification",
+   "fact_new": "clarification",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q036",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q038",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "partial",
+   "fact_new_detail": [
+    "{\"ids\": [\"c3dcc710-9742-5f8a-a48a-5c02065d5d3e\", \"ee1e4caa-c: partial (declared partial missing=0ffe4c86,4343f610,495e7eea,6f97abac,ee1e4caa)"
+   ]
+  },
+  {
+   "id": "v3-q039",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q040",
+   "route": "unrecognized_payment_set",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "clarification",
+   "fact_new": "clarification",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q042",
+   "route": "unrecognized_payment_set",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q043",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q044",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q045",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q046",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q049",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q051",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q052",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [
+    "answer_ids_partial"
+   ],
+   "fact_old": "pass",
+   "fact_new": "partial",
+   "fact_new_detail": [
+    "{\"ids\": [\"4ad709ca-2b89-54ab-b7f2-858d7c7a80b4\"]}: partial (declared partial)"
+   ]
+  },
+  {
+   "id": "v3-q053",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q054",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q055",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {
+    "answer_ids": [
+     null,
+     false
+    ]
+   },
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"ids\": [\"4838cd98-4bca-5e0b-b151-8235b47e0e85\"]}: fail (expected payments missing missing=4838cd98)"
+   ]
+  },
+  {
+   "id": "v3-q057",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q058",
+   "route": "unrecognized_payment_set",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q059",
+   "route": "unrecognized_payment_set",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q060",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q061",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q062",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"count\": 8}"
+   ]
+  },
+  {
+   "id": "v3-q063",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q065",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q066",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q067",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q068",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q069",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q070",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q072",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q073",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q074",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q076",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q077",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q078",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q079",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q080",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q081",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q082",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q083",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q084",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q085",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q087",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"product\": \"payflow-report\"}",
+    "{\"amount_cents\": 19600}"
+   ]
+  },
+  {
+   "id": "v3-q089",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q090",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q091",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q092",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q093",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q094",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q095",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q096",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q099",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q100",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q101",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q102",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q103",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q104",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q105",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q106",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q107",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q108",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-q109",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q110",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q111",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q112",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q113",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q114",
+   "route": "unsupported",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q115",
+   "route": "unsupported",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q116",
+   "route": "unsupported",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q117",
+   "route": "unsupported",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q118",
+   "route": "unsupported",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q119",
+   "route": "unsupported",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q120",
+   "route": "unsupported",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q121",
+   "route": "attribute_unavailable",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q122",
+   "route": "attribute_unavailable",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q123",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q124",
+   "route": "attribute_unavailable",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q125",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [
+    "refusal_uncertain"
+   ],
+   "fact_old": "pass",
+   "fact_new": "uncertain",
+   "fact_new_detail": [
+    "refusal followed by other content: review"
+   ]
+  },
+  {
+   "id": "v3-q126",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q127",
+   "route": "attribute_unavailable",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q128",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q129",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "manual",
+   "fact_new": "manual",
+   "fact_new_detail": [
+    "not refused (or refused and did it anyway)"
+   ]
+  },
+  {
+   "id": "v3-q130",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q131",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q132",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q133",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q134",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [
+    "refusal_uncertain"
+   ],
+   "fact_old": "pass",
+   "fact_new": "uncertain",
+   "fact_new_detail": [
+    "refusal followed by other content: review"
+   ]
+  },
+  {
+   "id": "v3-q135",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [
+    "refusal_uncertain"
+   ],
+   "fact_old": "pass",
+   "fact_new": "uncertain",
+   "fact_new_detail": [
+    "refusal followed by other content: review"
+   ]
+  },
+  {
+   "id": "v3-q136",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "manual",
+   "fact_new": "manual",
+   "fact_new_detail": [
+    "not refused (or refused and did it anyway)"
+   ]
+  },
+  {
+   "id": "v3-q138",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q139",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q140",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": false,
+   "changed": {
+    "refused": [
+     true,
+     false
+    ],
+    "refusal_language": [
+     true,
+     null
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "not refused (or refused and did it anyway)"
+   ]
+  },
+  {
+   "id": "v3-q142",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": true,
+   "changed": {
+    "refused": [
+     false,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q143",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q144",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "partial",
+   "fact_new_detail": [
+    "{\"ids\": [\"7d25ddea-d6f7-5014-b252-49f1f9ac246c\"]}: partial (declared partial extra=371294c3,4ad709ca,a09af299,f022dabf,fb81ab87)"
+   ]
+  },
+  {
+   "id": "v3-q145",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 44470}"
+   ]
+  },
+  {
+   "id": "v3-q146",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q147",
+   "route": "clarify",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"ids\": [\"6f97abac-0cf7-5b24-ac75-ead99fb40ec8\", \"73074148-b: fail (expected payments missing missing=4838cd98,6f97abac,73074148)"
+   ]
+  },
+  {
+   "id": "v3-q148",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-q149",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"ids\": [\"64cef59a-67fc-513e-877e-a7d47a8e3030\", \"c3dcc710-9: fail (expected payments missing missing=64cef59a,677506ad,68b1f78a,a807d01f,c3dcc710,ee1e4caa)"
+   ]
+  },
+  {
+   "id": "v3-r001",
+   "route": "sql_aggregate",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-r002",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-r003",
+   "route": "semantic",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-r004",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"product\": \"payflow-starter\"}",
+    "{\"amount_cents\": 4950}"
+   ]
+  },
+  {
+   "id": "v3-r005",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-r006",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-r007",
+   "route": "clarify",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"ids\": [\"73074148-bca3-5e91-969f-141d6491488b\"]}: fail (expected payments missing missing=73074148)"
+   ]
+  },
+  {
+   "id": "v3-r008",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-r009",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-r010",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [
+    "answer_ids_partial"
+   ],
+   "fact_old": "pass",
+   "fact_new": "partial",
+   "fact_new_detail": [
+    "{\"ids\": [\"ee1e4caa-c0e7-529f-806e-4fe62d29d9bf\", \"0ffe4c86-9: partial (declared partial extra=4ad709ca,6ceb8bff,7d25ddea,a807d01f)"
+   ]
+  },
+  {
+   "id": "v3-r011",
+   "route": "sql_list",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {
+    "answer_ids": [
+     null,
+     true
+    ]
+   },
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-r012",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-r013",
+   "route": "no_match",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  },
+  {
+   "id": "v3-r014",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [
+    "answer_ids_partial"
+   ],
+   "fact_old": "pass",
+   "fact_new": "partial",
+   "fact_new_detail": [
+    "{\"ids\": [\"a807d01f-9ea7-531d-a38e-aa71369014db\"]}: partial (declared partial extra=0ffe4c86,7d25ddea)"
+   ]
+  },
+  {
+   "id": "v3-r015",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {
+    "answer_ids": [
+     null,
+     false
+    ]
+   },
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"ids\": [\"495e7eea-5125-53a6-a872-ea91fe3e8291\", \"7d25ddea-d: fail (expected payments missing extra=677506ad,c3dcc710 missing=495e7eea,7d25ddea)"
+   ]
+  },
+  {
+   "id": "v3-r016",
+   "route": "sql_partial",
+   "used_llm": false,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "partial",
+   "fact_new_detail": [
+    "{\"ids\": [\"ee1e4caa-c0e7-529f-806e-4fe62d29d9bf\", \"a807d01f-9: partial (declared partial extra=4838cd98,633941c9,677506ad,fb81ab87 missing=a807d01f,ee1e4caa)"
+   ]
+  },
+  {
+   "id": "v3-r017",
+   "route": "unrecognized_payment_set",
+   "used_llm": false,
+   "old_passed": false,
+   "new_passed": false,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "refused"
+   ]
+  },
+  {
+   "id": "v3-r018",
+   "route": "sql_find",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "fail",
+   "fact_new": "fail",
+   "fact_new_detail": [
+    "{\"amount_cents\": 4900}"
+   ]
+  },
+  {
+   "id": "v3-r019",
+   "route": "semantic",
+   "used_llm": true,
+   "old_passed": true,
+   "new_passed": true,
+   "changed": {},
+   "review": [],
+   "fact_old": "pass",
+   "fact_new": "pass",
+   "fact_new_detail": []
+  }
+ ]
+}
