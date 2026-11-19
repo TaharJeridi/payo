@@ -148,7 +148,7 @@ function AnswerView({ answer, exchangeId }: { answer: RagAnswer; exchangeId: num
       </p>
       {answer.sources.length > 0 && (
         <div className="mt-4 border-t border-line pt-3">
-          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">Sources</h3>
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">Sources</h2>
           <ol className="space-y-1 text-sm">
             {answer.sources.map((source) => {
               const paymentId = paymentIdFromSourceKey(source.source_key);
